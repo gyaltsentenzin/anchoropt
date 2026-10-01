@@ -1,0 +1,47 @@
+95a96,116
+> # STACK is the moving INCUMBENT carried forward; SPEC is the candidate under test on top of it.
+> # They compose, candidate last, so an incumbent controller at a shared locus keeps precedence.
+> # Either alone works: STACK+no SPEC is the incumbent control, SPEC+no STACK is the old single-arm
+> # behaviour byte-for-byte.
+> STACK="${STACK:-}"
+> if [[ -n "$STACK" ]]; then
+>   [[ -f "$STACK" ]] || { echo "FATAL: stack missing: $STACK"; exit 97; }
+>   export ANCHOROPT_CONTROLLER_STACK="$STACK"
+>   export ANCHOROPT_PHI_MODULE=install_controller
+>   echo "[auto] STACK (incumbent) = $STACK"
+>   python - "$STACK" <<'SP'
+> import json, sys
+> d = json.load(open(sys.argv[1]))
+> ents = d.get("controllers") if isinstance(d, dict) else d
+> print("[auto]   %d controller(s) in the incumbent stack:" % len(ents))
+> for e in ents:
+>     print("[auto]     %s" % (e if isinstance(e, str) else e.get("name", "<inline>")))
+> SP
+> else
+>   unset ANCHOROPT_CONTROLLER_STACK || true
+> fi
+100c121
+<   echo "[auto] ARM: controller spec = $SPEC  (PHI_MODULE=install_controller)"
+---
+>   echo "[auto] ARM: candidate spec = $SPEC  (PHI_MODULE=install_controller)"
+103,104c124,126
+<   unset ANCHOROPT_CONTROLLER_SPEC ANCHOROPT_PHI_MODULE || true
+<   echo "[auto] CONTROL: no controller installed"
+---
+>   unset ANCHOROPT_CONTROLLER_SPEC || true
+>   [[ -z "$STACK" ]] && { unset ANCHOROPT_PHI_MODULE || true; echo "[auto] CONTROL: nothing installed"; }
+>   [[ -n "$STACK" ]] && echo "[auto] INCUMBENT CONTROL: stack only, no candidate"
+105a128,132
+> # THE SPEC THE RUN ACTUALLY INSTALLED, written beside the results so scoring reads what RAN rather
+> # than what a caller believed was installed. `_installed_spec` looks for exactly this filename.
+> mkdir -p "$W/results/${TAG}_${SPLIT}"
+> if [[ -n "$SPEC" ]]; then cp "$SPEC" "$W/results/${TAG}_${SPLIT}/controller_spec.json"; fi
+> if [[ -n "$STACK" ]]; then cp "$STACK" "$W/results/${TAG}_${SPLIT}/controller_stack.json"; fi
+---rc=1
+=== submit diff ===
+25a26
+> STACK="${STACK:-}"
+40c41
+< export TAG BACKEND SPLIT PORT SPEC
+---
+> export TAG BACKEND SPLIT PORT SPEC STACK

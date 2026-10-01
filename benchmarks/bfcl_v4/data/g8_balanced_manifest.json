@@ -1,0 +1,17 @@
+{
+  "strategy": "balanced_one_fold",
+  "seed": 20260810,
+  "domain": "healthcare",
+  "held_out_cells": [
+    "customer/kv",
+    "finance/rec_sum",
+    "student/vector"
+  ],
+  "n_train_scored": 303,
+  "n_test_scored": 84,
+  "outputs": {
+    "train": "benchmarks/bfcl_v4/data/g8_balanced_train_cases.json",
+    "test": "benchmarks/bfcl_v4/data/g8_balanced_test_cases.json"
+  },
+  "corpus_sha256": "64a8514b07f2db6e"
+}

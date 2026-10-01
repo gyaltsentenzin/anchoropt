@@ -1,0 +1,195 @@
+{
+  "incumbent_id": "P0",
+  "incumbent_token": "<matrix-dir>/granite_4_1_30b__self__airline/baseline.json",
+  "n_arms_in_manifest": 54,
+  "n_evaluated": 8,
+  "n_voided": 0,
+  "voided": [],
+  "aborted_on_outage": false,
+  "results": [
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+      "gains": [],
+      "losses": [
+        "1",
+        "10",
+        "11",
+        "5",
+        "9"
+      ],
+      "firings": 8,
+      "cases_fired": 8,
+      "n": 30,
+      "interventions_executed": 8,
+      "accuracy_delta_pp": -16.666666666666668,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "7/30 vs incumbent 12/30"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "gains": [
+        "17",
+        "27",
+        "3",
+        "38"
+      ],
+      "losses": [
+        "1",
+        "10",
+        "11",
+        "28",
+        "9"
+      ],
+      "firings": 8,
+      "cases_fired": 8,
+      "n": 30,
+      "interventions_executed": 8,
+      "accuracy_delta_pp": -3.3333333333333335,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "11/30 vs incumbent 12/30"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_verify_before_reply",
+      "gains": [
+        "12",
+        "17",
+        "27",
+        "3",
+        "43"
+      ],
+      "losses": [
+        "1",
+        "10",
+        "11",
+        "9"
+      ],
+      "firings": 6,
+      "cases_fired": 6,
+      "n": 30,
+      "interventions_executed": 6,
+      "accuracy_delta_pp": 3.3333333333333335,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "13/30 vs incumbent 12/30"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_double_check_status",
+      "gains": [
+        "3",
+        "42"
+      ],
+      "losses": [
+        "1",
+        "10",
+        "11",
+        "49",
+        "9"
+      ],
+      "firings": 6,
+      "cases_fired": 6,
+      "n": 30,
+      "interventions_executed": 6,
+      "accuracy_delta_pp": -10.0,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "9/30 vs incumbent 12/30"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_complete_actions_first",
+      "gains": [
+        "27",
+        "3",
+        "33"
+      ],
+      "losses": [
+        "0",
+        "1",
+        "11",
+        "9"
+      ],
+      "firings": 9,
+      "cases_fired": 9,
+      "n": 30,
+      "interventions_executed": 9,
+      "accuracy_delta_pp": -3.3333333333333335,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "11/30 vs incumbent 12/30"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "gains": [
+        "27",
+        "36",
+        "38",
+        "41",
+        "43",
+        "47"
+      ],
+      "losses": [
+        "11",
+        "40"
+      ],
+      "firings": 181,
+      "cases_fired": 30,
+      "n": 30,
+      "interventions_executed": 181,
+      "accuracy_delta_pp": 13.333333333333334,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "16/30 vs incumbent 12/30"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+      "gains": [
+        "12",
+        "27",
+        "3",
+        "36",
+        "43",
+        "47"
+      ],
+      "losses": [
+        "11",
+        "40",
+        "9"
+      ],
+      "firings": 244,
+      "cases_fired": 30,
+      "n": 30,
+      "interventions_executed": 244,
+      "accuracy_delta_pp": 10.0,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "15/30 vs incumbent 12/30"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_verify_before_reply",
+      "gains": [
+        "27",
+        "38",
+        "42",
+        "47"
+      ],
+      "losses": [
+        "1",
+        "11",
+        "28",
+        "40",
+        "49",
+        "5",
+        "9"
+      ],
+      "firings": 209,
+      "cases_fired": 30,
+      "n": 30,
+      "interventions_executed": 209,
+      "accuracy_delta_pp": -10.0,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "9/30 vs incumbent 12/30"
+    }
+  ]
+}

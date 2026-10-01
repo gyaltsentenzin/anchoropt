@@ -1,0 +1,59 @@
+{
+ "case_id": "memory_kv_117-student-37",
+ "phase": "query",
+ "run_id": "1834414",
+ "backend": "kv",
+ "n_steps": 2,
+ "steps": [
+  {
+   "turn": 0,
+   "step": 0,
+   "status": "executed",
+   "decoded": [
+    "core_memory_retrieve(key='weekend_routine_details')"
+   ],
+   "tool_results": [
+    "{\"value\": \"Weekends balance work and leisure: Saturdays for longer assignments or activities(e.g., sailing, gatherings). Sundays dedicated to group study session with 7 classmates for prep and sharing resources; also used for internship/job application review.\"}"
+   ],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_0",
+   "is_retrieval_success": true,
+   "latency": 0.27420687675476074,
+   "input_token": 2864,
+   "output_token": 26,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  },
+  {
+   "turn": 0,
+   "step": 1,
+   "status": "answer_end_turn",
+   "decoded": [],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_1",
+   "latency": 0.29060935974121094,
+   "input_token": 2952,
+   "output_token": 28,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  }
+ ],
+ "outcome": {
+  "valid": false,
+  "error_type": "agentic:answer_not_found",
+  "error_message": "None of the expected answers were found in the model response.",
+  "force_quit": false
+ }
+}

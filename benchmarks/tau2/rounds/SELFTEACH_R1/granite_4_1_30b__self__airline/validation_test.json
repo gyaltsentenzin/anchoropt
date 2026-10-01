@@ -1,0 +1,101 @@
+{
+  "split": "test",
+  "n": 20,
+  "k": 4,
+  "agent_provider": "vllm",
+  "p0_totals": [
+    3,
+    5,
+    3,
+    4
+  ],
+  "p0_mean": 3.75,
+  "p0_sd": 0.9574271077563381,
+  "p0_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+  "tested_p1": true,
+  "why_not_p1": "",
+  "accepted": false,
+  "train_p0": "12/30",
+  "train_net": 4,
+  "p1_totals": [
+    7,
+    7,
+    7,
+    7
+  ],
+  "p1_mean": 7,
+  "p1_sd": 0.0,
+  "p1_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "p1_executed": [
+    135,
+    136,
+    125,
+    133
+  ],
+  "mean_diff": 3.25,
+  "se": 0.47871355387816905,
+  "z": 6.789028582272215,
+  "criterion_2_no_aggregate_regression": true,
+  "cases_fired_any_run": [
+    "13",
+    "16",
+    "18",
+    "19",
+    "2",
+    "22",
+    "24",
+    "25",
+    "26",
+    "29",
+    "30",
+    "31",
+    "32",
+    "35",
+    "37",
+    "44",
+    "45",
+    "48",
+    "6",
+    "8"
+  ],
+  "criterion_3_gains_attributable": [
+    "13",
+    "2",
+    "26",
+    "31",
+    "45",
+    "48",
+    "6"
+  ],
+  "criterion_3_gains_not_attributable": [],
+  "criterion_3_collateral_losses": [
+    "18",
+    "25",
+    "32",
+    "37",
+    "8"
+  ],
+  "p0_pass_hat_k": {
+    "1": 0.1875,
+    "2": 0.08333333333333334,
+    "3": 0.0375,
+    "4": 0.0
+  },
+  "p1_pass_hat_k": {
+    "1": 0.35,
+    "2": 0.35,
+    "3": 0.35,
+    "4": 0.35
+  }
+}

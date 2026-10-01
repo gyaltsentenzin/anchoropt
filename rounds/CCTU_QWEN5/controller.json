@@ -1,0 +1,81 @@
+{
+  "accepted": {
+    "control": "benchmarks/cctu/results/qwen/train_baseline",
+    "frozen_sha256": "fba003d92ff666f384ac357c0ab62d690a7ddb2c91aa06e1bbf6377b35d550c3",
+    "known_limitation": "BETTER than the replaced anchor on train (-188 vs -118) and MARGINALLY WORSE on the held-out split (-50 vs -56). FROZEN.md step 6 required only same direction and sign on test and did not compare against the incumbent there; that is a defect in the bar, disclosed in RESULT.md.",
+    "replaces": "cctu_c1_258_reprompt_state_remaining_budget (rounds/CCTU_QWEN1, -118 train / -56 test)",
+    "round": "rounds/CCTU_QWEN5",
+    "test": {
+      "acc_gains": 0,
+      "acc_losses": 0,
+      "max_length": -50,
+      "repeated_identical_calls_rep0": "41 -> 49"
+    },
+    "train": {
+      "acc_gains": 0,
+      "acc_losses": 2,
+      "max_length": -188,
+      "repeated_identical_calls_rep0": "85 -> 108"
+    }
+  },
+  "controllers": [
+    {
+      "action": "reprompt",
+      "boundary": "post_generation_pre_exec",
+      "controller_id": "cctu_q5_01a_reprompt_call_tool_first",
+      "format": "anchoropt.controller.v1",
+      "predicate": {
+        "all": [
+          {
+            "field": "response_length_over_cap",
+            "op": "is_true"
+          },
+          {
+            "field": "call_times",
+            "op": "lt",
+            "value": 1
+          }
+        ],
+        "name": "response_length_over_cap_and_uncommitted"
+      },
+      "provenance": "cycle3_propose, human-authored from round 2's measured loss (episode 112) and 8 further sampled turn-0 firings, screened at rounds/CCTU_QWEN3/PROPOSAL.md: this condition covers 92% of the incumbent's target mass | ROUND 5: same controllers, run with one_shot=True so each fires ONCE per episode. q4 ran this per-turn and was rejected on repeated_identical_calls (+409 against a 200 bar); q3 ran it once-per-episode and passed every substantive term but was void on one_shot and on an engagement criterion now known to be unsatisfiable for a split gate.",
+      "signal": "",
+      "signal_params": {},
+      "theta": {
+        "text": "Your draft is already longer than this task allows, and you have not called any tool yet. Stop writing the answer directly. Decide which tool you need and call it now; write the final answer only once you have its result."
+      }
+    },
+    {
+      "action": "reprompt",
+      "boundary": "post_generation_pre_exec",
+      "controller_id": "cctu_q5_01b_reprompt_state_remaining_budget",
+      "format": "anchoropt.controller.v1",
+      "predicate": {
+        "all": [
+          {
+            "field": "response_length_over_cap",
+            "op": "is_true"
+          },
+          {
+            "field": "call_times",
+            "op": "gte",
+            "value": 1
+          }
+        ],
+        "name": "response_length_over_cap_and_committed"
+      },
+      "provenance": "cycle3_propose, reuses round 1's accepted theta (state_remaining_budget, arm 258) unchanged, restricted here to the 18% slice of the incumbent's condition where a tool call has already been made | ROUND 5: same controllers, run with one_shot=True so each fires ONCE per episode. q4 ran this per-turn and was rejected on repeated_identical_calls (+409 against a 200 bar); q3 ran it once-per-episode and passed every substantive term but was void on one_shot and on an engagement criterion now known to be unsatisfiable for a split gate.",
+      "signal": "",
+      "signal_params": {},
+      "theta": {
+        "text": "You have limited remaining interaction rounds and tool calls. Before acting again, decide which calls are still necessary and make them together rather than one at a time."
+      }
+    }
+  ],
+  "requires": {
+    "max_workers": 1,
+    "note": "one_shot=True is part of the accepted policy, not a default. cctu_middleware.py:373 caps each controller at one intervention per episode when it is set. Run WITHOUT --no-one-shot.",
+    "one_shot": true,
+    "redecide_budget": 1
+  }
+}

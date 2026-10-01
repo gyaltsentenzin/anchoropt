@@ -1,0 +1,170 @@
+/u/userA/anchoropt/.venv/bin/python /u/userA/anchoropt/benchmarks/cctu/run_vllm.py --evaluate --model qwen-3-6-35b --split test --repeat 2 --seed 42 --temperature 0.0 --top-p 1.0 --max-workers 1 --data-dir /u/userA/anchoropt/benchmarks/cctu/data --output-dir /u/userA/anchoropt/benchmarks/cctu/results --controllers /u/userA/anchoropt/rounds/CCTU_QWEN5/arms/cctu_q5_01_split_gate_once.json --anchor-trace --vllm-url http://host17:8080/v1
+
+Total number of data: 120
+[info] AnchorOpt: ['reprompt@post_generation_pre_exec[response_length_over_cap_and_uncommitted]', 'reprompt@post_generation_pre_exec[response_length_over_cap_and_committed]']  trace -> /u/userA/anchoropt/benchmarks/cctu/results/qwen/test_cctu_q5_01_split_gate_once/anchor_trace.jsonl  one_shot=True redecide_budget=1
+Using vLLM client with model 'Qwen/Qwen3.6-35B-A3B' at http://host17:8080/v1
+Generating responses for qwen-3-6-35b, length=120!
+  run_dir=/u/userA/anchoropt/benchmarks/cctu/results/qwen/test_cctu_q5_01_split_gate_once
+  temperature=0.0  seed=42  top_p=1.0  repeat=2  max_workers=1
+
+  0%|          | 0/120 [00:00<?, ?it/s]
+  1%|          | 1/120 [00:35<1:09:48, 35.20s/it]
+  2%|▏         | 2/120 [02:00<2:06:55, 64.54s/it]
+  2%|▎         | 3/120 [02:08<1:15:31, 38.73s/it]
+  3%|▎         | 4/120 [03:51<2:03:43, 63.99s/it]
+  4%|▍         | 5/120 [04:01<1:25:40, 44.70s/it]
+  5%|▌         | 6/120 [04:18<1:07:06, 35.32s/it]
+  6%|▌         | 7/120 [05:09<1:16:10, 40.44s/it]
+  7%|▋         | 8/120 [05:38<1:08:44, 36.82s/it]
+  8%|▊         | 9/120 [05:46<51:14, 27.70s/it]  
+  8%|▊         | 10/120 [05:57<41:09, 22.45s/it]
+  9%|▉         | 11/120 [06:14<37:47, 20.80s/it]
+ 10%|█         | 12/120 [06:29<34:18, 19.06s/it]
+ 11%|█         | 13/120 [06:47<33:52, 18.99s/it]
+ 12%|█▏        | 14/120 [07:31<46:29, 26.31s/it]
+ 12%|█▎        | 15/120 [09:11<1:25:07, 48.64s/it]
+ 13%|█▎        | 16/120 [09:20<1:03:29, 36.63s/it]
+ 14%|█▍        | 17/120 [09:24<46:20, 27.00s/it]  
+ 15%|█▌        | 18/120 [10:45<1:13:12, 43.06s/it]
+ 16%|█▌        | 19/120 [11:52<1:24:47, 50.37s/it]
+ 17%|█▋        | 20/120 [12:21<1:13:10, 43.91s/it]
+ 18%|█▊        | 21/120 [13:47<1:33:07, 56.44s/it]
+ 18%|█▊        | 22/120 [14:06<1:13:57, 45.29s/it]
+ 19%|█▉        | 23/120 [14:33<1:04:12, 39.72s/it]
+ 20%|██        | 24/120 [15:17<1:05:30, 40.94s/it]
+ 21%|██        | 25/120 [15:35<54:14, 34.25s/it]  
+ 22%|██▏       | 26/120 [16:13<55:26, 35.39s/it]
+ 22%|██▎       | 27/120 [17:11<1:05:07, 42.02s/it]
+ 23%|██▎       | 28/120 [18:51<1:31:15, 59.51s/it]
+ 24%|██▍       | 29/120 [20:33<1:49:40, 72.31s/it]
+ 25%|██▌       | 30/120 [21:07<1:31:03, 60.70s/it]
+ 26%|██▌       | 31/120 [21:33<1:14:41, 50.35s/it]
+ 27%|██▋       | 32/120 [22:38<1:20:24, 54.82s/it]
+ 28%|██▊       | 33/120 [23:26<1:16:10, 52.53s/it]
+ 28%|██▊       | 34/120 [25:07<1:36:26, 67.28s/it]
+ 29%|██▉       | 35/120 [25:16<1:10:37, 49.86s/it]
+ 30%|███       | 36/120 [26:57<1:31:07, 65.09s/it]
+ 31%|███       | 37/120 [27:07<1:07:13, 48.60s/it]
+ 32%|███▏      | 38/120 [28:51<1:29:14, 65.30s/it]
+ 32%|███▎      | 39/120 [28:59<1:04:51, 48.04s/it]
+ 33%|███▎      | 40/120 [29:11<49:43, 37.30s/it]  
+ 34%|███▍      | 41/120 [30:13<58:52, 44.71s/it]
+ 35%|███▌      | 42/120 [30:29<46:35, 35.84s/it]
+ 36%|███▌      | 43/120 [32:10<1:11:15, 55.53s/it]
+ 37%|███▋      | 44/120 [32:22<53:57, 42.60s/it]  
+ 38%|███▊      | 45/120 [33:59<1:13:24, 58.73s/it]
+ 38%|███▊      | 46/120 [35:35<1:26:11, 69.89s/it]
+ 39%|███▉      | 47/120 [36:59<1:30:18, 74.22s/it]
+ 40%|████      | 48/120 [38:32<1:35:51, 79.88s/it]
+ 41%|████      | 49/120 [38:47<1:11:29, 60.41s/it]
+ 42%|████▏     | 50/120 [39:00<53:46, 46.09s/it]  
+ 42%|████▎     | 51/120 [39:43<51:54, 45.14s/it]
+ 43%|████▎     | 52/120 [40:11<45:21, 40.02s/it]
+ 44%|████▍     | 53/120 [41:12<51:49, 46.41s/it]
+ 45%|████▌     | 54/120 [41:22<38:48, 35.28s/it]
+ 46%|████▌     | 55/120 [41:24<27:37, 25.50s/it]
+ 47%|████▋     | 56/120 [41:26<19:38, 18.41s/it]
+ 48%|████▊     | 57/120 [41:32<15:33, 14.81s/it]
+ 48%|████▊     | 58/120 [41:43<14:07, 13.67s/it]
+ 49%|████▉     | 59/120 [41:48<11:00, 10.83s/it]
+ 50%|█████     | 60/120 [41:56<09:59,  9.99s/it]
+ 51%|█████     | 61/120 [42:31<17:18, 17.61s/it]
+ 52%|█████▏    | 62/120 [43:56<36:26, 37.71s/it]
+ 52%|█████▎    | 63/120 [44:04<27:27, 28.91s/it]
+ 53%|█████▎    | 64/120 [45:52<49:02, 52.55s/it]
+ 54%|█████▍    | 65/120 [46:02<36:32, 39.86s/it]
+ 55%|█████▌    | 66/120 [46:19<29:40, 32.97s/it]
+ 56%|█████▌    | 67/120 [47:10<33:59, 38.49s/it]
+ 57%|█████▋    | 68/120 [47:40<30:58, 35.73s/it]
+ 57%|█████▊    | 69/120 [47:47<23:14, 27.35s/it]
+ 58%|█████▊    | 70/120 [47:58<18:39, 22.39s/it]
+ 59%|█████▉    | 71/120 [48:15<17:01, 20.85s/it]
+ 60%|██████    | 72/120 [48:31<15:19, 19.16s/it]
+ 61%|██████    | 73/120 [48:50<15:03, 19.21s/it]
+ 62%|██████▏   | 74/120 [49:34<20:19, 26.51s/it]
+ 62%|██████▎   | 75/120 [51:12<36:00, 48.00s/it]
+ 63%|██████▎   | 76/120 [51:21<26:37, 36.31s/it]
+ 64%|██████▍   | 77/120 [51:25<19:13, 26.82s/it]
+ 65%|██████▌   | 78/120 [52:49<30:36, 43.72s/it]
+ 66%|██████▌   | 79/120 [53:56<34:48, 50.94s/it]
+ 67%|██████▋   | 80/120 [54:26<29:38, 44.45s/it]
+ 68%|██████▊   | 81/120 [55:55<37:40, 57.96s/it]
+ 68%|██████▊   | 82/120 [56:15<29:28, 46.54s/it]
+ 69%|██████▉   | 83/120 [56:42<25:05, 40.68s/it]
+ 70%|███████   | 84/120 [57:26<24:57, 41.60s/it]
+ 71%|███████   | 85/120 [57:45<20:17, 34.80s/it]
+ 72%|███████▏  | 86/120 [58:23<20:16, 35.78s/it]
+ 72%|███████▎  | 87/120 [59:19<23:02, 41.90s/it]
+ 73%|███████▎  | 88/120 [1:01:04<32:24, 60.76s/it]
+ 74%|███████▍  | 89/120 [1:02:45<37:37, 72.83s/it]
+ 75%|███████▌  | 90/120 [1:03:17<30:21, 60.73s/it]
+ 76%|███████▌  | 91/120 [1:03:43<24:14, 50.16s/it]
+ 77%|███████▋  | 92/120 [1:04:45<25:07, 53.83s/it]
+ 78%|███████▊  | 93/120 [1:05:30<23:04, 51.29s/it]
+ 78%|███████▊  | 94/120 [1:07:09<28:20, 65.40s/it]
+ 79%|███████▉  | 95/120 [1:07:18<20:11, 48.45s/it]
+ 80%|████████  | 96/120 [1:08:55<25:12, 63.02s/it]
+ 81%|████████  | 97/120 [1:09:04<18:00, 46.98s/it]
+ 82%|████████▏ | 98/120 [1:10:46<23:11, 63.27s/it]
+ 82%|████████▎ | 99/120 [1:10:53<16:19, 46.63s/it]
+ 83%|████████▎ | 100/120 [1:11:06<12:06, 36.34s/it]
+ 84%|████████▍ | 101/120 [1:12:09<14:03, 44.37s/it]
+ 85%|████████▌ | 102/120 [1:12:24<10:43, 35.76s/it]
+ 86%|████████▌ | 103/120 [1:14:10<16:04, 56.71s/it]
+ 87%|████████▋ | 104/120 [1:14:23<11:38, 43.64s/it]
+ 88%|████████▊ | 105/120 [1:16:02<15:04, 60.30s/it]
+ 88%|████████▊ | 106/120 [1:17:34<16:17, 69.81s/it]
+ 89%|████████▉ | 107/120 [1:19:01<16:12, 74.78s/it]
+ 90%|█████████ | 108/120 [1:20:30<15:50, 79.23s/it]
+ 91%|█████████ | 109/120 [1:20:44<10:54, 59.51s/it]
+ 92%|█████████▏| 110/120 [1:20:55<07:30, 45.01s/it]
+ 92%|█████████▎| 111/120 [1:21:37<06:37, 44.13s/it]
+ 93%|█████████▎| 112/120 [1:22:05<05:15, 39.38s/it]
+ 94%|█████████▍| 113/120 [1:23:07<05:23, 46.18s/it]
+ 95%|█████████▌| 114/120 [1:23:17<03:31, 35.32s/it]
+ 96%|█████████▌| 115/120 [1:23:20<02:07, 25.56s/it]
+ 97%|█████████▋| 116/120 [1:23:22<01:13, 18.46s/it]
+ 98%|█████████▊| 117/120 [1:23:29<00:44, 14.85s/it]
+ 98%|█████████▊| 118/120 [1:23:39<00:27, 13.57s/it]
+ 99%|█████████▉| 119/120 [1:23:43<00:10, 10.78s/it]
+100%|██████████| 120/120 [1:23:52<00:00, 10.10s/it]
+100%|██████████| 120/120 [1:23:52<00:00, 41.94s/it]
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+{'country': 'Venezuela', 'political_party': 'United Socialist Party of Venezuela', 'historical_context': 'Economic crisis and political unrest', 'event_type': 'inauguration', 'term': 'third'}
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+The modern state of Italy was formed in 1861 after the unification process known as the Risorgimento.
+{'country': 'Venezuela', 'political_party': 'United Socialist Party of Venezuela', 'historical_context': 'Economic crisis and political unrest', 'event_type': 'inauguration', 'term': 'third'}
+Done for Generation!
+[ANCHOR] exposures=4302 firings=536 executed=48 loop_prevented=488 episodes=120
+[ANCHOR] predictive_handler_errors (20): ["MaxCallsPerToolHandler: KeyError: 'p'", "MaxCallsPerToolHandler: KeyError: 'p'", "MaxCallsPerToolHandler: KeyError: 'p'"]
+[ANCHOR] telemetry -> /u/userA/anchoropt/benchmarks/cctu/results/qwen/test_cctu_q5_01_split_gate_once/anchor_telemetry.json
+
+  0%|          | 0/120 [00:00<?, ?it/s]
+100%|██████████| 120/120 [00:00<00:00, 4424.53it/s]
+[SCORE] {'Overall': {'acc': '20.00 ± 0.00', 'SR': '3.33 ± 0.00', 'PSR': '3.33 ± 0.00'}, 'Multi-Hop': {'acc': '26.67 ± 0.00', 'SR': '13.33 ± 0.00', 'PSR': '13.33 ± 0.00'}, 'Parallel Multi-Hop': {'acc': '13.33 ± 0.00', 'SR': '0.00 ± 0.00', 'PSR': '0.00 ± 0.00'}, 'Parallel Single-Hop': {'acc': '20.00 ± 0.00', 'SR': '0.00 ± 0.00', 'PSR': '0.00 ± 0.00'}, 'Single-Hop': {'acc': '20.00 ± 0.00', 'SR': '0.00 ± 0.00', 'PSR': '0.00 ± 0.00'}}
+[TERMINATION] {'ended_on_user': 68, 'mid_tool_call': 28, 'final_answer': 24}
+[info] Validating model config...
+[info] Model config: ibm-granite/granite-4.1-8b
+[info] Using vLLM endpoint: http://host17:8080/v1
+[info] Checking vLLM endpoint availability...
+[info] vLLM endpoint is reachable
+[info] Running CCTU evaluation...
+[info] Data directory: /u/userA/anchoropt/benchmarks/cctu/data
+[info] Output directory: /u/userA/anchoropt/benchmarks/cctu/results
+[info] Run directory: /u/userA/anchoropt/benchmarks/cctu/results/qwen/test_cctu_q5_01_split_gate_once
+[info] Generating responses...
+[info] Evaluating responses...
+[info] Evaluation complete! Results saved to /u/userA/anchoropt/benchmarks/cctu/results

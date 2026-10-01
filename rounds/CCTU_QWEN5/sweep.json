@@ -1,0 +1,61 @@
+{
+  "arms": [
+    {
+      "command": [
+        "/u/userA/anchoropt/.venv/bin/python",
+        "/u/userA/anchoropt/benchmarks/cctu/run_vllm.py",
+        "--evaluate",
+        "--model",
+        "qwen-3-6-35b",
+        "--split",
+        "test",
+        "--repeat",
+        "2",
+        "--seed",
+        "42",
+        "--temperature",
+        "0.0",
+        "--top-p",
+        "1.0",
+        "--max-workers",
+        "1",
+        "--data-dir",
+        "/u/userA/anchoropt/benchmarks/cctu/data",
+        "--output-dir",
+        "/u/userA/anchoropt/benchmarks/cctu/results",
+        "--controllers",
+        "/u/userA/anchoropt/rounds/CCTU_QWEN5/arms/cctu_q5_01_split_gate_once.json",
+        "--anchor-trace",
+        "--vllm-url",
+        "http://host17:8080/v1"
+      ],
+      "detail": "120 episodes, scored",
+      "log": "/u/userA/anchoropt/rounds/CCTU_QWEN5/logs/cctu_q5_01_split_gate_once.log",
+      "returncode": 0,
+      "run_dir": "/u/userA/anchoropt/benchmarks/cctu/results/qwen/test_cctu_q5_01_split_gate_once",
+      "seconds": 5033.4,
+      "spec": "/u/userA/anchoropt/rounds/CCTU_QWEN5/arms/cctu_q5_01_split_gate_once.json",
+      "status": "ok"
+    }
+  ],
+  "arms_spent": 1,
+  "decode": {
+    "seed": 42,
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "dry_run": false,
+  "endpoint": "http://host17:8080/v1",
+  "episodes_per_arm": 120,
+  "failed": 0,
+  "frozen_sha256": "sha256:430fe8295da84b5da2fbceed12ca5537edf57b2cb1773e1f21dda84a690b6eda",
+  "max_arms": 1,
+  "model": "qwen-3-6-35b",
+  "one_shot": true,
+  "provider": "vllm",
+  "queued": 1,
+  "redecide_budget": 1,
+  "repeat": 2,
+  "round_dir": "/u/userA/anchoropt/rounds/CCTU_QWEN5",
+  "split": "test"
+}

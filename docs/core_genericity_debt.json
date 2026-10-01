@@ -1,0 +1,106 @@
+{
+ "__init__.py": [
+  "bfcl",
+  "bfcl_eval",
+  "memory_gates"
+ ],
+ "attribution/attribution_miner.py": [
+  "core_memory_retrieve",
+  "decoded",
+  "memory_kv",
+  "rec_sum",
+  "tool_results"
+ ],
+ "attribution/constraint_locus.py": [
+  "rec_sum"
+ ],
+ "attribution/destination_attest.py": [
+  "decoded",
+  "tool_results"
+ ],
+ "attribution/harness_guard.py": [
+  "bfcl_eval",
+  "tool_results"
+ ],
+ "attribution/op_canonicalize_locus.py": [
+  "decoded",
+  "tool_results"
+ ],
+ "attribution/trace_backward.py": [
+  "decoded",
+  "rec_sum",
+  "tool_results"
+ ],
+ "evolve_memory/fingerprint.py": [
+  "rec_sum"
+ ],
+ "learning/check_attribution.py": [
+  "on_domain_error_core_full",
+  "rec_sum",
+  "tool_results"
+ ],
+ "learning/expand_attribution.py": [
+  "decoded",
+  "tool_results"
+ ],
+ "learning/exposure.py": [
+  "rec_sum"
+ ],
+ "learning/phase_switch.py": [
+  "decoded",
+  "tool_results"
+ ],
+ "learning/policy_tree.py": [
+  "decoded",
+  "list_keys",
+  "retrieve_all",
+  "tool_results"
+ ],
+ "learning/prestate_eligibility.py": [
+  "answer_end_turn",
+  "core_memory_retrieve",
+  "decoded",
+  "gates_fired"
+ ],
+ "learning/remine_incumbent.py": [
+  "decoded",
+  "memory_kv",
+  "rec_sum",
+  "tool_results"
+ ],
+ "learning/screen_ranked_loci.py": [
+  "decoded",
+  "tool_results"
+ ],
+ "learning/target_spec.py": [
+  "decoded",
+  "tool_results"
+ ],
+ "mechanisms/capacity_repair.py": [
+  "rec_sum"
+ ],
+ "mechanisms/constraint_repair.py": [
+  "archival_memory",
+  "core_memory",
+  "rec_sum"
+ ],
+ "mechanisms/cross_container_merge.py": [
+  "decoded",
+  "rec_sum",
+  "retrieve_all"
+ ],
+ "mechanisms/lossless_eviction.py": [
+  "archival_memory"
+ ],
+ "mechanisms/memoize_guard.py": [
+  "core_memory"
+ ],
+ "mechanisms/redundant_write.py": [
+  "archival_memory",
+  "core_memory",
+  "decoded"
+ ],
+ "telemetry/runtime_cost.py": [
+  "decoded"
+ ]
+}

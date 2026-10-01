@@ -1,0 +1,32 @@
+{
+  "split": "test",
+  "n": 40,
+  "k": 4,
+  "agent_provider": "hosted",
+  "p0_totals": [
+    39,
+    40,
+    39,
+    39
+  ],
+  "p0_mean": 39.25,
+  "p0_sd": 0.5,
+  "p0_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "arm_label": null,
+  "tested_p1": false,
+  "why_not_p1": "no train winner (outcome none)",
+  "accepted": false,
+  "train_p0": "73/73",
+  "train_net": null,
+  "p0_pass_hat_k": {
+    "1": 0.98125,
+    "2": 0.975,
+    "3": 0.975,
+    "4": 0.975
+  }
+}

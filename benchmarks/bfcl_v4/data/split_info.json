@@ -1,0 +1,50 @@
+{
+  "description": "W5 hybrid leakage-free split. TEST = held-out whole scenario(s) (unseen memory environment). TRAIN/VAL = remaining scenarios' questions split by backend-agnostic group (no cross-backend (question,gold) twins); both carry the full remaining-scenario prereq chains so each builds a complete, correct store.",
+  "version": "v2-hybrid-leakage-free",
+  "leakage_free": true,
+  "seed": 42,
+  "val_frac": 0.2,
+  "test_scenarios": [
+    "healthcare"
+  ],
+  "train_val_scenarios": [
+    "customer",
+    "finance",
+    "notetaker",
+    "student"
+  ],
+  "train": {
+    "total_entries": 408,
+    "queries": 312,
+    "prereqs": 96,
+    "groups": 104,
+    "by_backend": {
+      "memory_kv": 104,
+      "memory_vector": 104,
+      "memory_rec_sum": 104
+    }
+  },
+  "val": {
+    "total_entries": 174,
+    "queries": 78,
+    "prereqs": 96,
+    "groups": 26,
+    "by_backend": {
+      "memory_kv": 26,
+      "memory_vector": 26,
+      "memory_rec_sum": 26
+    }
+  },
+  "test": {
+    "total_entries": 90,
+    "queries": 75,
+    "prereqs": 15,
+    "groups": 25,
+    "by_backend": {
+      "memory_kv": 25,
+      "memory_vector": 25,
+      "memory_rec_sum": 25
+    }
+  },
+  "test_sha256": "4e762cd9bf5751df736c954b88f3cc54c5398bb321aa7d9793407c8dc098cff5"
+}

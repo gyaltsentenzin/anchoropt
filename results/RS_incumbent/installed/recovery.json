@@ -1,0 +1,19 @@
+{
+  "name": "append_would_exceed_cap",
+  "locus": "post_execution",
+  "action": "reroute",
+  "operator": "transform",
+  "variant": "reduce_text_for_rec_sum",
+  "eta": {
+    "target_surface": "proposed_payload",
+    "operator": "reduce_preserving_facts:text",
+    "preservation": "every fact in the original payload is retained; only length is reduced, to the schema's own limit"
+  },
+  "predicate": {
+    "declared_signal": "append_would_exceed_cap",
+    "params": {}
+  },
+  "capability_id": "reduce_payload_preserving_facts_and_replace",
+  "phase": "prereq",
+  "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=prereq"
+}

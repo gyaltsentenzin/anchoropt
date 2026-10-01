@@ -1,0 +1,264 @@
+{
+  "incumbent_id": "P0",
+  "incumbent_token": "<matrix-dir>/minimax_m2_5__self__retail/baseline.json",
+  "n_arms_in_manifest": 66,
+  "n_evaluated": 8,
+  "n_voided": 0,
+  "voided": [],
+  "aborted_on_outage": false,
+  "results": [
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+      "gains": [
+        "107",
+        "31",
+        "63",
+        "72"
+      ],
+      "losses": [
+        "19",
+        "21",
+        "22",
+        "28",
+        "85",
+        "93",
+        "99"
+      ],
+      "firings": 10,
+      "cases_fired": 10,
+      "n": 74,
+      "interventions_executed": 10,
+      "accuracy_delta_pp": -4.054054054054054,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "61/74 vs incumbent 64/74"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "gains": [
+        "107",
+        "20",
+        "31",
+        "41",
+        "63",
+        "88"
+      ],
+      "losses": [
+        "19",
+        "22",
+        "54",
+        "59",
+        "91",
+        "93",
+        "95",
+        "99"
+      ],
+      "firings": 10,
+      "cases_fired": 10,
+      "n": 73,
+      "interventions_executed": 10,
+      "accuracy_delta_pp": -2.73972602739726,
+      "denominator_identical": true,
+      "complete": false,
+      "detail": "61/74 vs incumbent 63/73"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_postpone_reply_until_action_executed",
+      "gains": [
+        "31",
+        "37",
+        "41",
+        "63",
+        "88"
+      ],
+      "losses": [
+        "10",
+        "104",
+        "19",
+        "21",
+        "22",
+        "98"
+      ],
+      "firings": 11,
+      "cases_fired": 11,
+      "n": 74,
+      "interventions_executed": 11,
+      "accuracy_delta_pp": -1.3513513513513513,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "63/74 vs incumbent 64/74"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_verify_state_change_before_reply",
+      "gains": [
+        "103",
+        "107",
+        "31",
+        "63",
+        "88"
+      ],
+      "losses": [
+        "10",
+        "106",
+        "109",
+        "110",
+        "16",
+        "57",
+        "93",
+        "98",
+        "99"
+      ],
+      "firings": 10,
+      "cases_fired": 10,
+      "n": 74,
+      "interventions_executed": 10,
+      "accuracy_delta_pp": -5.405405405405405,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "60/74 vs incumbent 64/74"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_delay_response_until_tool_completes",
+      "gains": [
+        "103",
+        "20",
+        "31",
+        "41",
+        "88"
+      ],
+      "losses": [
+        "109",
+        "19",
+        "21",
+        "22",
+        "29",
+        "66",
+        "93",
+        "98",
+        "99"
+      ],
+      "firings": 10,
+      "cases_fired": 10,
+      "n": 74,
+      "interventions_executed": 10,
+      "accuracy_delta_pp": -5.405405405405405,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "60/74 vs incumbent 64/74"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "gains": [
+        "107",
+        "63"
+      ],
+      "losses": [
+        "0",
+        "106",
+        "110",
+        "112",
+        "113",
+        "24",
+        "28",
+        "29",
+        "30",
+        "34",
+        "43",
+        "47",
+        "52",
+        "58",
+        "59",
+        "6",
+        "66",
+        "67",
+        "7",
+        "75",
+        "76",
+        "8",
+        "81",
+        "82",
+        "83",
+        "91",
+        "92",
+        "93",
+        "96",
+        "98",
+        "99"
+      ],
+      "firings": 410,
+      "cases_fired": 74,
+      "n": 74,
+      "interventions_executed": 410,
+      "accuracy_delta_pp": -39.189189189189186,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "35/74 vs incumbent 64/74"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+      "gains": [
+        "107",
+        "20",
+        "37",
+        "63",
+        "88"
+      ],
+      "losses": [
+        "104",
+        "13",
+        "19",
+        "22",
+        "23",
+        "24",
+        "4",
+        "66",
+        "75",
+        "76",
+        "84",
+        "85",
+        "91",
+        "93",
+        "98",
+        "99"
+      ],
+      "firings": 554,
+      "cases_fired": 74,
+      "n": 73,
+      "interventions_executed": 554,
+      "accuracy_delta_pp": -15.068493150684931,
+      "denominator_identical": true,
+      "complete": false,
+      "detail": "52/74 vs incumbent 63/73"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_postpone_reply_until_action_executed",
+      "gains": [
+        "107",
+        "31",
+        "37",
+        "72"
+      ],
+      "losses": [
+        "106",
+        "109",
+        "110",
+        "13",
+        "21",
+        "23",
+        "28",
+        "85",
+        "91",
+        "93",
+        "98"
+      ],
+      "firings": 549,
+      "cases_fired": 74,
+      "n": 74,
+      "interventions_executed": 549,
+      "accuracy_delta_pp": -9.45945945945946,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "57/74 vs incumbent 64/74"
+    }
+  ]
+}

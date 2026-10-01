@@ -1,0 +1,84 @@
+{
+ "case_id": "memory_kv_150-notetaker-20",
+ "phase": "query",
+ "run_id": "1834414",
+ "backend": "kv",
+ "n_steps": 3,
+ "steps": [
+  {
+   "turn": 0,
+   "step": 0,
+   "status": "executed",
+   "decoded": [
+    "core_memory_key_search(query='morning',k=5)"
+   ],
+   "tool_results": [
+    "{\"ranked_results\": [[0.0, \"supplement_vitamin_d3\"], [0.0, \"supplement_omega_3\"], [0.0, \"supplement_iron\"], [0.0, \"supplement_probiotics\"]]}"
+   ],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_0",
+   "is_retrieval_success": true,
+   "latency": 0.2886776924133301,
+   "input_token": 2565,
+   "output_token": 29,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  },
+  {
+   "turn": 0,
+   "step": 1,
+   "status": "executed",
+   "decoded": [
+    "core_memory_retrieve(key='supplement_probiotics')"
+   ],
+   "tool_results": [
+    "{\"value\": \"Take probiotics in the morning for digestion.\"}"
+   ],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_1",
+   "is_retrieval_success": true,
+   "latency": 0.26787471771240234,
+   "input_token": 2662,
+   "output_token": 26,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  },
+  {
+   "turn": 0,
+   "step": 2,
+   "status": "answer_end_turn",
+   "decoded": [],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_2+",
+   "latency": 0.23068785667419434,
+   "input_token": 2715,
+   "output_token": 21,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  }
+ ],
+ "outcome": {
+  "valid": true,
+  "error_type": "",
+  "error_message": "",
+  "force_quit": false
+ }
+}

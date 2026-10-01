@@ -1,0 +1,78 @@
+[
+  {
+    "name": "no_tool_call_at_all",
+    "locus": "post_generation_pre_exec",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "search_other_container",
+    "eta": {
+      "instruction": "The container you searched may not hold this fact. Search the other memory container before answering.",
+      "retry_budget": 1
+    },
+    "predicate": {
+      "declared_signal": "no_tool_call_at_all",
+      "params": {}
+    },
+    "capability_id": "inject_trailing_message_and_regenerate",
+    "phase": "query",
+    "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=query"
+  },
+  {
+    "name": "retrieval_similarity_below_threshold",
+    "locus": "post_execution",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "search_other_container",
+    "eta": {
+      "instruction": "The container you searched may not hold this fact. Search the other memory container before answering.",
+      "retry_budget": 1
+    },
+    "predicate": {
+      "declared_signal": "retrieval_similarity_below_threshold",
+      "params": {
+        "below": 0.5
+      }
+    },
+    "capability_id": "post_execution/reprompt",
+    "phase": "query",
+    "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=query"
+  },
+  {
+    "name": "no_tool_call_at_all",
+    "locus": "post_generation_pre_exec",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "verify_before_answering",
+    "eta": {
+      "instruction": "Before answering, check whether the retrieved content actually states the fact being asked for. If it does not, search again with different terms.",
+      "retry_budget": 1
+    },
+    "predicate": {
+      "declared_signal": "no_tool_call_at_all",
+      "params": {}
+    },
+    "capability_id": "inject_trailing_message_and_regenerate",
+    "phase": "query",
+    "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=query"
+  },
+  {
+    "name": "retrieval_similarity_below_threshold",
+    "locus": "post_execution",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "verify_before_answering",
+    "eta": {
+      "instruction": "Before answering, check whether the retrieved content actually states the fact being asked for. If it does not, search again with different terms.",
+      "retry_budget": 1
+    },
+    "predicate": {
+      "declared_signal": "retrieval_similarity_below_threshold",
+      "params": {
+        "below": 0.5
+      }
+    },
+    "capability_id": "post_execution/reprompt",
+    "phase": "query",
+    "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=query"
+  }
+]

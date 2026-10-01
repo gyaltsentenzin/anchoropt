@@ -1,0 +1,43 @@
+{
+  "next_residual": "whether an empty or unhelpful retrieval result may be accepted as sufficient grounds to answer, rather than obliging the agent to re-query with a reformulated retrieval before answering.",
+  "support": 4,
+  "cases": [
+    "memory_vector_49-healthcare-19",
+    "memory_vector_5-customer-5",
+    "memory_vector_50-healthcare-20",
+    "memory_vector_51-healthcare-21"
+  ],
+  "materializable_candidates": [
+    "reprompt:verify_before_answering",
+    "reprompt:search_other_container",
+    "reprompt:verify_before_answering",
+    "reprompt:search_other_container"
+  ],
+  "funnel": {
+    "stages": {
+      "proposed": 6,
+      "localized": 6,
+      "admissible": 21,
+      "executable": 4,
+      "evaluated": 0,
+      "accepted": 0
+    },
+    "rejections": {
+      "signal_not_observable": 3,
+      "action_not_admissible": 0,
+      "no_executor": 14,
+      "eta_incompatible": 3,
+      "duplicate_candidate": 0,
+      "evaluation_failure": 0
+    },
+    "shrink": {
+      "proposed->localized": 1.0,
+      "localized->admissible": 3.5,
+      "admissible->executable": 0.19047619047619047,
+      "executable->evaluated": 0.0,
+      "evaluated->accepted": null
+    },
+    "pruning_ratio_admissible_to_executable": 0.19047619047619047,
+    "units_note": "proposed/localized count ACTION FAMILIES; admissible onward count grounded arms, so localized->admissible is expansion, not pruning"
+  }
+}

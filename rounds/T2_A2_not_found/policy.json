@@ -1,0 +1,33 @@
+{
+  "_comment": "N0-A2.R on top of the FROZEN A1 incumbent. Attribution class unreachable_but_stored: 39 of 44 Key not found occurrences are for values that ARE in archival, put there by A1 -- the write succeeded, the read never consulted archive. First consequential decision is the READ. Live cell: post_execution + reprompt. A2.W (core full, value NOT archived, 5 occ) is retained in the ledger and DEFERRED: A1 already rescues 97% of core-full events (finance 33/33, notetaker 28/28, student 145/146). No global preamble; on_memory_preamble stays EMPTY.",
+  "gate_default": false,
+  "templates": {
+    "on_memory_preamble": "",
+    "on_hallucinate": "",
+    "on_loop": "",
+    "on_wrong_args": "",
+    "on_domain_error": "",
+    "on_new_function_available": "",
+    "on_turn_start_action": "",
+    "on_ambiguous_target": "",
+    "on_turn_boundary_orient": "",
+    "on_domain_error_core_full": "",
+    "on_domain_error_key_not_found": "",
+    "on_domain_error_too_long": "",
+    "on_retrieval_success_pre_answer": "",
+    "on_idk_fallback": "",
+    "on_core_clear_blocked": "",
+    "on_premature_idk": ""
+  },
+  "gate_enabled": {
+    "on_domain_error_core_full": true,
+    "on_core_full_rerouted": true,
+    "on_blob_pressure": false,
+    "on_core_clear_blocked": false,
+    "on_key_not_found_rerouted": false,
+    "on_domain_error_key_not_found": true,
+    "on_domain_error_too_long": false
+  },
+  "enable_reroute": true,
+  "enable_capacity_repair": true
+}

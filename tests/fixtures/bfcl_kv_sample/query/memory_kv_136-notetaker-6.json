@@ -1,0 +1,58 @@
+{
+ "case_id": "memory_kv_136-notetaker-6",
+ "phase": "query",
+ "run_id": "1834414",
+ "backend": "kv",
+ "n_steps": 2,
+ "steps": [
+  {
+   "turn": 0,
+   "step": 0,
+   "status": "executed",
+   "decoded": [
+    "core_memory_retrieve_all()"
+   ],
+   "tool_results": [
+    "{\"supplement_vitamin_d3\": \"Take Vitamin D3 at 1000 IU daily.\", \"supplement_omega_3\": \"Consume Omega-3s for joint health.\", \"supplement_iron\": \"Take iron supplements due to low levels from last check-up.\", \"supplement_probiotics\": \"Take probiotics in the morning for digestion.\"}"
+   ],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_0",
+   "latency": 0.21401405334472656,
+   "input_token": 2564,
+   "output_token": 19,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  },
+  {
+   "turn": 0,
+   "step": 1,
+   "status": "answer_end_turn",
+   "decoded": [],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_1",
+   "latency": 0.5110158920288086,
+   "input_token": 2672,
+   "output_token": 59,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  }
+ ],
+ "outcome": {
+  "valid": false,
+  "error_type": "agentic:answer_not_found",
+  "error_message": "None of the expected answers were found in the model response.",
+  "force_quit": false
+ }
+}

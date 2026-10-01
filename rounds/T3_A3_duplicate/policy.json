@@ -1,0 +1,35 @@
+{
+  "_comment": "N0-A3 on top of the FROZEN A1+A2 incumbent [35.97 percent]. Locus permission/identifier/duplicate: ALL 59 collisions are against keys A1's own reroute injected, and 54/59 [92 percent] carry a value identical to what A1 rescued. A1 rescues the failed write; A3 suppresses the model's redundant re-write. Incision point post_generation_pre_execution -- the only point where cancelling is free, and the first anchor learned in that column. Predicate is normalised-EXACT [whitespace only], never semantic: covers 55/59 = 93 percent, and the 4 it declines are 3 paraphrases plus 1 genuinely new fact [lifestyle_changes] which stay residual by design. A1 and A2 unchanged. No global preamble: on_memory_preamble stays EMPTY.",
+  "gate_default": false,
+  "templates": {
+    "on_memory_preamble": "",
+    "on_hallucinate": "",
+    "on_loop": "",
+    "on_wrong_args": "",
+    "on_domain_error": "",
+    "on_new_function_available": "",
+    "on_turn_start_action": "",
+    "on_ambiguous_target": "",
+    "on_turn_boundary_orient": "",
+    "on_domain_error_core_full": "",
+    "on_domain_error_key_not_found": "",
+    "on_domain_error_too_long": "",
+    "on_retrieval_success_pre_answer": "",
+    "on_idk_fallback": "",
+    "on_core_clear_blocked": "",
+    "on_premature_idk": ""
+  },
+  "gate_enabled": {
+    "on_domain_error_core_full": true,
+    "on_core_full_rerouted": true,
+    "on_blob_pressure": false,
+    "on_core_clear_blocked": false,
+    "on_key_not_found_rerouted": false,
+    "on_domain_error_key_not_found": true,
+    "on_domain_error_too_long": false,
+    "on_redundant_write_suppressed": true
+  },
+  "enable_reroute": true,
+  "enable_capacity_repair": true,
+  "enable_redundant_write_suppress": true
+}

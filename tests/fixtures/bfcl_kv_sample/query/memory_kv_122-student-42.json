@@ -1,0 +1,138 @@
+{
+ "case_id": "memory_kv_122-student-42",
+ "phase": "query",
+ "run_id": "1834414",
+ "backend": "kv",
+ "n_steps": 3,
+ "steps": [
+  {
+   "turn": 0,
+   "step": 0,
+   "status": "executed",
+   "decoded": [
+    "core_memory_retrieve(key='robotics_club_details')"
+   ],
+   "tool_results": [
+    "{\"error\": \"Key not found.\"}"
+   ],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_0",
+   "latency": 0.2749612331390381,
+   "input_token": 2860,
+   "output_token": 26,
+   "cap_formatted_prompt": null,
+   "cap_stop": null,
+   "constraint_state": [
+    {
+     "locus": null,
+     "error": "{\"error\": \"Key not found.\"}",
+     "call": "core_memory_retrieve(key='robotics_club_details')",
+     "backend": "kv",
+     "constrained_field": "core_memory",
+     "current_size": 7,
+     "incoming_size": 21,
+     "incoming": "robotics_club_details",
+     "schema_limit": 7,
+     "remaining_budget_if_extends": 0,
+     "remaining_budget_if_replaces": 7,
+     "state": {
+      "core_memory": {
+       "kind": "mapping",
+       "size": 7,
+       "keys": [
+        "afternoon_and_exercise_details",
+        "evening_and_project_details",
+        "evening_outside_class_details",
+        "evening_study_and_decompression_details",
+        "midday_and_afternoon_details",
+        "overall_routine_summary",
+        "weekend_routine_details"
+       ]
+      },
+      "archival_memory": {
+       "kind": "mapping",
+       "size": 20,
+       "keys": [
+        "campus_club_experience",
+        "campus_lawn_experience",
+        "combined_hobbies",
+        "cs_class_connections",
+        "current_research_focus",
+        "e_sports_experience",
+        "family_context_and_fears",
+        "family_hike_tradition",
+        "fourth_hobby",
+        "friendship_across_distance",
+        "hobby_value",
+        "primary_hobby",
+        "scheduling_strategy",
+        "secondary_hobby",
+        "server_crash_experience",
+        "third_hobby",
+        "time_management_challenges",
+        "travel_experiences",
+        "travel_value_insights",
+        "user_age"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "turn": 0,
+   "step": 1,
+   "status": "executed",
+   "decoded": [
+    "core_memory_retrieve_all()"
+   ],
+   "tool_results": [
+    "{\"midday_and_afternoon_details\": \"Classes run until 2:00-3:00 PM with a midday break. Lunch at campus bistro(turkey and avocado wrap). Checks email and Slack for research group(computer vision marine traffic project) and programming club hackathon prep. Weekly milestones and event alerts are crucial to monitor.\", \"afternoon_and_exercise_details\": \"If no lab or project meeting, attends gym for 45-minute to 1-hour workout mixing cardio and weight training. Exercise is crucial for stress relief and focus; skipping too often reduces coding efficiency.\", \"evening_and_project_details\": \"Late afternoon coding in lab/library or group project collaboration rooms. Working on distributed system for real-time sensor data with GitHub version control and shared project board for task management. Focus on optimizing database queries for scalability.\", \"evening_outside_class_details\": \"Leaves campus around 6:00-7:00 PM, depending on work immersion or Robotics Club meeting(once weekly early evening). Robotics Club provides cross-disciplinary experience, enhancing versatility in Computer Science.\", \"evening_study_and_decompression_details\": \"Dinner(often pasta) followed by study from 8-9 PM on heavy tasks. Aims to finish by 11 PM for decompression(gaming or reading). Ends with quick schedule review to ease anxiety.\", \"weekend_routine_details\": \"Weekends balance work and leisure: Saturdays for longer assignments or activities(e.g., sailing, gatherings). Sundays dedicated to group study session with 7 classmates for prep and sharing resources; also used for internship/job application review.\", \"overall_routine_summary\": \"College routine balances structured schedule with flexibility for unexpected bugs, long meetings, or breaks. Emphasizes staying on top of tasks to avoid feeling overwhelmed, aiming for maximum productivity and mental well-being.\"}"
+   ],
+   "error_signal": "last_call_domain_error_key_not_found",
+   "error_streak": 1,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 1,
+   "cell_key": "0_1",
+   "latency": 0.22386860847473145,
+   "input_token": 2908,
+   "output_token": 19,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  },
+  {
+   "turn": 0,
+   "step": 2,
+   "status": "answer_end_turn",
+   "decoded": [],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 1,
+   "cell_key": "0_2+",
+   "latency": 0.5547254085540771,
+   "input_token": 3312,
+   "output_token": 62,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  }
+ ],
+ "outcome": {
+  "valid": true,
+  "error_type": "",
+  "error_message": "",
+  "force_quit": false
+ }
+}

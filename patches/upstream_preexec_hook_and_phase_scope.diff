@@ -1,0 +1,223 @@
+606a607,668
+> def _phase_eligible(ctl, is_prereq):
+>     """Is THIS controller allowed to act in THIS phase? Symmetric in both directions.
+> 
+>     The earlier rule was `(not is_prereq) or ph in ("prereq", "any")`, which short-circuits during a
+>     query and made EVERY controller eligible there regardless of its declared phase -- so a
+>     prereq-only controller was confined to storage in one direction and unconfined in the other. A
+>     controller declared for storage construction must not act on scored queries: its residual does not
+>     live there, and any effect it had would be attributed to the wrong mechanism.
+> 
+>     "any" means both. An undeclared controller defaults to "query", so adding phase support cannot
+>     change how an existing controller behaves.
+>     """
+>     ph = str(getattr(ctl, "phase", "query")).lower()
+>     if ph == "any":
+>         return True
+>     return ph == ("prereq" if is_prereq else "query")
+> 
+> 
+> def _upstream_call_facts(call):
+>     """Structural facts about ONE proposed call, readable before it is dispatched.
+> 
+>     Mirrors the adapter's `proposed_call_facts` and must agree with it: the adapter DECLARES these as
+>     supplied at the commitment gate, and the offline state projection computes them the same way, so a
+>     divergence here would make a predicate that validated offline fail silently at runtime.
+> 
+>     AST-parsed, not regex: a regex over the text argument mis-measured 17 of 161 real calls. Returns
+>     {} when the call cannot be parsed -- no facts rather than facts that happen to be wrong.
+>     """
+>     import ast as _ast
+>     text = str(call or "").strip()
+>     if not text:
+>         return {}
+>     try:
+>         tree = _ast.parse(text, mode="eval")
+>         if not isinstance(tree.body, _ast.Call):
+>             return {}
+>         kwargs = {}
+>         for kw in tree.body.keywords:
+>             if kw.arg is None:
+>                 continue
+>             try:
+>                 kwargs[kw.arg] = _ast.literal_eval(kw.value)
+>             except Exception:
+>                 kwargs[kw.arg] = None
+>     except Exception:
+>         return {}
+>     low = text.lower()
+>     container = ("core" if "core_memory" in low else
+>                  "archival" if "archival_memory" in low else None)
+>     strs = [v for v in kwargs.values() if isinstance(v, str)]
+>     return {
+>         "proposes_write": ("_add" in low or "_insert" in low or "_append" in low),
+>         "proposes_read": ("_retrieve" in low or "_search" in low or "_get" in low
+>                           or "_list" in low),
+>         "proposes_clear": "_clear" in low,
+>         "proposes_remove": "_remove" in low,
+>         "container": container,
+>         "proposed_payload_chars": max((len(s) for s in strs), default=0),
+>         "proposed_arg_count": len(kwargs),
+>     }
+> 
+> 
+668a731,732
+>     if hasattr(_hook_state, "_upstream_budget"):
+>         _hook_state._upstream_budget = {}
+4443a4508,4616
+>                 # ── UPSTREAM (post_generation_pre_exec) CONTROLLER ────────────────────────
+>                 # THE BOUNDARY IS HERE, not at `decoded`. `_mg_exec_calls` is what `self._execute`
+>                 # will actually dispatch, and it has already been filtered at three points above
+>                 # (memoization, then _rx_filter). A controller reading `decoded` would judge calls
+>                 # that may never run -- and would then "prevent" something that was not going to
+>                 # happen, which is indistinguishable from working.
+>                 #
+>                 # Phase-scoped like the post-execution hook: a controller must declare
+>                 # phase="prereq"/"any" to act during storage construction. Undeclared (every
+>                 # query-time controller, A9 included) stays inert there.
+>                 # PER-CONTROLLER, as above: each controller answers for its own declared phase.
+>                 _up_is_prereq = str(rollout_tag) == "snap"
+>                 _up_ctls, _up_skipped = [], []
+>                 try:
+>                     from anchoropt.runtime_hook import installed as _uinst
+>                     for _uc in _uinst("post_generation_pre_exec"):
+>                         if _phase_eligible(_uc, _up_is_prereq):
+>                             _up_ctls.append(_uc)
+>                         else:
+>                             _up_skipped.append(getattr(_uc, "name", "controller"))
+>                 except Exception as _upe:
+>                     step_record["upstream_phase_error_gate"] = "%s: %s" % (
+>                         type(_upe).__name__, _upe)
+>                     _up_ctls = []
+>                 if _up_is_prereq and _up_skipped:
+>                     step_record["upstream_skipped_prereq_gate"] = True
+>                     step_record["upstream_skipped_names"] = list(_up_skipped)
+>                 if _up_ctls:
+>                     step_record["upstream_hook_gate"] = True
+>                     _up_withheld, _up_keep = [], []
+>                     for _uc_i, _uc_call in enumerate(_mg_exec_calls or []):
+>                         # State for ONE proposed call: the call itself plus the phase. Nothing
+>                         # post-execution is available here by construction -- that is the point of
+>                         # the boundary, and a field that does not exist yet must not be supplied.
+>                         _ust = {"proposed_call": str(_uc_call), "call_index": _uc_i,
+>                                 "phase": ("prereq" if str(rollout_tag) == "snap" else "query"),
+>                                 "step_index": step_record.get("step"),
+>                                 "n_proposed_calls": len(_mg_exec_calls or [])}
+>                         # TYPED FACTS DERIVED FROM THE PROPOSED CALL, computed HERE.
+>                         #
+>                         # Without them the state carries only opaque strings, so a predicate over the
+>                         # container or the proposed payload size -- the very fields declared supplied
+>                         # at this boundary -- cannot evaluate and silently answers False. Measured: the
+>                         # hook ran 20 times on an episode holding two over-cap core writes and fired 0.
+>                         # Same declared-vs-supplied gap as before, one layer down: the offline
+>                         # projection computed these and the live hook did not.
+>                         #
+>                         # Computed in-place rather than imported from the adapter tree, because this
+>                         # checkout has no benchmarks/ directory: an import would raise, the handler
+>                         # below would record it, and the controller would go on never firing. A fact
+>                         # the boundary is declared to supply must not depend on a path that may not
+>                         # exist.
+>                         try:
+>                             _ust.update(_upstream_call_facts(str(_uc_call)))
+>                         except Exception as _fe:
+>                             step_record["upstream_facts_error_gate"] = "%s: %s" % (
+>                                 type(_fe).__name__, _fe)
+>                         _fired = False
+>                         for _uc in _up_ctls:
+>                             try:
+>                                 if _uc.fires_on(_ust):
+>                                     _fired = True
+>                                     break
+>                             except Exception as _ue:
+>                                 step_record["upstream_error_gate"] = "%s: %s" % (
+>                                     type(_ue).__name__, _ue)
+>                         (_up_withheld if _fired else _up_keep).append((_uc_i, _uc_call))
+>                     if _up_withheld:
+>                         _budget = 0
+>                         for _uc in _up_ctls:
+>                             try:
+>                                 _budget = max(_budget,
+>                                               int((getattr(_uc, "eta", {}) or {}).get(
+>                                                   "retry_budget", 1) or 1))
+>                             except Exception:
+>                                 _budget = max(_budget, 1)
+>                         # BUDGET MUST PERSIST ACROSS ATTEMPTS. `step_record` is rebuilt every step,
+>                         # so reading the count from it reset _spent to 0 on each retry and the budget
+>                         # never bound -- an unbounded withhold/reprompt loop that looks bounded.
+>                         # Keyed per EPISODE (test_entry_id), for the same reason the post-execution
+>                         # hook state is: a module-level counter leaks across every episode in the run,
+>                         # and cell_key repeats.
+>                         _ub_store = getattr(_hook_state, "_upstream_budget", None)
+>                         if not isinstance(_ub_store, dict):
+>                             _ub_store = _hook_state._upstream_budget = {}
+>                         _ub_key = str(test_entry_id or "")
+>                         _spent = int(_ub_store.get(_ub_key, 0))
+>                         step_record["upstream_fired_gate"] = True
+>                         step_record["upstream_withheld_gate"] = len(_up_withheld)
+>                         step_record["upstream_withheld_calls"] = [
+>                             str(c)[:200] for _i, c in _up_withheld]
+>                         step_record["upstream_chars_withheld_gate"] = sum(
+>                             len(str(c)) for _i, c in _up_withheld)
+>                         if _spent < _budget:
+>                             # WITHHOLD, then let the model propose again. The withheld call does not
+>                             # execute, so no error is produced downstream -- which is the whole
+>                             # difference from repairing after the fact.
+>                             _mg_exec_calls = [c for _i, c in _up_keep]
+>                             _ub_store[_ub_key] = _spent + 1
+>                             step_record["upstream_retries_spent_gate"] = _spent + 1
+>                             _instr = ""
+>                             for _uc in _up_ctls:
+>                                 _instr = str((getattr(_uc, "eta", {}) or {}).get(
+>                                     "instruction", "") or "") or _instr
+>                             if _instr:
+>                                 step_record["upstream_reprompt_gate"] = True
+>                                 step_record["upstream_instruction"] = _instr[:300]
+>                         else:
+>                             step_record["upstream_budget_exhausted_gate"] = True
+4705a4879,4900
+>                 # PHASE SCOPE IS DECLARED BY THE CONTROLLER, not assumed by the host. A controller
+>                 # carrying `phase="prereq"` (or "any") is permitted during storage construction
+>                 # because that is the phase its residual lives in; anything else -- including every
+>                 # query-time controller, which declares nothing -- stays inert there exactly as
+>                 # before. This NARROWS the guard's scope, it does not weaken it: the default for an
+>                 # undeclared controller is still "not allowed during prereqs".
+>                 # PER-CONTROLLER phase eligibility. An "any eligible controller" gate opens the
+>                 # boundary for EVERY installed controller as soon as one declares the phase -- so a
+>                 # query-only controller would act during storage construction merely because a
+>                 # storage-phase controller happened to be installed alongside it. Each controller is
+>                 # now asked about itself, and the ineligible ones are recorded by name.
+>                 _cb_eligible, _cb_skipped = [], []
+>                 try:
+>                     from anchoropt.runtime_hook import installed as _inst
+>                     for _c in _inst("post_execution"):
+>                         if _phase_eligible(_c, _cb_is_prereq):
+>                             _cb_eligible.append(_c)
+>                         else:
+>                             _cb_skipped.append(getattr(_c, "name", "controller"))
+>                 except Exception as _pe:
+>                     step_record["controller_phase_error_gate"] = "%s: %s" % (
+>                         type(_pe).__name__, _pe)
+4707c4902,4907
+<                     step_record["controller_skipped_prereq_gate"] = True
+---
+>                     if _cb_skipped:
+>                         step_record["controller_skipped_prereq_gate"] = True
+>                         step_record["controller_skipped_names"] = list(_cb_skipped)
+>                     if _cb_eligible:
+>                         step_record["controller_prereq_allowed_gate"] = True
+>                 _cb_allowed = bool(_cb_eligible)
+4710c4910,4921
+<                     _cb = None if _cb_is_prereq else _hook_decide("post_execution", _cb_state, False)
+---
+>                     # Only the ELIGIBLE controllers decide. `decide` consults everything installed at
+>                     # the locus, so an ineligible one must not be visible to it during this phase.
+>                     if _cb_allowed and _cb_is_prereq and _cb_skipped:
+>                         from anchoropt.runtime_hook import _INSTALLED as _REG
+>                         _saved = list(_REG.get("post_execution", ()))
+>                         _REG["post_execution"] = _cb_eligible
+>                         try:
+>                             _cb = _hook_decide("post_execution", _cb_state, False)
+>                         finally:
+>                             _REG["post_execution"] = _saved
+>                     else:
+>                         _cb = _hook_decide("post_execution", _cb_state, False) if _cb_allowed else None

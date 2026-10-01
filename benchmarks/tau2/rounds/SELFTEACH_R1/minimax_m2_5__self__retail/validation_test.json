@@ -1,0 +1,32 @@
+{
+  "split": "test",
+  "n": 40,
+  "k": 4,
+  "agent_provider": "hosted",
+  "p0_totals": [
+    31,
+    33,
+    34,
+    33
+  ],
+  "p0_mean": 32.75,
+  "p0_sd": 1.2583057392117916,
+  "p0_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "arm_label": null,
+  "tested_p1": false,
+  "why_not_p1": "no train winner (outcome BUDGET_EXHAUSTED)",
+  "accepted": false,
+  "train_p0": "64/74",
+  "train_net": -1,
+  "p0_pass_hat_k": {
+    "1": 0.81875,
+    "2": 0.7666666666666667,
+    "3": 0.73125,
+    "4": 0.7
+  }
+}

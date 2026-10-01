@@ -1,0 +1,41 @@
+{
+  "_comment": "FROZEN A1-A5 + A7 + DCR (2026-08-24). Accepted under docs/ACCEPTANCE_RULE_FROZEN.md v2 against the prior incumbent A1-A5+A7 (experiments/n0a7f/n0a7f_frozen.json, sha256 d0f7176716f748b6...). Acceptance record: docs/N0_DCR_ACCEPTANCE.md. Criteria as frozen in docs/N0_DCR_CRITERIA_FROZEN.md including its post-run-1 amendments. FLAGS: enable_reroute=A1; enable_capacity_repair=A2; enable_redundant_write_suppress=A3; enable_zero_call_reprompt=A4; enable_archival_evict_duplicate=A5; A7 rec_sum compaction has NO flag (env ANCHOROPT_A7C, gated on memory_backend()=='rec_sum'); NEW: gate_enabled.on_dedup_clear_recovery=True = DCR dedup-first clear recovery. DCR MECHANISM: on a PROPOSED *_memory_clear against a container at capacity with a known blocked write, if the LIVE container holds an exact duplicate (A5's _e1_norm, no fuzzy match), suppress the clear, evict exactly ONE redundant copy (last-written, earliest preserved), verify >=1 equivalent copy remains against live state, and retry the blocked write VERBATIM; otherwise FALL THROUGH UNCHANGED. Bounded by _DCR_MAX_PER_EPISODE=8. WHY IT IS NOT A5 TUNING: A5's trigger cannot reach these states -- _E1_SLOT_RE matches the VECTOR string (memory_vector.py:266) while every observed clear is kv (memory_kv.py:283), and A5 fires POST-exec on a blocked add whereas DCR fires PRE-exec on a proposed clear. DCR reuses A5's validated ACTION with a new TRIGGER. MEASURED: train 47.52% (144/303) vs incumbent 45.87% (139/303) = +1.65pp, 9 gains / 4 losses, net +5, driven entirely by kv +4.76pp (35 vs 30); vector and rec_sum EXACTLY 0.00pp (rec_sum exec logs byte-identical, md5 d1946d1e8213). Dev 40.48% vs 40.48% = +0.00pp with 0g/0l -- a measured NO-OP, not a confirmation. MECHANISM VALIDATED: copies_before=2 and copies_remaining=1 on EVERY firing, live 50 -> after 49, retry landed on all firings, 0 invariant violations, 0 evict failures. 15 firings in exactly the 3 diagnosed episodes (24/25/29-student), byte-reproducible across two independent runs. LIMITS RECORDED IN THE ACCEPTANCE: the entire effect is ONE (backend,scenario) cell (kv/student), so n=1 cell under CELL_KFOLD_NOTE -- narrower than A5's single-backend exposure; dev has no kv/student cell and the arm is a no-op there, so dev establishes only 'no harm'; the shape is 9g/4l not 9g/0l, so the arm REORDERS within the cell; and dedup is EXHAUSTIBLE -- 4 archival clears still executed after duplicates ran out and archival clear PROPOSALS went 5 -> 19, which bounds what layer 1 can ever achieve and is the direct motivation for layer 2 (safe concat/consolidation). LADDER: dedup (this) -> safe concat/consolidation -> destructive fallback. Layer 1 is dedup-only by design so its effect is attributable in isolation.",
+  "enable_archival_evict_duplicate": true,
+  "enable_capacity_repair": true,
+  "enable_redundant_write_suppress": true,
+  "enable_reroute": true,
+  "enable_turn_start_action": false,
+  "enable_zero_call_reprompt": true,
+  "gate_default": false,
+  "gate_enabled": {
+    "on_archival_full_evict_duplicate": true,
+    "on_blob_pressure": false,
+    "on_core_clear_blocked": false,
+    "on_core_full_rerouted": true,
+    "on_domain_error_core_full": true,
+    "on_domain_error_key_not_found": true,
+    "on_domain_error_too_long": false,
+    "on_key_not_found_rerouted": false,
+    "on_redundant_write_suppressed": true,
+    "on_turn_start_action": false,
+    "on_dedup_clear_recovery": true
+  },
+  "templates": {
+    "on_ambiguous_target": "",
+    "on_core_clear_blocked": "",
+    "on_domain_error": "",
+    "on_domain_error_core_full": "",
+    "on_domain_error_key_not_found": "",
+    "on_domain_error_too_long": "",
+    "on_hallucinate": "",
+    "on_idk_fallback": "",
+    "on_loop": "",
+    "on_memory_preamble": "",
+    "on_new_function_available": "",
+    "on_premature_idk": "",
+    "on_retrieval_success_pre_answer": "",
+    "on_turn_boundary_orient": "",
+    "on_turn_start_action": "[Memory Gate] You answered without consulting stored memory. If this question depends on information from earlier, check memory before answering -- core memory and archival memory are both available. If it genuinely does not, repeat your answer as-is.",
+    "on_wrong_args": ""
+  }
+}

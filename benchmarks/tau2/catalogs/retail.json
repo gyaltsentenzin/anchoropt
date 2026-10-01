@@ -1,0 +1,190 @@
+{
+  "calculate": {
+    "mutates_state": false,
+    "params": [
+      "expression"
+    ],
+    "required": [
+      "expression"
+    ]
+  },
+  "cancel_pending_order": {
+    "mutates_state": true,
+    "params": [
+      "order_id",
+      "reason"
+    ],
+    "required": [
+      "order_id",
+      "reason"
+    ]
+  },
+  "exchange_delivered_order_items": {
+    "mutates_state": true,
+    "params": [
+      "item_ids",
+      "new_item_ids",
+      "order_id",
+      "payment_method_id"
+    ],
+    "required": [
+      "item_ids",
+      "new_item_ids",
+      "order_id",
+      "payment_method_id"
+    ]
+  },
+  "find_user_id_by_email": {
+    "mutates_state": false,
+    "params": [
+      "email"
+    ],
+    "required": [
+      "email"
+    ]
+  },
+  "find_user_id_by_name_zip": {
+    "mutates_state": false,
+    "params": [
+      "first_name",
+      "last_name",
+      "zip"
+    ],
+    "required": [
+      "first_name",
+      "last_name",
+      "zip"
+    ]
+  },
+  "get_item_details": {
+    "mutates_state": false,
+    "params": [
+      "item_id"
+    ],
+    "required": [
+      "item_id"
+    ]
+  },
+  "get_order_details": {
+    "mutates_state": false,
+    "params": [
+      "order_id"
+    ],
+    "required": [
+      "order_id"
+    ]
+  },
+  "get_product_details": {
+    "mutates_state": false,
+    "params": [
+      "product_id"
+    ],
+    "required": [
+      "product_id"
+    ]
+  },
+  "get_user_details": {
+    "mutates_state": false,
+    "params": [
+      "user_id"
+    ],
+    "required": [
+      "user_id"
+    ]
+  },
+  "list_all_product_types": {
+    "mutates_state": false,
+    "params": [],
+    "required": []
+  },
+  "modify_pending_order_address": {
+    "mutates_state": true,
+    "params": [
+      "address1",
+      "address2",
+      "city",
+      "country",
+      "order_id",
+      "state",
+      "zip"
+    ],
+    "required": [
+      "address1",
+      "address2",
+      "city",
+      "country",
+      "order_id",
+      "state",
+      "zip"
+    ]
+  },
+  "modify_pending_order_items": {
+    "mutates_state": true,
+    "params": [
+      "item_ids",
+      "new_item_ids",
+      "order_id",
+      "payment_method_id"
+    ],
+    "required": [
+      "item_ids",
+      "new_item_ids",
+      "order_id",
+      "payment_method_id"
+    ]
+  },
+  "modify_pending_order_payment": {
+    "mutates_state": true,
+    "params": [
+      "order_id",
+      "payment_method_id"
+    ],
+    "required": [
+      "order_id",
+      "payment_method_id"
+    ]
+  },
+  "modify_user_address": {
+    "mutates_state": true,
+    "params": [
+      "address1",
+      "address2",
+      "city",
+      "country",
+      "state",
+      "user_id",
+      "zip"
+    ],
+    "required": [
+      "address1",
+      "address2",
+      "city",
+      "country",
+      "state",
+      "user_id",
+      "zip"
+    ]
+  },
+  "return_delivered_order_items": {
+    "mutates_state": true,
+    "params": [
+      "item_ids",
+      "order_id",
+      "payment_method_id"
+    ],
+    "required": [
+      "item_ids",
+      "order_id",
+      "payment_method_id"
+    ]
+  },
+  "transfer_to_human_agents": {
+    "mutates_state": false,
+    "params": [
+      "summary"
+    ],
+    "required": [
+      "summary"
+    ]
+  }
+}

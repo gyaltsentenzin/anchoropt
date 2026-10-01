@@ -1,0 +1,782 @@
+[
+  {
+    "case_id": "memory_vector_1-customer-1",
+    "failure_mechanism": "The agent treats an empty retrieval as a completed lookup rather than as a failed one. It issues two reads against vector memory, both of which return nothing, and then commits to a final answer anyway \u2014 supplying content that no retrieved record supports. The mechanistic error is the assumption that the memory store's silence is evidence about the world (i.e. that nothing was found means the answer can be composed from prior/parametric guesswork), instead of evidence that its own query formulation failed to match the stored representation. Having repeated the same unproductive read once, it also never varies the retrieval strategy \u2014 it escalates to answering rather than to reformulating.",
+    "consequential_decision": "whether to commit to a final answer when memory retrieval has returned zero results, instead of reformulating the query or explicitly reporting that the information was not found",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 3:  ->  | step 3:  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after the second retrieval came back empty and before the agent composed its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty retrieval, the agent should treat the result as a retrieval failure rather than as a negative fact. It should re-query with materially different wording \u2014 broader or alternative key terms, entity aliases, decomposed sub-questions \u2014 rather than repeating a near-identical read, and it should only answer once it has records in hand. If retrieval remains empty after genuinely varied attempts, it should state that the stored memory contains no matching record instead of producing substantive content it cannot ground."
+  },
+  {
+    "case_id": "memory_vector_11-customer-11",
+    "failure_mechanism": "The agent performs a single vector read, receives no records, and immediately produces a final answer. It never tests whether the emptiness reflects an absent record or a mismatched query, so a one-shot retrieval miss is converted directly into an unsupported assertion. The answer content is necessarily ungrounded because no memory content ever entered the context.",
+    "consequential_decision": "whether to commit to a final answer when memory retrieval has returned zero results, instead of reformulating the query or explicitly reporting that the information was not found",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the single retrieval returned empty and before the agent produced its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should not accept one empty retrieval as sufficient grounds to answer. It should retry retrieval with a rephrased or generalised query \u2014 different key terms, relaxed specificity, sub-parts of the question asked separately \u2014 and answer only from records actually returned. Absent any records, it should say the memory contains no matching entry rather than assert an answer."
+  },
+  {
+    "case_id": "memory_vector_12-customer-12",
+    "failure_mechanism": "Same mechanism: one retrieval, zero records returned, and the agent proceeds straight to a final answer. It conflates 'my query matched nothing' with 'I now know enough to answer', so the answer is generated without any retrieved evidence and scores incorrect. No second retrieval formulation is ever tried.",
+    "consequential_decision": "whether to commit to a final answer when memory retrieval has returned zero results, instead of reformulating the query or explicitly reporting that the information was not found",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieval returned no results and before the final answer was emitted",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should treat a zero-result read as an unfinished lookup and issue at least one substantively different query (alternative phrasings, broader terms, decomposed sub-questions) before concluding. If nothing is ever retrieved, it should report the absence of a matching stored record rather than produce content it has no basis for."
+  },
+  {
+    "case_id": "memory_vector_13-customer-13",
+    "failure_mechanism": "Identical pattern: a single vector read returns nothing, and the agent nonetheless finalises an answer on the next step. The failure is the decision to treat retrieval emptiness as licence to answer from unsupported inference rather than as a signal that the query needs to be reformulated; the resulting answer has no grounding in memory and is scored wrong.",
+    "consequential_decision": "whether to commit to a final answer when memory retrieval has returned zero results, instead of reformulating the query or explicitly reporting that the information was not found",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieval returned empty and before the agent produced its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should follow an empty retrieval with a genuinely different retrieval attempt rather than an answer \u2014 varying vocabulary, loosening the query, or querying components of the question separately \u2014 and should ground any final answer in records actually returned. Where retrieval stays empty, it should explicitly state that no matching memory was found instead of fabricating a response."
+  },
+  {
+    "case_id": "memory_vector_131-notetaker-1",
+    "failure_mechanism": "The agent issues a single vector read, receives an empty result set, and then treats that empty set as if it were a complete grounding for the question. It implicitly assumes that one query formulation exhausts the memory store, so instead of re-querying with different wording or narrower/broader terms, it proceeds directly to composing a final answer from unretrieved (i.e. fabricated or prior-belief) content, which is scored incorrect.",
+    "consequential_decision": "Whether to answer from an empty retrieval result instead of re-querying memory with a reformulated search before committing to a final answer.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the single retrieval returned zero results and before the agent committed to producing a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On getting an empty result set, the agent should treat the retrieval as inconclusive rather than as evidence of absence: try at least one substantively different query (alternate phrasing, key entity alone, broader or narrower terms) and only after repeated empty results state that the requested information is not present in memory, rather than asserting substantive content it never retrieved."
+  },
+  {
+    "case_id": "memory_vector_132-notetaker-2",
+    "failure_mechanism": "Same mechanism: a single vector read returns nothing, and the agent interprets 'no hits for my one query' as 'nothing to ground on is available', then answers anyway. No alternative query formulation is attempted, so the final answer is produced from content that was never retrieved and is scored incorrect.",
+    "consequential_decision": "Whether to answer from an empty retrieval result instead of re-querying memory with a reformulated search before committing to a final answer.",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the single retrieval returned zero results and before the agent committed to producing a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "Treat a zero-result retrieval as an unfinished search: reformulate and retry with different terms, and if memory genuinely holds nothing, say the information is unavailable instead of supplying unsupported specifics."
+  },
+  {
+    "case_id": "memory_vector_134-notetaker-4",
+    "failure_mechanism": "The agent performs one retrieval, gets an empty result, and does not revise its search strategy. It assumes its first query is a faithful proxy for the whole store, so an empty return licenses answering from internal guesswork; the resulting answer is ungrounded and scored incorrect.",
+    "consequential_decision": "Whether to answer from an empty retrieval result instead of re-querying memory with a reformulated search before committing to a final answer.",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the single retrieval returned zero results and before the agent committed to producing a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "After an empty retrieval, vary the query (synonyms, isolated entity names, coarser topical terms) and retrieve again; only conclude and answer once retrieval has actually surfaced supporting material, otherwise explicitly report the absence."
+  },
+  {
+    "case_id": "memory_vector_135-notetaker-5",
+    "failure_mechanism": "Identical pattern: the single read returns no results, and rather than treating that as a signal that the query was mismatched to how the memory was stored, the agent finalises an answer. The failure is the decision to convert an unsuccessful search into a confident response without any second retrieval attempt.",
+    "consequential_decision": "Whether to answer from an empty retrieval result instead of re-querying memory with a reformulated search before committing to a final answer.",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the single retrieval returned zero results and before the agent committed to producing a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "Do not let a single failed search terminate the search phase: re-query memory with materially different wording before answering, and when nothing can be retrieved, answer by stating the gap rather than inventing content."
+  },
+  {
+    "case_id": "memory_vector_136-notetaker-6",
+    "failure_mechanism": "The agent issued a single vector retrieval, received no matching records, and then treated the empty result set as if it were sufficient grounding: instead of recognising that it held no evidence, it proceeded straight to composing a final answer, filling the gap with unsupported content from its own priors. The implicit assumption is that one similarity query is definitive \u2014 that 'nothing came back' means 'nothing exists' rather than 'this phrasing did not match'.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval returned no supporting records, rather than re-querying with different phrasing or explicitly reporting that the information was not found in memory.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  ->  | step None:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "immediately after the first retrieval came back with an empty result set, before any answer text was composed",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty retrieval, the agent should treat the absence of results as an unresolved information gap rather than as a licence to answer. It should re-attempt retrieval with materially different phrasing \u2014 alternate wording, key entities alone, broader or narrower scope \u2014 and only after those attempts also come back empty should it state plainly that the requested information is not present in memory, instead of synthesising a plausible-sounding answer from priors."
+  },
+  {
+    "case_id": "memory_vector_137-notetaker-7",
+    "failure_mechanism": "The agent made two retrieval attempts, both of which returned nothing, and then still produced a substantive final answer rather than reporting the absence of evidence. The second query evidently did not vary the search enough to surface different records, and more importantly the agent's stopping rule was 'I have tried', not 'I have evidence' \u2014 so it converted a confirmed empty memory into an assertive answer built from its own priors.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval returned no supporting records, rather than re-querying with different phrasing or explicitly reporting that the information was not found in memory.",
+    "evidence": "step None:  ->  | step None:  ->  | step 3:  ->  | step 3:  ->  | step None:  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after the second retrieval also returned empty, at the point the agent stopped searching and began composing an answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should make the content of its answer depend on the content of what it retrieved. With zero records in hand after repeated attempts, the correct behaviour is to vary the query along a genuinely different axis (entity names, paraphrase, wider scope) and, failing that, to answer with an explicit statement that memory contains no record of the requested item \u2014 never to substitute a confident reconstruction for retrieved evidence."
+  },
+  {
+    "case_id": "memory_vector_139-notetaker-9",
+    "failure_mechanism": "One vector retrieval returned an empty result set and the agent nevertheless moved directly to a final answer. It did not diagnose the empty return as a query-formulation problem, did not retry with alternative phrasing, and did not surface the gap to the user; it filled the void with ungrounded generated content, which was scored wrong.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval returned no supporting records, rather than re-querying with different phrasing or explicitly reporting that the information was not found in memory.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  ->  | step None:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "at the transition from the empty retrieval to answer composition, before any second search was considered",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should not accept a single similarity search as an exhaustive test of what memory contains. When nothing is returned it should reformulate and search again with different surface wording and scope, and if the store genuinely holds nothing relevant it should say so explicitly rather than producing an answer it cannot ground in any retrieved record."
+  },
+  {
+    "case_id": "memory_vector_141-notetaker-11",
+    "failure_mechanism": "The agent performed a single retrieval, got zero hits, and treated the vacuum as an answerable state. Rather than distinguishing 'the store lacks this' from 'my query phrasing failed to match', it collapsed both into 'proceed', and generated a final answer whose content had no basis in retrieved material.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval returned no supporting records, rather than re-querying with different phrasing or explicitly reporting that the information was not found in memory.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  ->  | step None:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned nothing and before the agent produced its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should make an empty retrieval an explicit branch in its own reasoning: acknowledge that it has no evidence, attempt at least one meaningfully different query formulation, and if still empty, answer by reporting the absence rather than by inventing content. Its confidence in the final answer should track how much retrieved material actually supports it."
+  },
+  {
+    "case_id": "memory_vector_142-notetaker-12",
+    "failure_mechanism": "The agent issued a single retrieval against the memory store, received nothing back, and then treated the empty result as if it were sufficient grounding: instead of recognising that it held no evidence about the asked-for content, it composed a final answer from its own priors/guesswork. The operative wrong assumption is that one retrieval attempt exhausts the store, so silence means 'nothing relevant exists' rather than 'my query did not match'.",
+    "consequential_decision": "whether to commit to a final answer when retrieval has returned no supporting evidence, instead of re-querying the store or reporting the absence of information",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "immediately after the first retrieval returned zero results, before the agent committed to composing a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty retrieval, the agent should treat the result as an unresolved query rather than a negative fact: reformulate and re-issue the search with alternative phrasings, broader or narrower scope, or entity/keyword variants drawn from the question, and only after genuinely varied attempts still return nothing should it answer \u2014 and then by stating explicitly that the stored notes contain no information on the point, rather than inventing content."
+  },
+  {
+    "case_id": "memory_vector_143-notetaker-13",
+    "failure_mechanism": "Same mechanism as its siblings: a lone retrieval came back with nothing, and the agent proceeded to answer as though absence of retrieved text were itself an answer. Although an intervention fired in this episode, the agent still terminated after the single empty read without broadening or rephrasing the query, so the underlying decision to answer from an empty evidence set was unchanged.",
+    "consequential_decision": "whether to commit to a final answer when retrieval has returned no supporting evidence, instead of re-querying the store or reporting the absence of information",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieval returned empty and before the answer was composed",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should not accept a single empty search as the state of the memory store. It should vary the query surface \u2014 synonyms, entity names, dates, partial phrases from the user's question \u2014 and retry retrieval; if all varied attempts return nothing it should answer by reporting that the notes contain no relevant record instead of fabricating one."
+  },
+  {
+    "case_id": "memory_vector_144-notetaker-14",
+    "failure_mechanism": "The agent performed one retrieval, got zero hits, and inferred that the required information was unavailable-and-therefore-guessable. It substituted plausible-sounding content for retrieved content rather than repairing the failed query, producing an unsupported answer.",
+    "consequential_decision": "whether to commit to a final answer when retrieval has returned no supporting evidence, instead of re-querying the store or reporting the absence of information",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "at the point the first empty retrieval was accepted as the final state of evidence, before answer generation",
+      "call": ""
+    },
+    "proposed_behavior_change": "Treat an empty retrieval as a signal that the query, not the store, is at fault: rewrite the query with different lexical and structural forms and search again; escalate to broader or listing-style retrieval before answering; and if evidence remains absent, say so plainly rather than asserting content the store never supplied."
+  },
+  {
+    "case_id": "memory_vector_145-notetaker-15",
+    "failure_mechanism": "The agent did retry retrieval once, but both attempts returned nothing, and it then answered anyway. The retry evidently did not change the query in a way that could match differently stored material \u2014 the agent repeated an essentially equivalent search and, on a second empty result, concluded that guessing was acceptable rather than reporting that no supporting note existed.",
+    "consequential_decision": "whether to commit to a final answer when retrieval has returned no supporting evidence, instead of re-querying the store or reporting the absence of information",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 3:  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after the second retrieval also returned zero results, before the agent produced a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "When a retry is made it should be substantively different from the first query \u2014 different key terms, decomposition of the question into sub-queries, or retrieval by entity rather than by paraphrase. If varied retrieval still yields nothing, the agent should answer by stating that the stored notes do not contain the requested information rather than producing a content-bearing guess."
+  },
+  {
+    "case_id": "memory_vector_146-notetaker-16",
+    "failure_mechanism": "The agent treats an empty retrieval as an answerable state. It issues three successive reads against the vector store, none of which return any records, and instead of recognising that it holds no evidence at all it composes a final answer from its own priors/paraphrase of the question. It also never records anything back to memory, so the empty-store condition that caused the failure is left unchanged. The wrong assumption is that repeated similar queries returning nothing means the information is absent-and-can-be-guessed, rather than that the query formulation or the memory contents need to change before answering.",
+    "consequential_decision": "whether to produce a final answer when retrieval has returned zero supporting records",
+    "evidence": "step None:  ->  | step None:  ->  | step None:  ->  | step None:  -> ",
+    "causal_region": {
+      "step": null,
+      "phase": "after the last retrieval returned zero records and before the final answer was composed",
+      "call": ""
+    },
+    "proposed_behavior_change": "When every read returns nothing, the agent should treat the retrieval as unsatisfied rather than as evidence of absence: vary the query (different key terms, looser phrasing, alternate field/namespace) and re-read, and if the store genuinely holds nothing relevant, say explicitly that the requested information is not in memory instead of fabricating a substantive answer."
+  },
+  {
+    "case_id": "memory_vector_147-notetaker-17",
+    "failure_mechanism": "The agent's two reads both return nothing, and rather than repairing the retrieval it moves on to write two notes and then answer. The writes are performed on the basis of content the agent never actually retrieved, so it persists and then reports unverified material. The faulty assumption is that the note-taking/answering phase can proceed once reads have been 'attempted', independent of whether those reads yielded any records.",
+    "consequential_decision": "whether to produce a final answer when retrieval has returned zero supporting records",
+    "evidence": "step None:  ->  | step None:  ->  | step None:  ->  | step None:  -> ",
+    "causal_region": {
+      "step": null,
+      "phase": "after the second read returned zero records, at the point the agent switched from retrieving to writing and answering",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should not advance from retrieval to note-writing or answering while its reads have produced no records; it should first reformulate and retry the query, and any content it cannot trace to a returned record should be reported as unavailable rather than written to memory or asserted in the answer."
+  },
+  {
+    "case_id": "memory_vector_148-notetaker-18",
+    "failure_mechanism": "The agent abandons retrieval after a single empty read and answers immediately. One query formulation is treated as a sufficient test of whether the memory contains the needed information, so a formulation mismatch (or an empty store) is silently converted into a confident but ungrounded answer in a two-step episode.",
+    "consequential_decision": "whether to produce a final answer when retrieval has returned zero supporting records",
+    "evidence": "step None:  ->  | step None:  ->  | step None:  ->  | step None:  -> ",
+    "causal_region": {
+      "step": null,
+      "phase": "immediately after the single read returned zero records and before the final answer was emitted",
+      "call": ""
+    },
+    "proposed_behavior_change": "A single empty read should not end the search: the agent should re-query with alternative wording or narrower/broader terms before concluding anything, and if retrieval still yields nothing it should state that memory contains no relevant record rather than answering from assumption."
+  },
+  {
+    "case_id": "memory_vector_149-notetaker-19",
+    "failure_mechanism": "Both reads return nothing and the agent nevertheless finalises an answer. It repeats an essentially unproductive query pattern rather than diversifying the retrieval, then interprets the continued emptiness as licence to answer from prior/invented content, and stores nothing that would make a later attempt succeed.",
+    "consequential_decision": "whether to produce a final answer when retrieval has returned zero supporting records",
+    "evidence": "step None:  ->  | step None:  ->  | step None:  ->  | step None:  -> ",
+    "causal_region": {
+      "step": null,
+      "phase": "after the second retrieval returned zero records, before committing to a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should treat consecutive empty retrievals as a signal to change how it is searching \u2014 different key terms, decomposed sub-queries, broader scope \u2014 and only conclude; and if nothing is ever returned, its answer should explicitly report the absence of any stored evidence instead of substituting guessed content."
+  },
+  {
+    "case_id": "memory_vector_15-customer-15",
+    "failure_mechanism": "The agent issued a single retrieval against the vector store, got back nothing, and then treated the empty result as if it were sufficient grounding: it proceeded straight to a final answer built from its own priors about the customer rather than from stored content. The implicit assumption is that one query is a faithful test of whether the memory contains the fact, so an empty return is read as 'no such fact' instead of 'my query did not match'.",
+    "consequential_decision": "whether to commit to a final answer while no retrieved memory content is in hand",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the single retrieval returned zero results and before the agent composed its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "Treat an empty retrieval as an unfinished search rather than as evidence of absence: reformulate the query with alternative phrasings, entity names, and broader or narrower scope, and keep searching until content is returned; if searching is genuinely exhausted, answer by explicitly reporting that the stored information could not be found instead of fabricating specifics."
+  },
+  {
+    "case_id": "memory_vector_17-customer-17",
+    "failure_mechanism": "One vector-store query returned no matches, and the agent inferred from that single miss that the memory held nothing relevant, then answered from unsupported internal guesswork. It never varied the query formulation, so a vocabulary mismatch between question and stored text was silently converted into a confident but ungrounded answer.",
+    "consequential_decision": "whether to commit to a final answer while no retrieved memory content is in hand",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the single retrieval returned zero results and before the agent composed its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty retrieval, retry with reworded and decomposed queries (synonyms, customer identifiers, related attributes) before answering; only produce a final answer once some stored content has actually been read, and otherwise state plainly that the record was not found."
+  },
+  {
+    "case_id": "memory_vector_19-customer-19",
+    "failure_mechanism": "The agent made a single retrieval, received nothing, and still generated a substantive answer. The failure is the decision to substitute plausible invention for missing retrieved evidence rather than continuing to search or declaring the gap.",
+    "consequential_decision": "whether to commit to a final answer while no retrieved memory content is in hand",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the single retrieval returned zero results and before the agent produced its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "Persist with alternative query formulations and broader searches when a retrieval comes back empty, and never let an unanswered lookup be filled in by generation; if nothing can be retrieved, the answer must say the information is unavailable."
+  },
+  {
+    "case_id": "memory_vector_20-customer-20",
+    "failure_mechanism": "The agent never consulted the memory store at all for this question. It performed a write and then answered, so the response was produced entirely from what it already had in context instead of from the stored customer record. The implicit assumption is that the answer is already known and retrieval is unnecessary.",
+    "consequential_decision": "whether to commit to a final answer while no retrieved memory content is in hand",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the memory write and before the agent produced its final answer, having never issued a retrieval",
+      "call": ""
+    },
+    "proposed_behavior_change": "For any question whose answer depends on previously stored customer information, issue a retrieval and actually read the returned content before answering, rather than assuming the fact is already known; a write operation does not substitute for a lookup."
+  },
+  {
+    "case_id": "memory_vector_22-customer-22",
+    "failure_mechanism": "The agent issued two retrievals against the vector store, both of which came back with nothing, and then treated the absence of retrieved content as if it were sufficient grounding: instead of recognising that it held zero evidence about the customer, it composed a final answer from its own priors about what such an answer usually looks like. The wrong assumption is that having performed retrieval (twice) discharges the obligation to actually possess the retrieved facts, so an empty result set is silently equated with 'nothing more to find, proceed'.",
+    "consequential_decision": "Whether to commit to a final answer when memory retrieval has returned no results, instead of continuing to search with a reformulated query or reporting that the information is not available.",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 3:  ->  | step 3:  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after the second retrieval returned an empty result set and before the agent committed to a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On getting an empty result set, the agent should treat itself as having no evidence at all: vary the query formulation (different phrasing, narrower or broader key terms, alternative identifiers for the same customer) and retry, and if retrieval still yields nothing, state plainly that the requested information is not present in memory rather than producing a plausible-sounding answer that is not grounded in any retrieved record."
+  },
+  {
+    "case_id": "memory_vector_23-customer-23",
+    "failure_mechanism": "The agent made a single vector-store read, received no matches, and moved directly to answering. It never distinguished 'my query missed' from 'the record does not exist', so a single unsuccessful lookup was accepted as a complete search of memory, and the final answer was generated from prior expectation rather than any retrieved fact.",
+    "consequential_decision": "Whether to commit to a final answer when memory retrieval has returned no results, instead of continuing to search with a reformulated query or reporting that the information is not available.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the first retrieval returned an empty result set and before the agent produced its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should not accept one empty lookup as evidence that the information is absent; it should re-query with different wording or alternative identifiers before concluding, and if memory remains empty it should say the answer is unavailable rather than filling the gap with an unsupported claim."
+  },
+  {
+    "case_id": "memory_vector_24-customer-24",
+    "failure_mechanism": "Same mechanism: one read against the vector memory produced no hits, and the agent inferred from its own having-searched rather than from any returned content. The empty result was interpreted as licence to answer, so the final response was fabricated from generic expectations about the customer instead of stored facts.",
+    "consequential_decision": "Whether to commit to a final answer when memory retrieval has returned no results, instead of continuing to search with a reformulated query or reporting that the information is not available.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned nothing and before the final answer was emitted",
+      "call": ""
+    },
+    "proposed_behavior_change": "When a memory read yields no entries, the agent should retry retrieval with a materially different query formulation, and if still empty, explicitly report the absence of the record instead of asserting details it never retrieved."
+  },
+  {
+    "case_id": "memory_vector_25-customer-25",
+    "failure_mechanism": "The agent performed a single vector retrieval, got an empty result, and still produced a substantive final answer. As in the sibling cases, the failure is the equation of 'retrieval attempted' with 'facts obtained': no attempt was made to broaden or rephrase the lookup, and no acknowledgement was made that the answer had no supporting record behind it.",
+    "consequential_decision": "Whether to commit to a final answer when memory retrieval has returned no results, instead of continuing to search with a reformulated query or reporting that the information is not available.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieval came back empty and before the agent settled on a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should treat an empty retrieval as an unresolved search: attempt alternative query phrasings or identifiers, and if memory still returns nothing, answer by stating that the information is not in memory rather than producing content unsupported by any retrieved record."
+  },
+  {
+    "case_id": "memory_vector_27-customer-27",
+    "failure_mechanism": "The agent issued a single retrieval against the vector store, got back nothing at all, and then treated the empty result set as if it were sufficient grounding: instead of recognizing that it held no evidence about the customer, it composed a final answer from its own priors/guesswork. The controlling assumption is that one query is definitive \u2014 that an empty return means 'nothing exists to say' rather than 'my query did not match how the memory is stored'.",
+    "consequential_decision": "Whether to produce a substantive final answer when retrieval has returned zero supporting evidence, instead of first re-querying differently and then, if still empty, answering that the information is not available.",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "immediately after the single retrieval returned an empty result set, before the agent committed to composing a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty retrieval, the agent should treat the absence of hits as a signal about its own query rather than about the world: reformulate and re-issue the search with alternative phrasings, entity names, and broader or narrower scope, and consult adjacent keys. Only after such attempts also come back empty should it answer, and that answer must explicitly state that no stored information was found rather than fabricating specifics."
+  },
+  {
+    "case_id": "memory_vector_28-customer-28",
+    "failure_mechanism": "Identical mechanism: one vector query, zero hits, and the agent nonetheless proceeded straight to a confident final answer. It conflated 'retrieval found nothing' with 'I may answer from general knowledge', so the answer content was unsupported by any memory content and was wrong.",
+    "consequential_decision": "Whether to produce a substantive final answer when retrieval has returned zero supporting evidence, instead of first re-querying differently and then, if still empty, answering that the information is not available.",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned nothing and before the final answer was produced",
+      "call": ""
+    },
+    "proposed_behavior_change": "Treat an empty retrieval as an unfinished search: vary the query (synonyms, the customer identifier in other forms, related fields), widen the search, and inspect what is actually stored before answering. If nothing is recoverable, state plainly that the memory contains no record on the point rather than supplying invented details."
+  },
+  {
+    "case_id": "memory_vector_3-customer-3",
+    "failure_mechanism": "Here the agent did make a second retrieval attempt, but the retry was not materially different in strategy \u2014 it again returned nothing \u2014 and the agent then abandoned searching and answered anyway. So the failure is twofold: the retry did not change the query formulation enough to reach differently-stored content, and once evidence remained absent the agent still chose to assert an answer instead of reporting absence of information.",
+    "consequential_decision": "Whether to produce a substantive final answer when retrieval has returned zero supporting evidence, instead of first re-querying differently and then, if still empty, answering that the information is not available.",
+    "evidence": "step 1:  ->  | step 3:  ->  | step 3:  ->  | step None:  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after the second retrieval also came back empty, at the moment the agent decided to answer rather than report that nothing was found",
+      "call": ""
+    },
+    "proposed_behavior_change": "When a retry is made it should be a genuinely different search \u2014 different wording, different granularity, different identifying key \u2014 not a near-repeat of the first. And when repeated, varied searches all come back empty, the agent should conclude and communicate that the requested information is not present in memory, rather than filling the gap with plausible-sounding content."
+  },
+  {
+    "case_id": "memory_vector_31-healthcare-1",
+    "failure_mechanism": "The agent performed one retrieval, received no results, and still produced a substantive final answer about the healthcare record. It never revised its query or acknowledged the evidential vacuum, so the answer was generated from priors rather than stored content and was scored wrong.",
+    "consequential_decision": "Whether to produce a substantive final answer when retrieval has returned zero supporting evidence, instead of first re-querying differently and then, if still empty, answering that the information is not available.",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  ->  | step None:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned zero results, before it produced a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should require at least one retrieved item to ground any factual claim about the stored record. Faced with an empty return it should re-search using different terminology and identifiers for the patient/topic, and if nothing surfaces, answer by declaring the absence of stored information instead of asserting unverified clinical or record details."
+  },
+  {
+    "case_id": "memory_vector_32-healthcare-2",
+    "failure_mechanism": "The agent issued a single memory read, received an empty result set, and then treated that empty set as if it were sufficient evidence: instead of recognizing that it had retrieved nothing and that its query formulation may have missed the stored material, it proceeded straight to composing a final answer from its own priors. The operative wrong assumption is that one retrieval attempt is authoritative, so 'nothing came back' is silently converted into 'nothing exists' rather than 'my query failed'.",
+    "consequential_decision": "Whether an empty retrieval result may be accepted as adequate grounding for a final answer, instead of triggering another retrieval attempt with a reformulated query.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "immediately after the single retrieval returned an empty result set and before the agent committed to composing its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On observing that a retrieval returned nothing, the agent should treat this as a failed lookup rather than as evidence of absence: retry with re-worded, broadened, or decomposed queries (synonyms, key clinical entities alone, less specific phrasing) before answering. If repeated attempts still yield nothing, it should answer explicitly from the position that the memory contains no retrievable evidence, and flag that the response is ungrounded, rather than silently presenting a prior-driven guess as a grounded answer."
+  },
+  {
+    "case_id": "memory_vector_33-healthcare-3",
+    "failure_mechanism": "The agent performed one retrieval, got back an empty result set, and did not adjust its approach; it moved directly to a final answer. It conflated 'my single query matched nothing' with 'there is nothing to be found', so the answer was generated without any retrieved grounding, and was scored incorrect.",
+    "consequential_decision": "Whether an empty retrieval result may be accepted as adequate grounding for a final answer, instead of triggering another retrieval attempt with a reformulated query.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned zero results and before the final answer was produced",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should treat an empty retrieval as a signal that its query was mismatched to how the content is stored, and make further retrieval attempts with alternative phrasings, narrower entity terms, or split sub-questions. Only after those attempts also come back empty should it answer, and then it should state plainly that no supporting memory was found rather than fabricating a confident response."
+  },
+  {
+    "case_id": "memory_vector_35-healthcare-5",
+    "failure_mechanism": "After a single read that yielded no results, the agent skipped any recovery behaviour and produced a final answer anyway. The failure is the premature closure decision: the agent's stopping rule is 'a retrieval has been attempted', not 'usable evidence has been obtained', so a zero-hit lookup still licenses answering, and the resulting answer is unsupported and wrong.",
+    "consequential_decision": "Whether an empty retrieval result may be accepted as adequate grounding for a final answer, instead of triggering another retrieval attempt with a reformulated query.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "at the point the empty retrieval was observed, just before the agent committed to answering",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should require actually-retrieved content, not merely a completed retrieval attempt, before finalizing. When nothing is returned it should re-query with different wording and granularity, and if the memory truly holds nothing relevant, respond with an explicit statement of missing evidence instead of an unsupported assertion."
+  },
+  {
+    "case_id": "memory_vector_38-healthcare-8",
+    "failure_mechanism": "The agent made one retrieval that returned nothing, then answered from unsupported internal assumptions. It never tested whether the empty result was a query-formulation problem, so a recoverable retrieval miss became an ungrounded and incorrect final answer.",
+    "consequential_decision": "Whether an empty retrieval result may be accepted as adequate grounding for a final answer, instead of triggering another retrieval attempt with a reformulated query.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned an empty set and before the final answer was produced",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty retrieval the agent should assume the query, not the memory, is at fault first: re-issue the lookup with paraphrased and decomposed forms of the question and with the salient clinical terms in isolation. Only if all such attempts return nothing should it answer, and then it must say that no relevant stored evidence was found rather than presenting a guess as fact."
+  },
+  {
+    "case_id": "memory_vector_39-healthcare-9",
+    "failure_mechanism": "The agent issues a single retrieval, gets nothing back, and then treats that empty result set as if it were an adequate evidence base. It implicitly assumes that one query formulation is a faithful test of whether the memory contains the needed facts, so a zero-hit read is read as 'nothing exists' rather than 'this phrasing missed'. It then composes a final answer from prior/parametric assumptions instead of from retrieved content, and that unsupported answer is what gets scored wrong.",
+    "consequential_decision": "whether an empty retrieval result may be accepted as sufficient grounds to answer, instead of forcing further retrieval attempts or an explicit admission of missing information",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "immediately after the single retrieval returned zero results and before the agent committed to composing a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On a retrieval that returns nothing, the agent should treat the evidence base as untested rather than empty: re-query with alternate phrasings, broader or decomposed terms, and related entity names before drawing any conclusion. Only after retrieval attempts genuinely vary and still return nothing should it answer \u2014 and then it should state that the requested information is not present in memory rather than filling the gap with plausible-sounding content."
+  },
+  {
+    "case_id": "memory_vector_4-customer-4",
+    "failure_mechanism": "Same mechanism as the other empty-retrieval failures: one read returns no items and the agent proceeds directly to a final answer, treating a single query formulation as a conclusive probe of memory. Even though an intervention fired in this episode, the agent still did not broaden or repeat retrieval; it kept the decision to answer from an empty context, so the answer was ungrounded and scored incorrect.",
+    "consequential_decision": "whether an empty retrieval result may be accepted as sufficient grounds to answer, instead of forcing further retrieval attempts or an explicit admission of missing information",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the single retrieval returned zero results, at the point the agent chose to answer rather than retrieve again",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should not let a zero-hit read terminate its evidence gathering. It should reformulate and retry retrieval with different wording, narrower or wider scope, and alternate identifiers for the entity in the request; if all such attempts come back empty it should answer by explicitly reporting that memory holds no relevant record, rather than producing a confident substantive answer."
+  },
+  {
+    "case_id": "memory_vector_40-healthcare-10",
+    "failure_mechanism": "The agent performs one retrieval, receives no results, and interprets the null result as licence to answer from its own priors. The faulty assumption is that a single vector query exhausts the memory; consequently no second attempt with different phrasing is made, and the final answer is fabricated relative to the (empty) retrieved context, which is why it is scored incorrect.",
+    "consequential_decision": "whether an empty retrieval result may be accepted as sufficient grounds to answer, instead of forcing further retrieval attempts or an explicit admission of missing information",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned nothing and before the agent produced its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "When retrieval yields no items, the agent should assume its query, not the memory, is at fault and try materially different formulations (synonyms, decomposed sub-questions, patient/record identifiers, broader scope) before answering. If retrieval remains empty across varied attempts, it should say the information is absent from memory instead of asserting content it never retrieved."
+  },
+  {
+    "case_id": "memory_vector_41-healthcare-11",
+    "failure_mechanism": "The agent makes a single retrieval, gets an empty result set, and immediately produces a final answer, conflating 'my one query matched nothing' with 'I know the answer'. Because no evidence was ever in context and no retry was attempted, whatever it asserts comes from unsupported prior belief, which the scorer marks incorrect.",
+    "consequential_decision": "whether an empty retrieval result may be accepted as sufficient grounds to answer, instead of forcing further retrieval attempts or an explicit admission of missing information",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "at the point the empty retrieval came back, before the agent settled on answering rather than retrieving again",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should treat an empty retrieval as an unfinished search: vary the query wording and granularity, look up related entities and adjacent facts, and only stop retrieving once several genuinely different attempts have failed. At that point the correct behaviour is to report the absence of relevant stored information rather than to supply an answer that no retrieved content supports."
+  },
+  {
+    "case_id": "memory_vector_43-healthcare-13",
+    "failure_mechanism": "The agent treated an empty retrieval as if it were informative context: it issued two reads against the vector store, received no results either time, and then\u2014rather than treating the absence of retrieved records as a signal that its query formulation had failed\u2014committed to composing a final answer from its own priors. Both reads apparently expressed the same underlying query intent, so the second read added no new coverage, and after it too returned nothing the agent silently substituted an unsupported answer for the missing evidence.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval returned zero results, instead of re-querying with a materially different formulation or explicitly reporting the information as not found in memory.",
+    "evidence": "step reads across the episode:  ->  | step end of episode (3 steps total):  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after the second retrieval returned an empty result set and before the agent composed its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty result set the agent should recognize that it has no grounding at all and change its retrieval behaviour before answering: re-query with materially different phrasing, broader or decomposed terms, and alternate domain vocabulary/synonyms rather than repeating the same query intent. If retrieval remains empty after genuinely varied attempts, it should state that the requested information is not present in memory rather than fabricating a substantive answer from prior knowledge."
+  },
+  {
+    "case_id": "memory_vector_45-healthcare-15",
+    "failure_mechanism": "The agent performed a single retrieval, got an empty result set, and immediately proceeded to answer. It assumed the store had been adequately probed after one query, so an empty return was read as 'nothing exists' rather than 'my query did not match'. With no retrieved records the final answer was necessarily produced from unsupported prior knowledge, which scored incorrect.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval returned zero results, instead of re-querying with a materially different formulation or explicitly reporting the information as not found in memory.",
+    "evidence": "step first and only read:  ->  | step end of episode (2 steps total):  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the single retrieve returned nothing and before the agent produced a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should not accept a single empty retrieval as evidence of absence. It should reformulate and retry with different wording, decomposed sub-questions, and alternative clinical/domain terminology, and only after varied attempts still return nothing should it answer by stating the information is not available in memory instead of inventing content."
+  },
+  {
+    "case_id": "memory_vector_46-healthcare-16",
+    "failure_mechanism": "Same mechanism: one retrieval, zero results returned, and the agent nonetheless moved directly to a final answer. It never revised its query formulation after the miss, so it answered with no grounding from the store and the answer was scored incorrect.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval returned zero results, instead of re-querying with a materially different formulation or explicitly reporting the information as not found in memory.",
+    "evidence": "step first and only read:  ->  | step end of episode (2 steps total):  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned an empty result set and before the final answer was emitted",
+      "call": ""
+    },
+    "proposed_behavior_change": "After an empty retrieval the agent should treat its own query as the likely fault and retry with substantively different formulations (broader terms, key entities alone, synonyms, split sub-queries) before answering; if nothing is ever retrieved it should say the information is not in memory rather than producing a confident unsupported answer."
+  },
+  {
+    "case_id": "memory_vector_48-healthcare-18",
+    "failure_mechanism": "The agent issued a single vector read, received no matching records, and drew the conclusion that it could answer anyway. Because it did not distinguish 'query failed to match' from 'no such information exists', it skipped any query revision and generated a final answer entirely from priors, which was scored incorrect.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval returned zero results, instead of re-querying with a materially different formulation or explicitly reporting the information as not found in memory.",
+    "evidence": "step first and only read:  ->  | step end of episode (2 steps total):  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve came back empty and before the agent committed to its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should respond to an empty retrieval by diversifying its search rather than by answering: retry with rephrased, broadened, and decomposed queries using alternate terminology, and if all attempts return nothing, explicitly report that memory contains no relevant record instead of supplying an ungrounded answer."
+  },
+  {
+    "case_id": "memory_vector_49-healthcare-19",
+    "failure_mechanism": "The agent treats its single retrieval attempt as authoritative regardless of what came back. The read returned zero results, and instead of interpreting an empty result set as 'my query did not match the stored representation' and trying a differently-phrased or differently-scoped query, the agent treats the empty set as settled evidence and composes a final answer from its own priors about the healthcare domain. The answer is therefore ungrounded in memory and scored incorrect.",
+    "consequential_decision": "Whether an empty or unhelpful retrieval result may be accepted as sufficient grounds to answer, rather than obliging the agent to re-query with a reformulated retrieval before answering.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "immediately after the single retrieval returned an empty result set, before the agent committed to composing its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On receiving an empty result set, the agent should treat it as a failed lookup rather than as evidence, and retry retrieval with materially different phrasing (broader terms, entity names alone, alternative vocabulary for the same clinical concept) before answering. If repeated retrievals still return nothing, it should answer explicitly on the basis that memory contains no relevant record instead of silently substituting its own domain assumptions."
+  },
+  {
+    "case_id": "memory_vector_5-customer-5",
+    "failure_mechanism": "The agent issues one retrieval, receives no matches, and proceeds directly to a final answer built from general assumptions about the customer scenario rather than from retrieved content. The empty result is never diagnosed as a query-formulation problem, so no second, reworded retrieval is attempted and the answer has no grounding.",
+    "consequential_decision": "Whether an empty or unhelpful retrieval result may be accepted as sufficient grounds to answer, rather than obliging the agent to re-query with a reformulated retrieval before answering.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned nothing and before the final answer was produced",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should recognise a zero-result lookup as an unresolved information need and issue at least one substantively rephrased retrieval (different keywords, narrower or wider scope, customer identifiers on their own) before answering. Absent any retrieved support, it should state that the requested information is not present in memory rather than fabricating a plausible answer."
+  },
+  {
+    "case_id": "memory_vector_50-healthcare-20",
+    "failure_mechanism": "Same mechanism, occurring without intervention: the agent's default policy is to answer after one retrieval whatever that retrieval returns. The read produced zero results, and the agent inferred a healthcare answer from prior knowledge instead of recognising that its query failed to retrieve and re-issuing a different one.",
+    "consequential_decision": "Whether an empty or unhelpful retrieval result may be accepted as sufficient grounds to answer, rather than obliging the agent to re-query with a reformulated retrieval before answering.",
+    "evidence": "step 0:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "at the point the empty retrieval result was accepted as the basis for answering",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should not treat a single retrieval as exhausting its access to memory. When nothing is returned, it should vary the query formulation and search again, and only after repeated empty retrievals should it answer -- and then by reporting the absence of stored evidence rather than by supplying domain guesswork."
+  },
+  {
+    "case_id": "memory_vector_51-healthcare-21",
+    "failure_mechanism": "The agent conflates 'I searched' with 'I have the facts'. Its one retrieval returned an empty set, yet it advanced to a final answer without a second retrieval attempt, so the answer rests on its own generic healthcare reasoning rather than on any stored record, and is wrong.",
+    "consequential_decision": "Whether an empty or unhelpful retrieval result may be accepted as sufficient grounds to answer, rather than obliging the agent to re-query with a reformulated retrieval before answering.",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned zero matches, just before committing to a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty retrieval the agent should re-attempt the lookup with a genuinely different formulation of the information need before answering, and if memory still yields nothing it should say so explicitly instead of producing a confident answer derived from background assumptions."
+  },
+  {
+    "case_id": "memory_vector_52-healthcare-22",
+    "failure_mechanism": "The agent issued a single similarity read against the vector store, received nothing back, and treated that empty result set as if it were a completed evidence-gathering step. Instead of recognizing that it held zero retrieved content, it proceeded straight to composing a final answer, which could only be assembled from unsupported internal guessing. The operative wrong assumption is that one read attempt exhausts the memory, so an empty return licenses answering rather than requiring another retrieval formulation or an explicit statement that the record was not found.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval has returned no results, instead of re-querying with a different formulation or explicitly reporting that the information was not found in memory.",
+    "evidence": "step read:  ->  | step episode:  ->  | step final:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "immediately after the first read returned an empty result set and before the agent committed to composing its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty retrieval, the agent should treat the evidence base as still empty rather than as settled: reformulate the query with alternative phrasings, key entities, or broader terms and read again, and if retrieval still yields nothing, state plainly that the requested information is not present in memory rather than fabricating a substantive answer."
+  },
+  {
+    "case_id": "memory_vector_53-healthcare-23",
+    "failure_mechanism": "The agent read twice, both reads returned no matches, and it then answered anyway. The retry did not change the outcome because the agent treated repeated empty returns as evidence that no answer exists to be reported, yet still produced a confident substantive answer instead of an explicit not-found response. The failure is the decision to synthesize content with an entirely empty retrieved context after the retrieval budget was spent.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval has returned no results, instead of re-querying with a different formulation or explicitly reporting that the information was not found in memory.",
+    "evidence": "step reads:  ->  | step episode:  ->  | step final:  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after the second read also came back empty and before the agent produced its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "When successive reads return nothing, the agent should vary the retrieval formulation substantively rather than repeat a near-identical query, and once it judges retrieval exhausted it should answer with an explicit statement that the record is absent from memory rather than generating unsupported content."
+  },
+  {
+    "case_id": "memory_vector_54-healthcare-24",
+    "failure_mechanism": "Same mechanism as its sibling case: two similarity reads, zero results in total, and the agent nonetheless assembled a final answer. It never registered that its working context contained no retrieved facts, so the answer was produced from prior belief rather than from stored memory, and it did not fall back to reporting absence.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval has returned no results, instead of re-querying with a different formulation or explicitly reporting that the information was not found in memory.",
+    "evidence": "step reads:  ->  | step episode:  ->  | step final:  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after the final read returned empty and before the agent committed to its answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should check whether any retrieved item actually entered its context before answering; with an empty evidence set it should broaden or rephrase the search, and failing that, answer that the information is not available in memory instead of producing a substantive claim."
+  },
+  {
+    "case_id": "memory_vector_55-finance-0",
+    "failure_mechanism": "A single read against the vector store returned nothing, and the agent immediately produced a final answer. It equated 'a retrieval was attempted' with 'the needed information is now available', so the empty result never triggered any further search or any acknowledgement of missing data; the resulting answer was necessarily unsupported by stored content.",
+    "consequential_decision": "Whether to commit to a final answer after retrieval has returned no results, instead of re-querying with a different formulation or explicitly reporting that the information was not found in memory.",
+    "evidence": "step read:  ->  | step episode:  ->  | step final:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "right after the empty read result came back and before the agent produced its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should not treat a single empty retrieval as a completed lookup: it should retry with alternative query wording and narrower or broader key terms, and if the store genuinely holds nothing relevant, say so explicitly rather than inventing a domain-plausible answer."
+  },
+  {
+    "case_id": "memory_vector_56-finance-1",
+    "failure_mechanism": "The agent issued a single memory read, got back nothing, and treated the empty result set as if it were sufficient grounding. Instead of recognizing that it held no retrieved facts, it proceeded to compose a final answer from its own priors, and additionally committed a write derived from that ungrounded content, so the unsupported answer was both delivered and persisted.",
+    "consequential_decision": "whether to commit to a final answer after retrieval returned no results, instead of treating the empty retrieval as unmet evidence and re-querying or declining to assert",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 3:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "immediately after the sole read returned an empty result set, before any further retrieval or the final answer was composed",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty retrieval, the agent should not treat the question as answerable yet. It should recognize the absence of evidence, retry retrieval with reformulated or broadened queries (and alternate key phrasings), and only then either answer from actually retrieved content or state explicitly that the stored information does not contain the answer. It should also refrain from writing content that no retrieved evidence supports."
+  },
+  {
+    "case_id": "memory_vector_58-finance-3",
+    "failure_mechanism": "The agent performed one retrieval, received zero results, and did not revise or repeat the query. It interpreted the lack of retrieved evidence as license to answer from prior/parametric knowledge, producing an assertion with no grounding in stored content.",
+    "consequential_decision": "whether to commit to a final answer after retrieval returned no results, instead of treating the empty retrieval as unmet evidence and re-querying or declining to assert",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned nothing and before the final answer was produced",
+      "call": ""
+    },
+    "proposed_behavior_change": "When a retrieval comes back empty, the agent should treat its evidence requirement as unsatisfied: reformulate the query with different wording, entity names, or narrower/broader scope and search again, and if retrieval still yields nothing, say that the requested fact is not present in memory rather than fabricating a value."
+  },
+  {
+    "case_id": "memory_vector_59-finance-4",
+    "failure_mechanism": "The agent conflated 'query executed' with 'evidence obtained'. Having made one read that returned no matches, it did not diagnose the query as insufficient and instead generated the final answer from unsupported internal guesswork.",
+    "consequential_decision": "whether to commit to a final answer after retrieval returned no results, instead of treating the empty retrieval as unmet evidence and re-querying or declining to assert",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "at the point the empty retrieval was accepted as the basis for answering",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should check whether its retrieval actually returned usable items before answering. With zero items, it should attempt at least one substantively different query formulation, and if evidence remains absent, explicitly report the gap instead of producing a confident numeric or factual claim."
+  },
+  {
+    "case_id": "memory_vector_60-finance-5",
+    "failure_mechanism": "After a single unsuccessful retrieval, the agent abandoned evidence gathering and answered anyway, filling the gap left by the empty result set with an unverified claim rather than acknowledging that nothing relevant was found.",
+    "consequential_decision": "whether to commit to a final answer after retrieval returned no results, instead of treating the empty retrieval as unmet evidence and re-querying or declining to assert",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned an empty result and before it produced a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should treat an empty retrieval as a signal that its search terms missed the stored material, retry with alternative phrasings or decomposed sub-questions, and answer only from content it actually retrieved; if nothing is retrievable, it should state that the information is unavailable in memory rather than guessing."
+  },
+  {
+    "case_id": "memory_vector_61-finance-6",
+    "failure_mechanism": "The agent issued two retrieval reads against the vector store, both of which returned nothing, and then treated the empty result set as an adequate evidentiary basis for answering. Instead of registering that it held zero retrieved content about the finance question, it composed a final answer from its own priors/assumptions, so the answer was unsupported and scored incorrect. The operative wrong assumption is that a completed retrieval attempt equals available evidence, regardless of whether anything came back.",
+    "consequential_decision": "whether to commit to a final answer when retrieval has returned zero supporting content, rather than re-querying with a reformulated search or reporting that the information is not available",
+    "evidence": "step read phase:  ->  | step final step of a 3-step episode:  ->  | step whole episode:  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after the second retrieval returned nothing and before the agent committed to a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "Treat an empty retrieval result as a hard signal that the answer is not yet grounded: check whether any content was actually returned before drafting, and if nothing was, either retry retrieval with materially different phrasing/looser scope or state explicitly that the requested finance information could not be found \u2014 never fill the gap from unsupported recall."
+  },
+  {
+    "case_id": "memory_vector_63-finance-8",
+    "failure_mechanism": "The agent performed two vector reads that yielded no results, then proceeded straight to answer generation as if the retrieval had succeeded. With no retrieved facts in context, the produced answer necessarily came from guesswork about the finance details, which is why it was scored incorrect. The defective step is the transition from an empty retrieval to answer composition without checking result presence.",
+    "consequential_decision": "whether to commit to a final answer when retrieval has returned zero supporting content, rather than re-querying with a reformulated search or reporting that the information is not available",
+    "evidence": "step read phase:  ->  | step final step of a 3-step episode:  ->  | step whole episode:  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after the retrievals returned empty and before the final answer was produced",
+      "call": ""
+    },
+    "proposed_behavior_change": "Before composing an answer, verify that retrieval actually yielded content; on an empty result set, broaden or rephrase the query and retry, and if still empty, answer with an explicit statement of unavailability instead of an invented specific."
+  },
+  {
+    "case_id": "memory_vector_65-finance-10",
+    "failure_mechanism": "The agent made a single retrieval attempt, got nothing back, and immediately abandoned search and answered. It neither varied the query formulation nor recognised that a lone empty lookup provides no evidence, so the final answer was fabricated relative to the stored record and scored incorrect. Two coupled errors: premature termination of search after one miss, and treating a miss as licence to answer anyway.",
+    "consequential_decision": "whether to commit to a final answer when retrieval has returned zero supporting content, rather than re-querying with a reformulated search or reporting that the information is not available",
+    "evidence": "step read phase:  ->  | step final step of a 2-step episode:  ->  | step whole episode:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "immediately after the first and only retrieval came back empty, before any answer was drafted",
+      "call": ""
+    },
+    "proposed_behavior_change": "Do not conclude the search on a single empty lookup: reformulate the query with alternative terms or a wider scope and retrieve again, and only answer once content has actually been returned \u2014 otherwise report that the information was not found rather than supplying a guessed value."
+  },
+  {
+    "case_id": "memory_vector_68-finance-13",
+    "failure_mechanism": "Left unmodified, the agent ran two vector reads that returned no results and still emitted a confident final answer built from unsupported assumptions about the finance question. The failure mechanism is identical to the other cases and is intrinsic to the agent's policy rather than to any modification: it does not condition answer generation on whether retrieval actually produced evidence.",
+    "consequential_decision": "whether to commit to a final answer when retrieval has returned zero supporting content, rather than re-querying with a reformulated search or reporting that the information is not available",
+    "evidence": "step whole episode:  ->  | step read phase:  ->  | step final step of a 3-step episode:  ->  | step whole episode:  -> ",
+    "causal_region": {
+      "step": 2,
+      "phase": "after both retrievals returned empty and before the agent produced its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "Make the presence of retrieved content a precondition for answering: on empty results, retry with a differently phrased or broader query, and if retrieval remains empty, explicitly answer that the information is unavailable instead of asserting an ungrounded figure."
+  },
+  {
+    "case_id": "memory_vector_69-finance-14",
+    "failure_mechanism": "The agent issues a single vector read, receives zero matching records, and then treats that empty result set as if it were a completed evidence-gathering step. Instead of recognizing that it holds no retrieved content, it proceeds directly to composing a final answer, which can only be built from the model's own priors or from restating the question. The operative wrong assumption is that one retrieval attempt exhausts memory, so an empty return means 'nothing relevant exists' rather than 'this query did not match'.",
+    "consequential_decision": "whether to commit to a final answer after a retrieval returns zero results instead of re-querying memory or declaring the information unavailable",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "immediately after the single retrieval returned an empty result set, before any answer text was composed",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty retrieval, the agent should treat the evidence requirement as unmet: reformulate the query (broader or differently worded terms, alternative entity/field names, decomposed sub-questions) and attempt retrieval again before answering; if repeated attempts still return nothing, it should state that the requested information is not present in memory rather than producing a substantive answer from unsupported prior knowledge."
+  },
+  {
+    "case_id": "memory_vector_7-customer-7",
+    "failure_mechanism": "The agent performs one vector read that returns no records, then interprets the absence of retrieved content as license to answer anyway. It never distinguishes 'query failed to match' from 'the fact does not exist', so it skips any query reformulation and generates a final answer with no grounding, which is scored wrong.",
+    "consequential_decision": "whether to commit to a final answer after a retrieval returns zero results instead of re-querying memory or declaring the information unavailable",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned nothing and before the agent produced its final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should treat a zero-result retrieval as an unfinished search: vary the phrasing and specificity of the query, try related keys or entity aliases, and only after those attempts fail report that the answer cannot be found in stored memory, rather than asserting content it never retrieved."
+  },
+  {
+    "case_id": "memory_vector_70-finance-15",
+    "failure_mechanism": "After a single retrieval that returns zero records, the agent does not revise its search strategy; it assumes its first query was adequate and that the empty result is informative about the world rather than about the query. It then produces a final answer built without any retrieved evidence, so the answer is unsupported and incorrect.",
+    "consequential_decision": "whether to commit to a final answer after a retrieval returns zero results instead of re-querying memory or declaring the information unavailable",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "at the point the empty retrieval result was accepted as the basis for answering",
+      "call": ""
+    },
+    "proposed_behavior_change": "When retrieval yields nothing, the agent should re-attempt with reformulated and decomposed queries before drafting any answer, and if memory genuinely yields no matching content it should say the information is not available instead of filling the gap with plausible-sounding but unretrieved details."
+  },
+  {
+    "case_id": "memory_vector_71-finance-16",
+    "failure_mechanism": "The agent conflates 'I searched once' with 'I have the evidence'. Its single vector read returns zero results, and rather than iterating on the query, it terminates by emitting a final answer whose content cannot be sourced from anything it retrieved, producing an incorrect response.",
+    "consequential_decision": "whether to commit to a final answer after a retrieval returns zero results instead of re-querying memory or declaring the information unavailable",
+    "evidence": "step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieve returned an empty set, before the final answer was committed",
+      "call": ""
+    },
+    "proposed_behavior_change": "The agent should require at least one grounded retrieved item before answering: on an empty result it should broaden or rephrase the query, split the question into sub-queries, and retry; failing that, it should explicitly report the absence of stored information rather than answering from unsupported recall."
+  },
+  {
+    "case_id": "memory_vector_8-customer-8",
+    "failure_mechanism": "The agent issued a single vector read, got an empty result set back, and treated that empty set as a completed evidence-gathering step rather than as a failed one. Because no memory content was ever in context, the answer it then composed could only come from its own priors or from guessing, and it committed to that answer as if grounded. The operative wrong assumption is that one query attempt exhausts the store, so zero hits means 'nothing relevant exists' rather than 'this phrasing did not match'.",
+    "consequential_decision": "whether to commit to a final answer when retrieval returned no usable evidence, instead of re-querying with different phrasing or explicitly reporting that the information was not found",
+    "evidence": "step 1:  ->  | step 1:  ->  | step 2:  ->  | step 2:  -> ",
+    "causal_region": {
+      "step": 1,
+      "phase": "after the retrieval returned an empty result set and before the agent committed to a final answer",
+      "call": ""
+    },
+    "proposed_behavior_change": "On an empty or non-responsive retrieval, the agent should treat the evidence state as unresolved rather than settled: retry with reformulated or broadened queries (different wording, synonyms, narrower/wider scope, key entities alone) and only after those attempts also come back empty should it answer \u2014 and then by stating that the requested information is not present in memory rather than supplying a plausible-sounding value. It must never let an answer's content originate from prior assumptions when no retrieved material supports it."
+  }
+]

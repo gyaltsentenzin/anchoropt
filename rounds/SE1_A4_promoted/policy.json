@@ -1,0 +1,32 @@
+{
+  "_comment": "SELF-EVOLVE v0.1 INCUMBENT: native + A4' (the autonomously recovered A4 controller). l=post_generation_pre_exec, phi=no_tool_call_at_all, mu=REPROMPT, eta_mu='search_other_container' (102 chars), retry_budget=1, executed by the generic enable_zero_call_reprompt remedy. PROMOTED 2026-09-18 on the frozen criterion: on the two UNCONTAMINATED held-out cells (vector-student + rec_sum-finance, n=60) se3a2 is +3.33pp, +2/-0, 12/12 target coverage, 0 off-target firings, mechanism 12/12, 0 breakage. se3a1 TIES it on accuracy and regressions, so COST IS THE TIE-BREAKER: se3a2 costs +3.50 extra steps per fix vs se3a1's +7.00 on vector (1.25 vs 1.96 retrievals per fired case). The kv-customer cell is EXCLUDED as confounded -- the gate fired 12x during kv PREREQ episodes, rewriting the store its own queries were scored against. Base incumbent is the NATIVE train control (19/89 on vector/train), which is the incumbent this residual was discovered from. NOT claimed: that se3a2 is intrinsically better than se3a1, or any significance -- 2 net gains on n=60 where a sign test needs >=5.",
+  "gate_default": false,
+  "templates": {
+    "on_memory_preamble": "",
+    "on_hallucinate": "",
+    "on_loop": "",
+    "on_wrong_args": "",
+    "on_domain_error": "",
+    "on_new_function_available": "",
+    "on_turn_start_action": "The container you searched may not hold this fact. Search the other memory container before answering.",
+    "on_ambiguous_target": "",
+    "on_turn_boundary_orient": "",
+    "on_domain_error_core_full": "",
+    "on_domain_error_key_not_found": "",
+    "on_domain_error_too_long": "",
+    "on_retrieval_success_pre_answer": "",
+    "on_idk_fallback": "",
+    "on_core_clear_blocked": "",
+    "on_premature_idk": ""
+  },
+  "gate_enabled": {
+    "on_core_clear_blocked": false,
+    "on_core_full_rerouted": false,
+    "on_key_not_found_rerouted": false,
+    "on_domain_error_core_full": false,
+    "on_domain_error_key_not_found": false,
+    "on_domain_error_too_long": false
+  },
+  "enable_reroute": false,
+  "enable_zero_call_reprompt": true
+}

@@ -1,0 +1,890 @@
+{
+  "incumbent_id": "P0",
+  "incumbent_token": "<matrix-dir>/granite_4_1_30b__self__telecom/baseline.json",
+  "n_arms": 54,
+  "note": "Evaluate each arm against the SAME frozen incumbent and report results keyed by `arm_label`. An arm you did not evaluate must be OMITTED, not reported as zero: core treats a missing result as UNEVALUATED and a zero as a measurement.",
+  "arms": [
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 227,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 227,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_verify_tool_availability",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_tool_availability",
+      "eta": {
+        "instruction": "Before proposing any tool, confirm that the tool exists in the current toolset.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 227,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_fallback_to_alternative",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_fallback_to_alternative",
+      "eta": {
+        "instruction": "If the desired tool is unavailable, suggest an alternative action or manual workaround instead.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 227,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_double_check_proposal",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_proposal",
+      "eta": {
+        "instruction": "Review the proposed tool call to ensure it matches a known, accessible tool before finalizing the suggestion.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 227,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_verify_tool_availability",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_tool_availability",
+      "eta": {
+        "instruction": "Before proposing any tool, confirm that the tool exists in the current toolset.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_fallback_to_alternative",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_fallback_to_alternative",
+      "eta": {
+        "instruction": "If the desired tool is unavailable, suggest an alternative action or manual workaround instead.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_double_check_proposal",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_proposal",
+      "eta": {
+        "instruction": "Review the proposed tool call to ensure it matches a known, accessible tool before finalizing the suggestion.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_get_bills_for_customer",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_bills_for_customer",
+      "eta": {
+        "destination": "get_bills_for_customer",
+        "argument_mapping": "customer_id -> customer_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_get_customer_by_id",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_customer_by_id",
+      "eta": {
+        "destination": "get_customer_by_id",
+        "argument_mapping": "customer_id -> customer_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_get_customer_by_phone",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_customer_by_phone",
+      "eta": {
+        "destination": "get_customer_by_phone",
+        "argument_mapping": "phone_number -> phone_number",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_get_details_by_id",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_details_by_id",
+      "eta": {
+        "destination": "get_details_by_id",
+        "argument_mapping": "id -> id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 510,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:teacher_verify_tool_availability",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_tool_availability",
+      "eta": {
+        "instruction": "Before proposing any tool, confirm that the tool exists in the current toolset.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:teacher_fallback_to_alternative",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_fallback_to_alternative",
+      "eta": {
+        "instruction": "If the desired tool is unavailable, suggest an alternative action or manual workaround instead.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:teacher_double_check_proposal",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_proposal",
+      "eta": {
+        "instruction": "Review the proposed tool call to ensure it matches a known, accessible tool before finalizing the suggestion.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_get_bills_for_customer",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_bills_for_customer",
+      "eta": {
+        "destination": "get_bills_for_customer",
+        "argument_mapping": "customer_id -> customer_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_get_customer_by_id",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_customer_by_id",
+      "eta": {
+        "destination": "get_customer_by_id",
+        "argument_mapping": "customer_id -> customer_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_get_customer_by_phone",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_customer_by_phone",
+      "eta": {
+        "destination": "get_customer_by_phone",
+        "argument_mapping": "phone_number -> phone_number",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_get_details_by_id",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_details_by_id",
+      "eta": {
+        "destination": "get_details_by_id",
+        "argument_mapping": "id -> id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:teacher_verify_tool_availability",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_tool_availability",
+      "eta": {
+        "instruction": "Before proposing any tool, confirm that the tool exists in the current toolset.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:teacher_fallback_to_alternative",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_fallback_to_alternative",
+      "eta": {
+        "instruction": "If the desired tool is unavailable, suggest an alternative action or manual workaround instead.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:teacher_double_check_proposal",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_proposal",
+      "eta": {
+        "instruction": "Review the proposed tool call to ensure it matches a known, accessible tool before finalizing the suggestion.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_get_bills_for_customer",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_bills_for_customer",
+      "eta": {
+        "destination": "get_bills_for_customer",
+        "argument_mapping": "customer_id -> customer_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_get_customer_by_id",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_customer_by_id",
+      "eta": {
+        "destination": "get_customer_by_id",
+        "argument_mapping": "customer_id -> customer_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_get_customer_by_phone",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_customer_by_phone",
+      "eta": {
+        "destination": "get_customer_by_phone",
+        "argument_mapping": "phone_number -> phone_number",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_get_details_by_id",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_details_by_id",
+      "eta": {
+        "destination": "get_details_by_id",
+        "argument_mapping": "id -> id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 191,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:teacher_verify_tool_availability",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_tool_availability",
+      "eta": {
+        "instruction": "Before proposing any tool, confirm that the tool exists in the current toolset.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:teacher_fallback_to_alternative",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_fallback_to_alternative",
+      "eta": {
+        "instruction": "If the desired tool is unavailable, suggest an alternative action or manual workaround instead.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:teacher_double_check_proposal",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_proposal",
+      "eta": {
+        "instruction": "Review the proposed tool call to ensure it matches a known, accessible tool before finalizing the suggestion.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_get_bills_for_customer",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_bills_for_customer",
+      "eta": {
+        "destination": "get_bills_for_customer",
+        "argument_mapping": "customer_id -> customer_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_get_customer_by_id",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_customer_by_id",
+      "eta": {
+        "destination": "get_customer_by_id",
+        "argument_mapping": "customer_id -> customer_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_get_customer_by_phone",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_customer_by_phone",
+      "eta": {
+        "destination": "get_customer_by_phone",
+        "argument_mapping": "phone_number -> phone_number",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_get_details_by_id",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_details_by_id",
+      "eta": {
+        "destination": "get_details_by_id",
+        "argument_mapping": "id -> id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 429,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:recheck_against_policy",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 227,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:require_verification_first",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 227,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:teacher_verify_tool_availability",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_tool_availability",
+      "eta": {
+        "instruction": "Before proposing any tool, confirm that the tool exists in the current toolset.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 227,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:teacher_fallback_to_alternative",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_fallback_to_alternative",
+      "eta": {
+        "instruction": "If the desired tool is unavailable, suggest an alternative action or manual workaround instead.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 227,
+      "total_states": 2738
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:teacher_double_check_proposal",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_proposal",
+      "eta": {
+        "instruction": "Review the proposed tool call to ensure it matches a known, accessible tool before finalizing the suggestion.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 227,
+      "total_states": 2738
+    }
+  ],
+  "state": "REALIZABLE_UNMEASURED",
+  "residual_key": "a call proposed to a tool the toolset does not contain",
+  "residual_case_ids": [
+    "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_both_permissions|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_both_permissions|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_on[PERSONA:Hard]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_sms_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_enabled_off[PERSONA:None]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card[PERSONA:Easy]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Easy]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Easy]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_app_sms_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:None]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_app_storage_permission|unseat_sim_card[PERSONA:Hard]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_on[PERSONA:Easy]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|break_apn_mms_setting|break_app_both_permissions|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:None]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|break_apn_mms_setting|break_app_storage_permission[PERSONA:None]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|break_apn_mms_setting|data_usage_exceeded[PERSONA:Hard]",
+    "[mms_issue]airplane_mode_on|bad_network_preference|data_usage_exceeded[PERSONA:None]",
+    "[mms_issue]bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card[PERSONA:Easy]",
+    "[mms_issue]bad_network_preference|bad_wifi_calling|break_app_both_permissions|data_usage_exceeded|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:None]",
+    "[mms_issue]bad_network_preference|bad_wifi_calling|break_app_both_permissions|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+    "[mms_issue]bad_network_preference|bad_wifi_calling|break_app_sms_permission|data_mode_off|unseat_sim_card|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+    "[mms_issue]bad_network_preference|break_app_sms_permission|data_mode_off|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:None]",
+    "[mms_issue]bad_wifi_calling|break_apn_mms_setting|break_app_sms_permission|data_usage_exceeded[PERSONA:Hard]",
+    "[mms_issue]bad_wifi_calling|break_apn_mms_setting|data_mode_off|data_usage_exceeded|unseat_sim_card[PERSONA:None]",
+    "[mms_issue]bad_wifi_calling|data_mode_off|data_usage_exceeded[PERSONA:Easy]",
+    "[mms_issue]break_apn_mms_setting|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_on[PERSONA:Hard]",
+    "[mms_issue]break_apn_mms_setting|data_mode_off|user_abroad_roaming_disabled_on[PERSONA:Hard]",
+    "[mms_issue]break_app_both_permissions|data_usage_exceeded[PERSONA:Hard]",
+    "[mms_issue]break_app_both_permissions|unseat_sim_card|user_abroad_roaming_disabled_on[PERSONA:Hard]",
+    "[mms_issue]break_app_sms_permission|data_usage_exceeded|user_abroad_roaming_disabled_on[PERSONA:None]",
+    "[mms_issue]break_app_storage_permission|data_usage_exceeded[PERSONA:Easy]",
+    "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_mode_off|data_saver_mode_on|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+    "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:None]",
+    "[mobile_data_issue]airplane_mode_on|bad_network_preference|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_on[PERSONA:None]",
+    "[mobile_data_issue]airplane_mode_on|bad_network_preference|data_mode_off|user_abroad_roaming_disabled_on[PERSONA:Hard]",
+    "[mobile_data_issue]airplane_mode_on|bad_network_preference|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Easy]",
+    "[mobile_data_issue]airplane_mode_on|user_abroad_roaming_enabled_off[PERSONA:None]",
+    "[mobile_data_issue]bad_network_preference|bad_vpn|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Easy]",
+    "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]",
+    "[mobile_data_issue]bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+    "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+    "[service_issue]airplane_mode_on|break_apn_settings[PERSONA:Hard]",
+    "[service_issue]airplane_mode_on|break_apn_settings|overdue_bill_suspension|unseat_sim_card[PERSONA:None]",
+    "[service_issue]airplane_mode_on|break_apn_settings|unseat_sim_card[PERSONA:None]",
+    "[service_issue]airplane_mode_on|overdue_bill_suspension|unseat_sim_card[PERSONA:Easy]",
+    "[service_issue]break_apn_settings|overdue_bill_suspension|unseat_sim_card[PERSONA:Hard]",
+    "[service_issue]lock_sim_card_pin|overdue_bill_suspension[PERSONA:Easy]"
+  ],
+  "signals_installed": [],
+  "replayed_results": null,
+  "teacher": {
+    "invoked": true,
+    "reason": "3 of 3 proposals validated",
+    "model": "granite-4.1-30b",
+    "provenance": "self_teach:granite-4.1-30b",
+    "accepted": [
+      {
+        "variant": "verify_tool_availability",
+        "instruction": "Before proposing any tool, confirm that the tool exists in the current toolset."
+      },
+      {
+        "variant": "fallback_to_alternative",
+        "instruction": "If the desired tool is unavailable, suggest an alternative action or manual workaround instead."
+      },
+      {
+        "variant": "double_check_proposal",
+        "instruction": "Review the proposed tool call to ensure it matches a known, accessible tool before finalizing the suggestion."
+      }
+    ],
+    "rejected": [],
+    "groundings": [
+      {
+        "variant": "teacher_verify_tool_availability",
+        "eta": {
+          "instruction": "Before proposing any tool, confirm that the tool exists in the current toolset.",
+          "retry_budget": 1
+        },
+        "detail": "instruction proposed by self_teach:granite-4.1-30b",
+        "provenance": "self_teach:granite-4.1-30b",
+        "model": "granite-4.1-30b"
+      },
+      {
+        "variant": "teacher_fallback_to_alternative",
+        "eta": {
+          "instruction": "If the desired tool is unavailable, suggest an alternative action or manual workaround instead.",
+          "retry_budget": 1
+        },
+        "detail": "instruction proposed by self_teach:granite-4.1-30b",
+        "provenance": "self_teach:granite-4.1-30b",
+        "model": "granite-4.1-30b"
+      },
+      {
+        "variant": "teacher_double_check_proposal",
+        "eta": {
+          "instruction": "Review the proposed tool call to ensure it matches a known, accessible tool before finalizing the suggestion.",
+          "retry_budget": 1
+        },
+        "detail": "instruction proposed by self_teach:granite-4.1-30b",
+        "provenance": "self_teach:granite-4.1-30b",
+        "model": "granite-4.1-30b"
+      }
+    ]
+  },
+  "agent_llm": "granite-4.1-30b",
+  "domain": "telecom",
+  "moves_earlier": 0
+}

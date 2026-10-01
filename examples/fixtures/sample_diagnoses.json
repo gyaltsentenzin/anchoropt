@@ -1,0 +1,26 @@
+[
+  {
+    "case_id": "sample-001",
+    "mechanism": "the agent reached a premature conclusion and answered before verifying",
+    "evidence": "final turn produced a chat response with no preceding tool call",
+    "consequential_decision": "whether to answer now or call a verification tool first",
+    "proposed_behavior_change": "before concluding, verify the result with the most targeted command, file read, or test available; do not assume success from partial matches",
+    "provider": "sample-fixture"
+  },
+  {
+    "case_id": "sample-002",
+    "mechanism": "the agent proposed a destructive command without checking preconditions",
+    "evidence": "a proposed tool action targeted a file path that had not been read first",
+    "consequential_decision": "whether to invoke the tool call immediately or inspect state first",
+    "proposed_behavior_change": "before invoking a destructive command, read the target's current state",
+    "provider": "sample-fixture"
+  },
+  {
+    "case_id": "sample-003",
+    "mechanism": "the agent looped through unproductive exploration before acting",
+    "evidence": "several consecutive diagnostic calls with no change in strategy",
+    "consequential_decision": "when to stop exploring and commit to an action",
+    "proposed_behavior_change": "limit unnecessary diagnostic exploration before taking the next real action",
+    "provider": "sample-fixture"
+  }
+]

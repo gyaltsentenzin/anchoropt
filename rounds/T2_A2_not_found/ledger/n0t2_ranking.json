@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "n_failing_queries": 201,
+    "artifact": "ledgers/n0t2_locus.json",
+    "fingerprint": "1f3b951ec89436d5",
+    "model": "anthropic/aws/claude-haiku-4-5",
+    "iteration": "N0-T2"
+  },
+  "ranked": [
+    {
+      "locus": [
+        "existence",
+        "identifier",
+        "not_found"
+      ],
+      "support": 47,
+      "raw_events": 51,
+      "settled_by_incumbent": 0,
+      "linked_loss": 47,
+      "max_retry_depth": 5,
+      "mean_retry_depth": 1.1,
+      "backends": {
+        "kv": 44,
+        "vector": 7
+      }
+    },
+    {
+      "locus": [
+        "permission",
+        "identifier",
+        "duplicate"
+      ],
+      "support": 64,
+      "raw_events": 64,
+      "settled_by_incumbent": 0,
+      "linked_loss": 40,
+      "max_retry_depth": 1,
+      "mean_retry_depth": 1.0,
+      "backends": {
+        "kv": 64
+      }
+    },
+    {
+      "locus": [
+        "capacity",
+        "container",
+        "no_remaining_capacity"
+      ],
+      "support": 51,
+      "raw_events": 724,
+      "settled_by_incumbent": 372,
+      "linked_loss": 34,
+      "max_retry_depth": 20,
+      "mean_retry_depth": 6.9,
+      "backends": {
+        "kv": 18,
+        "rec_sum": 253,
+        "vector": 81
+      }
+    },
+    {
+      "locus": [
+        "size",
+        "item",
+        "exceeds_per_item_limit"
+      ],
+      "support": 35,
+      "raw_events": 46,
+      "settled_by_incumbent": 6,
+      "linked_loss": 23,
+      "max_retry_depth": 3,
+      "mean_retry_depth": 1.1,
+      "backends": {
+        "vector": 40
+      }
+    },
+    {
+      "locus": [
+        "format",
+        "field",
+        "malformed_value"
+      ],
+      "support": 3,
+      "raw_events": 43,
+      "settled_by_incumbent": 0,
+      "linked_loss": 12,
+      "max_retry_depth": 21,
+      "mean_retry_depth": 14.3,
+      "backends": {
+        "kv": 43
+      }
+    }
+  ]
+}

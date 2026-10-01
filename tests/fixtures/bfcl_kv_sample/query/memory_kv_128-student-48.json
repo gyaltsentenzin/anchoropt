@@ -1,0 +1,59 @@
+{
+ "case_id": "memory_kv_128-student-48",
+ "phase": "query",
+ "run_id": "1834414",
+ "backend": "kv",
+ "n_steps": 2,
+ "steps": [
+  {
+   "turn": 0,
+   "step": 0,
+   "status": "executed",
+   "decoded": [
+    "core_memory_retrieve(key='evening_study_and_decompression_details')"
+   ],
+   "tool_results": [
+    "{\"value\": \"Dinner(often pasta) followed by study from 8-9 PM on heavy tasks. Aims to finish by 11 PM for decompression(gaming or reading). Ends with quick schedule review to ease anxiety.\"}"
+   ],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_0",
+   "is_retrieval_success": true,
+   "latency": 0.2914578914642334,
+   "input_token": 2882,
+   "output_token": 28,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  },
+  {
+   "turn": 0,
+   "step": 1,
+   "status": "answer_end_turn",
+   "decoded": [],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_1",
+   "latency": 0.12410616874694824,
+   "input_token": 2972,
+   "output_token": 5,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  }
+ ],
+ "outcome": {
+  "valid": true,
+  "error_type": "",
+  "error_message": "",
+  "force_quit": false
+ }
+}

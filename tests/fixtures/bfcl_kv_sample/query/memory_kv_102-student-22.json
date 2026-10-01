@@ -1,0 +1,114 @@
+{
+ "case_id": "memory_kv_102-student-22",
+ "phase": "query",
+ "run_id": "1834414",
+ "backend": "kv",
+ "n_steps": 2,
+ "steps": [
+  {
+   "turn": 0,
+   "step": 0,
+   "status": "executed",
+   "decoded": [
+    "core_memory_retrieve(key='data_analytics_startup_employee_count')"
+   ],
+   "tool_results": [
+    "{\"error\": \"Key not found.\"}"
+   ],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_0",
+   "latency": 0.28049302101135254,
+   "input_token": 2863,
+   "output_token": 27,
+   "cap_formatted_prompt": null,
+   "cap_stop": null,
+   "constraint_state": [
+    {
+     "locus": null,
+     "error": "{\"error\": \"Key not found.\"}",
+     "call": "core_memory_retrieve(key='data_analytics_startup_employee_count')",
+     "backend": "kv",
+     "constrained_field": "core_memory",
+     "current_size": 7,
+     "incoming_size": 37,
+     "incoming": "data_analytics_startup_employee_count",
+     "schema_limit": 7,
+     "remaining_budget_if_extends": 0,
+     "remaining_budget_if_replaces": 7,
+     "state": {
+      "core_memory": {
+       "kind": "mapping",
+       "size": 7,
+       "keys": [
+        "afternoon_and_exercise_details",
+        "evening_and_project_details",
+        "evening_outside_class_details",
+        "evening_study_and_decompression_details",
+        "midday_and_afternoon_details",
+        "overall_routine_summary",
+        "weekend_routine_details"
+       ]
+      },
+      "archival_memory": {
+       "kind": "mapping",
+       "size": 20,
+       "keys": [
+        "campus_club_experience",
+        "campus_lawn_experience",
+        "combined_hobbies",
+        "cs_class_connections",
+        "current_research_focus",
+        "e_sports_experience",
+        "family_context_and_fears",
+        "family_hike_tradition",
+        "fourth_hobby",
+        "friendship_across_distance",
+        "hobby_value",
+        "primary_hobby",
+        "scheduling_strategy",
+        "secondary_hobby",
+        "server_crash_experience",
+        "third_hobby",
+        "time_management_challenges",
+        "travel_experiences",
+        "travel_value_insights",
+        "user_age"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "turn": 0,
+   "step": 1,
+   "status": "answer_end_turn",
+   "decoded": [],
+   "error_signal": "last_call_domain_error_key_not_found",
+   "error_streak": 1,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 1,
+   "cell_key": "0_1",
+   "latency": 0.4493398666381836,
+   "input_token": 2912,
+   "output_token": 49,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  }
+ ],
+ "outcome": {
+  "valid": false,
+  "error_type": "agentic:answer_not_found",
+  "error_message": "None of the expected answers were found in the model response.",
+  "force_quit": false
+ }
+}

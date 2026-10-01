@@ -1,0 +1,34 @@
+{
+  "incumbent_id": "run",
+  "incumbent_token": "results/h0_native/nativectl_kv_train/run",
+  "n_arms": 2,
+  "note": "Evaluate each arm against the SAME frozen incumbent and report results keyed by `arm_label`. An arm you did not evaluate must be OMITTED, not reported as zero: core treats a missing result as UNEVALUATED and a zero as a measurement.",
+  "arms": [
+    {
+      "arm_label": "post_generation_pre_exec/clear_proposed_at_capacity/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "clear_proposed_at_capacity",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed destructive clear"
+      },
+      "fires_on_states": 83,
+      "total_states": 590
+    },
+    {
+      "arm_label": "post_generation_pre_exec/redundant_proposed_write/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "redundant_proposed_write",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed operation this signal implicates"
+      },
+      "fires_on_states": 408,
+      "total_states": 590
+    }
+  ]
+}

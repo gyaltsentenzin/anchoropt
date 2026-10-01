@@ -1,0 +1,143 @@
+{
+  "disagreements": [],
+  "fingerprint": "306657f82aaaf07b",
+  "frozen": true,
+  "groups": [
+    {
+      "agrees_with_det": true,
+      "constraint_type": "capacity",
+      "det_keys": [
+        [
+          "capacity",
+          "container",
+          "no_remaining_capacity"
+        ]
+      ],
+      "events": 718,
+      "member_ids": [
+        0,
+        1,
+        2,
+        7
+      ],
+      "members": [
+        "entry will be too long after appending please shorten the entry to less than n characters",
+        "core memory is full please clear some entries",
+        "memory size exceeds maximum size of n entries",
+        "long term memory is full please clear some entries"
+      ],
+      "provenance": {
+        "endpoint": "gateway",
+        "model": "anthropic/aws/claude-haiku-4-5",
+        "operator": "canonicalize_locus",
+        "source": "llm_operator"
+      },
+      "reason": "The aggregate storage container (entry list or memory pool) has exhausted its capacity; incoming items are small relative to stated or implicit bounds.",
+      "resource": "container",
+      "status": "accepted",
+      "violation_mode": "no_remaining_capacity"
+    },
+    {
+      "agrees_with_det": true,
+      "constraint_type": "size",
+      "det_keys": [
+        [
+          "size",
+          "item",
+          "exceeds_per_item_limit"
+        ]
+      ],
+      "events": 78,
+      "member_ids": [
+        3,
+        9
+      ],
+      "members": [
+        "entry length exceeds maximum length of n characters",
+        "entry is too long please shorten the entry to less than n characters"
+      ],
+      "provenance": {
+        "endpoint": "gateway",
+        "model": "anthropic/aws/claude-haiku-4-5",
+        "operator": "canonicalize_locus",
+        "source": "llm_operator"
+      },
+      "reason": "Individual entries exceed their per-item character limit (300 chars stated, arguments at 106% and 158% of bound respectively).",
+      "resource": "item",
+      "status": "accepted",
+      "violation_mode": "exceeds_per_item_limit"
+    },
+    {
+      "agrees_with_det": null,
+      "constraint_type": "permission",
+      "det_keys": [],
+      "events": 59,
+      "member_ids": [
+        4
+      ],
+      "members": [
+        "key name must be unique"
+      ],
+      "provenance": {
+        "endpoint": "gateway",
+        "model": "anthropic/aws/claude-haiku-4-5",
+        "operator": "canonicalize_locus",
+        "source": "llm_operator"
+      },
+      "reason": "A key name must be unique but the provided key already exists in the store.",
+      "resource": "identifier",
+      "status": "accepted",
+      "violation_mode": "duplicate"
+    },
+    {
+      "agrees_with_det": null,
+      "constraint_type": "existence",
+      "det_keys": [],
+      "events": 59,
+      "member_ids": [
+        5,
+        8
+      ],
+      "members": [
+        "key not found",
+        "id n not present in store"
+      ],
+      "provenance": {
+        "endpoint": "gateway",
+        "model": "anthropic/aws/claude-haiku-4-5",
+        "operator": "canonicalize_locus",
+        "source": "llm_operator"
+      },
+      "reason": "A requested key or ID does not exist in the store.",
+      "resource": "identifier",
+      "status": "accepted",
+      "violation_mode": "not_found"
+    },
+    {
+      "agrees_with_det": null,
+      "constraint_type": "format",
+      "det_keys": [],
+      "events": 43,
+      "member_ids": [
+        6
+      ],
+      "members": [
+        "key must be in snake case format and cannot contain spaces"
+      ],
+      "provenance": {
+        "endpoint": "gateway",
+        "model": "anthropic/aws/claude-haiku-4-5",
+        "operator": "canonicalize_locus",
+        "source": "llm_operator"
+      },
+      "reason": "The key field does not conform to the required snake_case format and contains invalid characters.",
+      "resource": "field",
+      "status": "accepted",
+      "violation_mode": "malformed_value"
+    }
+  ],
+  "iteration": "N0-T3-CLEAN",
+  "model": "anthropic/aws/claude-haiku-4-5",
+  "n_observations": 10,
+  "prompt_version": "v2"
+}

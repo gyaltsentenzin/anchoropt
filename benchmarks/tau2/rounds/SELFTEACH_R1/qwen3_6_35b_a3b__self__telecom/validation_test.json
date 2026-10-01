@@ -1,0 +1,68 @@
+{
+  "split": "test",
+  "n": 40,
+  "k": 4,
+  "agent_provider": "hosted",
+  "p0_totals": [
+    40,
+    40,
+    40,
+    39
+  ],
+  "p0_mean": 39.75,
+  "p0_sd": 0.5,
+  "p0_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+  "tested_p1": true,
+  "why_not_p1": "",
+  "accepted": false,
+  "train_p0": "73/74",
+  "train_net": 1,
+  "p1_totals": [
+    40,
+    40,
+    40,
+    40
+  ],
+  "p1_mean": 40,
+  "p1_sd": 0.0,
+  "p1_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "p1_executed": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "mean_diff": 0.25,
+  "se": 0.25,
+  "z": 1.0,
+  "criterion_2_no_aggregate_regression": true,
+  "cases_fired_any_run": [],
+  "criterion_3_gains_attributable": [],
+  "criterion_3_gains_not_attributable": [
+    "[service_issue]break_apn_settings|contract_end_suspension|lock_sim_card_pin|unseat_sim_card[PERSONA:Hard]"
+  ],
+  "criterion_3_collateral_losses": [],
+  "p0_pass_hat_k": {
+    "1": 0.99375,
+    "2": 0.9875,
+    "3": 0.98125,
+    "4": 0.975
+  },
+  "p1_pass_hat_k": {
+    "1": 1.0,
+    "2": 1.0,
+    "3": 1.0,
+    "4": 1.0
+  }
+}

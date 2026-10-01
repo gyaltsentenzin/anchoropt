@@ -1,0 +1,96 @@
+{
+  "record": "rounds/AUTONOMY/RELOCATION_CHAIN_RECONCILED.json",
+  "date": "2026-09-21",
+  "question_from_user": "reconcile the pilot's 61 relocation-gate events versus 67 retry/preservation events before claiming a one-to-one verified chain",
+  "source": {
+    "runtime": "/u/userB/ek_iso",
+    "telemetry": "trajectory sidecar of the orchestration-pilot kv relocation arm",
+    "note": "sidecar is the only firing source; gates_fired is registry-derived and cannot see remedy flags"
+  },
+  "measured_counts": {
+    "steps_carrying_any_relocate_key": 84,
+    "requested_gate": 84,
+    "relocate_gate_ok": 61,
+    "write_verified": 67,
+    "removed_verified": 67,
+    "copy_survives": 67,
+    "slot_freed": 67,
+    "retry_landed": 61,
+    "declined": 1,
+    "write_skipped": 7,
+    "chain_completed_but_relocate_gate_false": 0,
+    "write_skipped_identical_copy_already_present": 7,
+    "write_result_issued": 61,
+    "victim_key_picked": 68,
+    "note_on_write_verified": "67 verified preservations = 60 issued-and-verified writes + 7 where an identical copy was ALREADY in the destination (write correctly skipped, preservation still verified against live state). relocate_write_result is present only 61 times."
+  },
+  "reconciliation": {
+    "structure": "84 requested -> 67 preserved -> 61 landed end-to-end",
+    "why_the_denominators_differ": "relocate_gate is assigned ONLY inside `if _rl_out.get('relocate_ok')` (patches/bv/bv_generic_capacity_relocate.py:112-114), whereas every other relocate_* key is written unconditionally at line 111. So relocate_gate counts END-TO-END SUCCESSES (preservation AND a landed retry), not preservation events.",
+    "stage_1_gap_84_to_67": {
+      "count": 17,
+      "composition": {
+        "bound_guard_refusals": 16,
+        "lying_executor_guard_decline": 1
+      },
+      "CORRECTION": "I earlier recorded these 16 as a TELEMETRY GAP ('no reason recorded'). That was WRONG and is withdrawn. Each of the 16 carries exactly two keys -- relocate_controller and relocate_requested_gate -- because the primitive was never entered: the bound guard `_relocations_done < 3` (patches/bv/bv_generic_capacity_relocate.py:85) refused before a victim was picked. Verified directly: all 16 DID have a capacity refusal present in their own step's tool_results, and relocate_no_failing_call was set on 0 of them, so the missing-failing-call branch was not the cause. Every one occurred after 3 or more successful relocations already in the same trajectory (8 after exactly 3, 8 after 5).",
+      "declined_case": {
+        "reason": "destination write did NOT land (live state disagrees with the result string); the source entry is untouched and nothing was lost",
+        "relocate_preserved_source_intact": true,
+        "meaning": "the lying-executor guard firing in production. It refused to remove a source entry whose copy it could not confirm in live state, AND recorded that the source was preserved."
+      },
+      "safety_direction": "fail-safe throughout. 0 of the 17 removed anything: 16 never acted, 1 refused to act and logged the preserved source."
+    },
+    "stage_2_gap_67_to_61": {
+      "count": 6,
+      "meaning": "slot WAS freed and the entry WAS preserved, but the retried original call failed for an unrelated reason",
+      "reasons": {
+        "Entry is too long. Please shorten the entry to less than 300 characters": 5,
+        "Key name must be unique": 1
+      },
+      "interpretation": "these 6 are successful relocations whose retry hit a DIFFERENT constraint (chars-in-entry, or a key collision) -- consistent with capacity being three distinct constraints, not one."
+    },
+    "exhaustive_partition_of_the_84": {
+      "method": "every step in results/kvrl_a1_train carrying any relocate_* key, classified by outcome; classes are disjoint and sum exactly to 84 with no residual",
+      "A_verified_and_retry_landed_and_gate": 61,
+      "B_verified_but_retry_hit_a_DIFFERENT_constraint": 6,
+      "C_declined_by_the_lying_executor_guard": 1,
+      "D_victim_picked_but_write_not_verified": 0,
+      "E_bound_guard_refused_before_any_action": 16,
+      "total": 84
+    },
+    "bound_scope_corroborated": {
+      "finding": "8 of the 16 refusals occurred after FIVE prior successful relocations in the same trajectory, which is impossible under a 3-per-episode bound.",
+      "confirms": "the already-recorded defect that _relocations_done is reset inside the TURN loop (memory_evaluator.py:2198), so the bound that RAN is 3 per turn, not 3 per episode.",
+      "status": "implementation preserved by user decision; documented, not silently changed."
+    }
+  },
+  "one_to_one_claims": {
+    "SUPPORTED": "write_verified == removed_verified == copy_survives == slot_freed == 67. The preservation chain is genuinely one-to-one: every removal was preceded by a destination write verified against live state, every copy survived, and every removal freed a slot.",
+    "SUPPORTED_2": "retry_landed == relocate_gate == 61, and 0 steps completed the chain with relocate_gate false -- so the firing flag is exactly the end-to-end success indicator.",
+    "WITHDRAWN": "My earlier claim of '61/61 verified at every step' is WRONG and is withdrawn. It conflated the end-to-end success count with the preservation count. The correct statement is '67/67 preservation, 61/67 end-to-end'.",
+    "NOT_SUPPORTED": "No one-to-one claim can be made over the 84 requests: 17 never reached a verified write. But that is now fully attributed (16 bound-guard, 1 guard-decline) rather than unexplained."
+  },
+  "criterion_4_impact": {
+    "clears_added": 0,
+    "information_losing_removes_added": 0,
+    "verified_relocations": 67,
+    "note": "Unaffected. The 84->67 gap contains zero removals (16 never acted; 1 refused and preserved the source), so it cannot contribute an information-losing remove. The verified-relocation count is 67, not 61."
+  },
+  "criterion_3_impact": {
+    "positive_mechanism_evidence": 67,
+    "missing_evidence": 0,
+    "CORRECTION": "I earlier recorded 16 requests as missing evidence. Withdrawn -- all 84 are now attributed. The runner's criterion-3 check must still COUNT POSITIVE EVIDENCE (67 verified preservations) and must still treat a genuinely absent decline reason as missing evidence; that rule stands, it simply does not apply to these 16.",
+    "verdict_rule": "a missing decline reason is MISSING EVIDENCE, not a pass."
+  },
+  "remedy": {
+    "telemetry": "record an explicit reason key on the bound-guard path so a refusal is self-describing rather than inferable only from key absence. Declare it in traj_sidecar._STEP_FIELDS BEFORE the next GPU round (5th occurrence of the allowlist rule).",
+    "frozen_code": "NOT applied to the frozen pilot. The pilot stays frozen; this record documents its limits.",
+    "downstream_records_to_correct": [
+      "rounds/H0_SESSION/KV_RELOCATION_MEASURED.json -- says declines 0 / write_skipped 6; measured values are 1 and 7, and its '61/61' denominators should be 67/67 for preservation",
+      "rounds/GOLDEN/registry.json -- '61/61 retries landed' is right; 'write-verified / copy-survives 61/61' understates preservation, which is 67",
+      "COLLABORATOR_STATUS.md -- '61/61 verified at every step'",
+      "docs/CORE_VS_ADAPTER_AUDIT.md -- 'all 61 relocations were write-verified ... (61/61)'"
+    ]
+  }
+}

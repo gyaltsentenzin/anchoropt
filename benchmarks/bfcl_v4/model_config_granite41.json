@@ -1,0 +1,21 @@
+{
+  "_comment": "Single source of truth for the eval-model identity. Values here reproduce the current hardcoded Granite-4.1-8B defaults EXACTLY. Pass with --model-config to run_memory_eval.py / run_memory_train.py; omitting the flag leaves every hardcoded default unchanged (byte-identical stock). To evaluate a different model, copy this file and edit the fields — no code changes needed.",
+
+  "handler_module": "bfcl_eval.model_handler.local_inference.granite_4",
+  "handler_class": "Granite4PromptHandler",
+  "registry_name": "ibm-granite/granite-4.1-8b-prompting",
+
+  "served_model_name": null,
+  "model_path": null,
+  "port": 8080,
+  "dtype": "bfloat16",
+  "max_model_len": 32768,
+
+  "decode": {
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens_cap": 4096,
+    "max_tokens_floor": 256,
+    "stop": []
+  }
+}

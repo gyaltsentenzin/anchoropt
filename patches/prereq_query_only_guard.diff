@@ -1,0 +1,18 @@
+4694a4695,4707
+>                 # QUERY EPISODES ONLY. A controller installed for query-time intervention must not
+>                 # modify PREREQUISITE CONSTRUCTION: prereqs write the store the scored queries read,
+>                 # so a firing here scores an arm's queries against a store the arm itself changed,
+>                 # and control and arm stop answering the same question. Measured on the A9
+>                 # reproduction round: 1-2 prereq firings per arm, EVERY one with a merge effect, and
+>                 # the arms differed in which prereqs fired -- 24 of 89 scored queries contaminated.
+>                 #
+>                 # rollout_tag is the discriminator the host already has: the prereq builder is the
+>                 # only caller that passes "snap" (see _run_prereq_build). This is a guard on WHERE the
+>                 # controller may act, not on what it decides -- phi still owns WHEN.
+>                 _cb_is_prereq = str(rollout_tag) == "snap"
+>                 if _cb_is_prereq:
+>                     step_record["controller_skipped_prereq_gate"] = True
+4697c4710
+<                     _cb = _hook_decide("post_execution", _cb_state, False)
+---
+>                     _cb = None if _cb_is_prereq else _hook_decide("post_execution", _cb_state, False)

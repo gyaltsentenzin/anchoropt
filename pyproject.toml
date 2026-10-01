@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anchoropt"
+version = "0.1.0.dev0"
+description = "Decision-centric counterfactual policy learning for tool-using LLM agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "author", email = "<author-email>" }]
+keywords = ["llm-agents", "tool-use", "counterfactual", "policy-improvement"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3.10",
+]
+
+# The offline loop -- mine, attribute, rank, expand, defer -- reads trajectory
+# JSON and needs nothing heavy. Keeping this list short is deliberate: a
+# collaborator must be able to run the analysis half without a GPU stack.
+dependencies = [
+  "jsonschema>=4.0",   # the trajectory contract is validated, not assumed
+  "scipy>=1.10",       # binomtest for the paired sign test
+]
+
+[project.optional-dependencies]
+# The LLM locus canonicalizer. Optional by design: a deterministic cue-table
+# fallback ships so the loop runs with no API key and no teacher budget.
+teacher = ["litellm>=1.40"]
+dev = ["pytest>=7.4", "ruff>=0.5"]
+
+# Running the vendored BFCL v4 harness (benchmarks/bfcl_v4/harness/).
+#
+# The harness's own pyproject declares 32 dependencies, including SDKs for OpenAI, Anthropic,
+# Mistral, Cohere, Google and Writer. The MEMORY task touches none of them. Measured by importing
+# each backend into an empty environment, the actual requirement is:
+#
+#     memory_kv       overrides, filelock, rank_bm25
+#     memory_rec_sum  nothing beyond the above
+#     memory_vector   + sentence-transformers          <- the only heavy one
+#
+# So `[bfcl]` gets you kv and rec_sum anywhere; `[bfcl-vector]` adds the embedding stack. Generating
+# trajectories also needs a served model -- see README section 3.4.
+bfcl = ["overrides", "filelock", "rank_bm25==0.2.2", "requests", "tqdm", "numpy>=1.26.4,<3"]
+bfcl-vector = ["sentence-transformers>=2.7.0", "faiss-cpu==1.11.0"]
+
+[tool.setuptools.packages.find]
+include = ["anchoropt*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+# Vendored third-party code (Apache-2.0 BFCL v4 fork) and the evaluator copied from the working repo.
+# Linting either would mean rewriting code we do not own or that the frozen results depend on, and
+# would destroy the diff against its source. Excluded, not "fixed".
+extend-exclude = [
+  "benchmarks/bfcl_v4/harness",
+  "benchmarks/bfcl_v4/evaluator",
+  "benchmarks/bfcl_v4/run_memory_eval.py",
+  "benchmarks/bfcl_v4/run_memory_train.py",
+]
+
+[tool.ruff.lint]
+# UP031 (%-formatting): the mechanisms were ported verbatim from the validated working repo and
+# their measured behaviour is what the frozen results rest on. Rewriting proven logic for style is
+# a bad trade -- the diff should stay auditable against the original.
+# EXE001: scripts are invoked as `python scripts/x.py`, not via shebang.
+ignore = ["UP031", "EXE001"]
+
+[tool.ruff.lint.per-file-ignores]
+# The attribution and learning modules are ported VERBATIM from the working repo, where their
+# behaviour is what every frozen result rests on. They must stay byte-diffable against the original,
+# so style is not enforced here -- a cosmetic rewrite would destroy the audit trail and risk
+# changing measured behaviour for no benefit. Any real bug gets fixed in the working repo first and
+# re-ported. Same reasoning as the mechanisms above, applied to 5,200 lines.
+"anchoropt/attribution/*.py" = ["ALL"]
+"anchoropt/learning/*.py" = ["ALL"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

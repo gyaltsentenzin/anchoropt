@@ -1,0 +1,104 @@
+{
+ "case_id": "memory_kv_154-notetaker-24",
+ "phase": "query",
+ "run_id": "1834414",
+ "backend": "kv",
+ "n_steps": 2,
+ "steps": [
+  {
+   "turn": 0,
+   "step": 0,
+   "status": "executed",
+   "decoded": [
+    "core_memory_retrieve(key='counting_range')"
+   ],
+   "tool_results": [
+    "{\"error\": \"Key not found.\"}"
+   ],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_0",
+   "latency": 0.25211453437805176,
+   "input_token": 2587,
+   "output_token": 24,
+   "cap_formatted_prompt": null,
+   "cap_stop": null,
+   "constraint_state": [
+    {
+     "locus": null,
+     "error": "{\"error\": \"Key not found.\"}",
+     "call": "core_memory_retrieve(key='counting_range')",
+     "backend": "kv",
+     "constrained_field": "core_memory",
+     "current_size": 4,
+     "incoming_size": 14,
+     "incoming": "counting_range",
+     "schema_limit": 7,
+     "remaining_budget_if_extends": 3,
+     "remaining_budget_if_replaces": 7,
+     "state": {
+      "core_memory": {
+       "kind": "mapping",
+       "size": 4,
+       "keys": [
+        "supplement_iron",
+        "supplement_omega_3",
+        "supplement_probiotics",
+        "supplement_vitamin_d3"
+       ]
+      },
+      "archival_memory": {
+       "kind": "mapping",
+       "size": 13,
+       "keys": [
+        "daycare_drop_off_time",
+        "dentist_appointment_scheduling",
+        "diet_sugar_reduction",
+        "doctor_pediatrician_visit",
+        "mental_health_sleep",
+        "organize_closet_donate_old_clothes",
+        "pending_reports_approval",
+        "presentation_tweak_needed",
+        "quarterly_budget_finalization",
+        "shopping_diapers",
+        "team_meeting_overrun",
+        "trash_take_out_wednesday_morning",
+        "workout_gym_frequency"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "turn": 0,
+   "step": 1,
+   "status": "answer_end_turn",
+   "decoded": [],
+   "error_signal": "last_call_domain_error_key_not_found",
+   "error_streak": 1,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 1,
+   "cell_key": "0_1",
+   "latency": 0.5526950359344482,
+   "input_token": 2633,
+   "output_token": 65,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  }
+ ],
+ "outcome": {
+  "valid": false,
+  "error_type": "agentic:answer_not_found",
+  "error_message": "None of the expected answers were found in the model response.",
+  "force_quit": false
+ }
+}

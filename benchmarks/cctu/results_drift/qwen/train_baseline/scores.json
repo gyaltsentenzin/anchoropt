@@ -1,0 +1,40 @@
+{
+  "Multi-Hop": {
+    "PSR": "17.14 ± 0.00",
+    "SR": "20.00 ± 0.00",
+    "acc": "31.43 ± 0.00"
+  },
+  "Overall": {
+    "PSR": "6.43 ± 0.00",
+    "SR": "9.29 ± 0.00",
+    "acc": "23.57 ± 0.00"
+  },
+  "Parallel Multi-Hop": {
+    "PSR": "2.86 ± 0.00",
+    "SR": "2.86 ± 0.00",
+    "acc": "11.43 ± 0.00"
+  },
+  "Parallel Single-Hop": {
+    "PSR": "5.71 ± 0.00",
+    "SR": "11.43 ± 0.00",
+    "acc": "22.86 ± 0.00"
+  },
+  "Single-Hop": {
+    "PSR": "0.00 ± 0.00",
+    "SR": "2.86 ± 0.00",
+    "acc": "28.57 ± 0.00"
+  },
+  "_meta": {
+    "episodes_scored": 280,
+    "repeat": 2,
+    "replicates": 2,
+    "response_data": "response.jsonl",
+    "split": "train",
+    "spread_is": "across-replicate spread",
+    "termination": {
+      "ended_on_user": 156,
+      "final_answer": 66,
+      "mid_tool_call": 58
+    }
+  }
+}

@@ -1,0 +1,1794 @@
+[
+  {
+    "arm": "qwen3_6_35b_a3b__self__airline",
+    "model": "qwen3.6-35b-a3b",
+    "domain": "airline",
+    "teacher": "self",
+    "split": "train",
+    "portal": "vllm",
+    "agent_model_id": "openai/qwen3.6-35b-a3b",
+    "user_model": "claude-sonnet-5",
+    "max_steps": 200,
+    "sim_timeout": 3600.0,
+    "train_tasks": 30,
+    "p0_train": {
+      "solved": 16,
+      "n": 30,
+      "void": 0,
+      "truncated": {}
+    },
+    "residual_cases": 14,
+    "residual_key": "an answer committed to the user before the task's required change was made",
+    "arms_emitted": 54,
+    "arms_measured": 8,
+    "arms_voided": 0,
+    "outcome_class": "TRAIN_IMPROVED_PENDING_VALIDATION",
+    "teacher_invoked": true,
+    "teacher_accepted": [
+      [
+        "prioritize_action_over_text",
+        "Execute the required state change immediately and do not generate a conversational reply until the action is complete."
+      ],
+      [
+        "verify_completion_before_reply",
+        "Ensure the necessary modification has been successfully applied to the system state before you commit to any final answer for the user."
+      ],
+      [
+        "defer_response_until_action_done",
+        "Withhold your final response to the user until the pending task modification has been fully executed and confirmed."
+      ]
+    ],
+    "measured_arms": [
+      {
+        "label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+        "solved": 22,
+        "n": 30,
+        "gains": 8,
+        "losses": 2,
+        "net": 6,
+        "executed": 3,
+        "cases_fired": 3,
+        "gains_where_fired": 1
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+        "solved": 23,
+        "n": 29,
+        "gains": 9,
+        "losses": 1,
+        "net": 8,
+        "executed": 3,
+        "cases_fired": 3,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_prioritize_action_over_text",
+        "solved": 21,
+        "n": 29,
+        "gains": 8,
+        "losses": 3,
+        "net": 5,
+        "executed": 3,
+        "cases_fired": 3,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_verify_completion_before_reply",
+        "solved": 20,
+        "n": 30,
+        "gains": 5,
+        "losses": 1,
+        "net": 4,
+        "executed": 1,
+        "cases_fired": 1,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_defer_response_until_action_done",
+        "solved": 22,
+        "n": 29,
+        "gains": 9,
+        "losses": 3,
+        "net": 6,
+        "executed": 4,
+        "cases_fired": 4,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+        "solved": 24,
+        "n": 29,
+        "gains": 8,
+        "losses": 0,
+        "net": 8,
+        "executed": 462,
+        "cases_fired": 30,
+        "gains_where_fired": 8
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+        "solved": 21,
+        "n": 30,
+        "gains": 9,
+        "losses": 4,
+        "net": 5,
+        "executed": 217,
+        "cases_fired": 30,
+        "gains_where_fired": 9
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_prioritize_action_over_text",
+        "solved": 19,
+        "n": 29,
+        "gains": 6,
+        "losses": 3,
+        "net": 3,
+        "executed": 211,
+        "cases_fired": 30,
+        "gains_where_fired": 6
+      }
+    ],
+    "p1_train": {
+      "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "solved": 23,
+      "n": 29,
+      "gains": 9,
+      "losses": 1,
+      "net": 8,
+      "executed": 3,
+      "cases_fired": 3,
+      "gains_where_fired": 0,
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "instruction_source": "shipped"
+    },
+    "train_replicates": {
+      "p0_totals": [
+        16,
+        22,
+        22,
+        23,
+        21
+      ],
+      "p0_mean": 20.8,
+      "p0_sd": 2.7748873851023217,
+      "flip_cases": 17,
+      "n_cases": 30,
+      "promoted_total": 23,
+      "promoted_n": 29,
+      "promoted_expected_net": 2.9,
+      "promoted_z": 0.79,
+      "promoted_above_best_p0": false
+    },
+    "test": {
+      "n": 20,
+      "k": 4,
+      "portal": "vllm",
+      "p0_totals": [
+        16,
+        14,
+        17,
+        17
+      ],
+      "p0_pooled": [
+        64,
+        80
+      ],
+      "p0_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p0_pass_hat_k": {
+        "1": 0.8,
+        "2": 0.6833333333333333,
+        "3": 0.625,
+        "4": 0.6
+      },
+      "p1_totals": [
+        17,
+        16,
+        17,
+        17
+      ],
+      "p1_pooled": [
+        67,
+        80
+      ],
+      "p1_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p1_executed": [
+        1,
+        3,
+        2,
+        1
+      ],
+      "p1_pass_hat_k": {
+        "1": 0.8375,
+        "2": 0.7583333333333333,
+        "3": 0.7,
+        "4": 0.65
+      },
+      "mean_diff": 0.75,
+      "se": 0.7500000000000001,
+      "z": 0.9999999999999999,
+      "criterion_2_pass": true,
+      "cases_fired_any_run": 6,
+      "improved_where_fired": 1,
+      "improved_where_not_fired": 4,
+      "worsened_where_fired": 1,
+      "refilled": [
+        {
+          "file": "heldout_p0_test_rep2.json",
+          "case": "44",
+          "original": "harness_error: Timeout: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out.",
+          "refill_termination": "TerminationReason.USER_STOP",
+          "solved": false,
+          "portal": "vllm"
+        },
+        {
+          "file": "heldout_p1_test_rep3.json",
+          "case": "44",
+          "original": "harness_error: Timeout: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out.",
+          "refill_termination": "TerminationReason.USER_STOP",
+          "solved": false,
+          "portal": "vllm"
+        }
+      ]
+    }
+  },
+  {
+    "arm": "qwen3_6_35b_a3b__self__retail",
+    "model": "qwen3.6-35b-a3b",
+    "domain": "retail",
+    "teacher": "self",
+    "split": "train",
+    "portal": "hosted",
+    "agent_model_id": "openai/Qwen/Qwen3.6-35B-A3B",
+    "user_model": "claude-sonnet-5",
+    "max_steps": 200,
+    "sim_timeout": 3600.0,
+    "train_tasks": 74,
+    "p0_train": {
+      "solved": 62,
+      "n": 74,
+      "void": 0,
+      "truncated": {}
+    },
+    "residual_cases": 7,
+    "residual_key": "an answer committed to the user before the task's required change was made",
+    "arms_emitted": 66,
+    "arms_measured": 8,
+    "arms_voided": 0,
+    "outcome_class": "TRAIN_IMPROVED_PENDING_VALIDATION",
+    "teacher_invoked": true,
+    "teacher_accepted": [
+      [
+        "prioritize_action_over_text",
+        "Before generating any text response, ensure that the required state change has been successfully executed in the previous step."
+      ],
+      [
+        "verify_completion_first",
+        "Confirm that the necessary modification to the user's request has been completed before you commit to a final answer."
+      ],
+      [
+        "delay_reply_until_done",
+        "Do not reply to the user until you have verified that the pending task change has been fully applied."
+      ]
+    ],
+    "measured_arms": [
+      {
+        "label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+        "solved": 66,
+        "n": 74,
+        "gains": 7,
+        "losses": 3,
+        "net": 4,
+        "executed": 16,
+        "cases_fired": 16,
+        "gains_where_fired": 2
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+        "solved": 67,
+        "n": 74,
+        "gains": 8,
+        "losses": 3,
+        "net": 5,
+        "executed": 14,
+        "cases_fired": 14,
+        "gains_where_fired": 2
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_prioritize_action_over_text",
+        "solved": 62,
+        "n": 74,
+        "gains": 5,
+        "losses": 5,
+        "net": 0,
+        "executed": 13,
+        "cases_fired": 13,
+        "gains_where_fired": 1
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_verify_completion_first",
+        "solved": 67,
+        "n": 74,
+        "gains": 9,
+        "losses": 4,
+        "net": 5,
+        "executed": 15,
+        "cases_fired": 15,
+        "gains_where_fired": 3
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_delay_reply_until_done",
+        "solved": 66,
+        "n": 74,
+        "gains": 8,
+        "losses": 4,
+        "net": 4,
+        "executed": 13,
+        "cases_fired": 13,
+        "gains_where_fired": 2
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+        "solved": 54,
+        "n": 74,
+        "gains": 5,
+        "losses": 13,
+        "net": -8,
+        "executed": 758,
+        "cases_fired": 74,
+        "gains_where_fired": 5
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+        "solved": 55,
+        "n": 74,
+        "gains": 6,
+        "losses": 13,
+        "net": -7,
+        "executed": 521,
+        "cases_fired": 74,
+        "gains_where_fired": 6
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_prioritize_action_over_text",
+        "solved": 62,
+        "n": 74,
+        "gains": 7,
+        "losses": 7,
+        "net": 0,
+        "executed": 567,
+        "cases_fired": 74,
+        "gains_where_fired": 7
+      }
+    ],
+    "p1_train": {
+      "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "solved": 67,
+      "n": 74,
+      "gains": 8,
+      "losses": 3,
+      "net": 5,
+      "executed": 14,
+      "cases_fired": 14,
+      "gains_where_fired": 2,
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "instruction_source": "shipped"
+    },
+    "test": {
+      "n": 40,
+      "k": 4,
+      "portal": "hosted",
+      "p0_totals": [
+        32,
+        32,
+        35,
+        31
+      ],
+      "p0_pooled": [
+        130,
+        160
+      ],
+      "p0_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p0_pass_hat_k": {
+        "1": 0.8125,
+        "2": 0.725,
+        "3": 0.68125,
+        "4": 0.65
+      },
+      "p1_totals": [
+        33,
+        32,
+        28,
+        31
+      ],
+      "p1_pooled": [
+        124,
+        160
+      ],
+      "p1_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p1_executed": [
+        6,
+        8,
+        9,
+        9
+      ],
+      "p1_pass_hat_k": {
+        "1": 0.775,
+        "2": 0.6458333333333333,
+        "3": 0.56875,
+        "4": 0.525
+      },
+      "mean_diff": -1.5,
+      "se": 1.3844373104863459,
+      "z": -1.0834726777719228,
+      "criterion_2_pass": false,
+      "cases_fired_any_run": 11,
+      "improved_where_fired": 2,
+      "improved_where_not_fired": 1,
+      "worsened_where_fired": 4,
+      "refilled": []
+    }
+  },
+  {
+    "arm": "qwen3_6_35b_a3b__self__telecom",
+    "model": "qwen3.6-35b-a3b",
+    "domain": "telecom",
+    "teacher": "self",
+    "split": "train",
+    "portal": "hosted",
+    "agent_model_id": "openai/Qwen/Qwen3.6-35B-A3B",
+    "user_model": "claude-sonnet-5",
+    "max_steps": 200,
+    "sim_timeout": 3600.0,
+    "train_tasks": 74,
+    "p0_train": {
+      "solved": 73,
+      "n": 74,
+      "void": 0,
+      "truncated": {}
+    },
+    "residual_cases": 1,
+    "residual_key": "an answer committed to the user before the task's required change was made",
+    "arms_emitted": 54,
+    "arms_measured": 8,
+    "arms_voided": 0,
+    "outcome_class": "TRAIN_IMPROVED_PENDING_VALIDATION",
+    "teacher_invoked": true,
+    "teacher_accepted": [
+      [
+        "prioritize_action_over_reply",
+        "Before generating a final response, ensure that any required state changes have been successfully executed, as replying prematurely is incorrect."
+      ],
+      [
+        "verify_completion_before_commit",
+        "Do not commit to a reply until you have confirmed that the necessary operational steps have been completed and the state has been updated."
+      ],
+      [
+        "delay_reply_until_action_done",
+        "Withhold your final answer until the required modification to the system state is fully performed, avoiding the mistake of replying before acting."
+      ]
+    ],
+    "measured_arms": [
+      {
+        "label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+        "solved": 74,
+        "n": 74,
+        "gains": 1,
+        "losses": 0,
+        "net": 1,
+        "executed": 0,
+        "cases_fired": 0,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+        "solved": 74,
+        "n": 74,
+        "gains": 1,
+        "losses": 0,
+        "net": 1,
+        "executed": 1,
+        "cases_fired": 1,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_prioritize_action_over_reply",
+        "solved": 72,
+        "n": 74,
+        "gains": 1,
+        "losses": 2,
+        "net": -1,
+        "executed": 0,
+        "cases_fired": 0,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_verify_completion_before_commit",
+        "solved": 73,
+        "n": 74,
+        "gains": 1,
+        "losses": 1,
+        "net": 0,
+        "executed": 0,
+        "cases_fired": 0,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_delay_reply_until_action_done",
+        "solved": 73,
+        "n": 74,
+        "gains": 1,
+        "losses": 1,
+        "net": 0,
+        "executed": 0,
+        "cases_fired": 0,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+        "solved": 64,
+        "n": 74,
+        "gains": 1,
+        "losses": 10,
+        "net": -9,
+        "executed": 414,
+        "cases_fired": 74,
+        "gains_where_fired": 1
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+        "solved": 71,
+        "n": 74,
+        "gains": 1,
+        "losses": 3,
+        "net": -2,
+        "executed": 463,
+        "cases_fired": 74,
+        "gains_where_fired": 1
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_prioritize_action_over_reply",
+        "solved": 72,
+        "n": 74,
+        "gains": 1,
+        "losses": 2,
+        "net": -1,
+        "executed": 648,
+        "cases_fired": 74,
+        "gains_where_fired": 1
+      }
+    ],
+    "p1_train": {
+      "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "solved": 74,
+      "n": 74,
+      "gains": 1,
+      "losses": 0,
+      "net": 1,
+      "executed": 1,
+      "cases_fired": 1,
+      "gains_where_fired": 0,
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "instruction_source": "shipped"
+    },
+    "test": {
+      "n": 40,
+      "k": 4,
+      "portal": "hosted",
+      "p0_totals": [
+        40,
+        40,
+        40,
+        39
+      ],
+      "p0_pooled": [
+        159,
+        160
+      ],
+      "p0_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p0_pass_hat_k": {
+        "1": 0.99375,
+        "2": 0.9875,
+        "3": 0.98125,
+        "4": 0.975
+      },
+      "p1_totals": [
+        40,
+        40,
+        40,
+        40
+      ],
+      "p1_pooled": [
+        160,
+        160
+      ],
+      "p1_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p1_executed": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p1_pass_hat_k": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "mean_diff": 0.25,
+      "se": 0.25,
+      "z": 1.0,
+      "criterion_2_pass": true,
+      "cases_fired_any_run": 0,
+      "improved_where_fired": 0,
+      "improved_where_not_fired": 1,
+      "worsened_where_fired": 0,
+      "refilled": []
+    }
+  },
+  {
+    "arm": "minimax_m2_5__self__airline",
+    "model": "minimax-m2.5",
+    "domain": "airline",
+    "teacher": "self",
+    "split": "train",
+    "portal": "hosted",
+    "agent_model_id": "openai/MiniMaxAI/MiniMax-M2.5",
+    "user_model": "claude-sonnet-5",
+    "max_steps": 200,
+    "sim_timeout": 3600.0,
+    "train_tasks": 30,
+    "p0_train": {
+      "solved": 22,
+      "n": 30,
+      "void": 0,
+      "truncated": {}
+    },
+    "residual_cases": 6,
+    "residual_key": "an answer committed to the user before the task's required change was made",
+    "arms_emitted": 54,
+    "arms_measured": 8,
+    "arms_voided": 0,
+    "outcome_class": "TRAIN_IMPROVED_PENDING_VALIDATION",
+    "teacher_invoked": true,
+    "teacher_accepted": [
+      [
+        "do_not_reply_before_executing_action",
+        "Do not send a final answer to the user until you have executed the state\u2011changing action you proposed."
+      ],
+      [
+        "verify_change_before_replying",
+        "Before you reply, confirm that the required modification has been applied by the action you proposed."
+      ],
+      [
+        "wait_until_change_completed",
+        "Wait to commit to a reply until the system change you intended to make has been completed."
+      ]
+    ],
+    "measured_arms": [
+      {
+        "label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+        "solved": 20,
+        "n": 30,
+        "gains": 1,
+        "losses": 3,
+        "net": -2,
+        "executed": 3,
+        "cases_fired": 3,
+        "gains_where_fired": 1
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+        "solved": 23,
+        "n": 30,
+        "gains": 2,
+        "losses": 1,
+        "net": 1,
+        "executed": 2,
+        "cases_fired": 2,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_do_not_reply_before_executing_action",
+        "solved": 22,
+        "n": 30,
+        "gains": 3,
+        "losses": 3,
+        "net": 0,
+        "executed": 6,
+        "cases_fired": 6,
+        "gains_where_fired": 1
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_verify_change_before_replying",
+        "solved": 21,
+        "n": 30,
+        "gains": 1,
+        "losses": 2,
+        "net": -1,
+        "executed": 4,
+        "cases_fired": 4,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_wait_until_change_completed",
+        "solved": 20,
+        "n": 30,
+        "gains": 3,
+        "losses": 5,
+        "net": -2,
+        "executed": 0,
+        "cases_fired": 0,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+        "solved": 26,
+        "n": 30,
+        "gains": 5,
+        "losses": 1,
+        "net": 4,
+        "executed": 219,
+        "cases_fired": 30,
+        "gains_where_fired": 5
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+        "solved": 19,
+        "n": 30,
+        "gains": 1,
+        "losses": 4,
+        "net": -3,
+        "executed": 284,
+        "cases_fired": 30,
+        "gains_where_fired": 1
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_do_not_reply_before_executing_action",
+        "solved": 19,
+        "n": 30,
+        "gains": 2,
+        "losses": 5,
+        "net": -3,
+        "executed": 220,
+        "cases_fired": 29,
+        "gains_where_fired": 2
+      }
+    ],
+    "p1_train": {
+      "label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "solved": 26,
+      "n": 30,
+      "gains": 5,
+      "losses": 1,
+      "net": 4,
+      "executed": 219,
+      "cases_fired": 30,
+      "gains_where_fired": 5,
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "instruction_source": "shipped"
+    },
+    "test": {
+      "n": 20,
+      "k": 4,
+      "portal": "hosted",
+      "p0_totals": [
+        12,
+        15,
+        14,
+        14
+      ],
+      "p0_pooled": [
+        55,
+        80
+      ],
+      "p0_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p0_pass_hat_k": {
+        "1": 0.6875,
+        "2": 0.6083333333333333,
+        "3": 0.6,
+        "4": 0.6
+      },
+      "p1_totals": [
+        18,
+        17,
+        14,
+        13
+      ],
+      "p1_pooled": [
+        62,
+        80
+      ],
+      "p1_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p1_executed": [
+        172,
+        171,
+        171,
+        156
+      ],
+      "p1_pass_hat_k": {
+        "1": 0.775,
+        "2": 0.6416666666666667,
+        "3": 0.5375,
+        "4": 0.45
+      },
+      "mean_diff": 1.75,
+      "se": 1.346291201783626,
+      "z": 1.299867367239363,
+      "criterion_2_pass": true,
+      "cases_fired_any_run": 20,
+      "improved_where_fired": 6,
+      "improved_where_not_fired": 0,
+      "worsened_where_fired": 4,
+      "refilled": []
+    }
+  },
+  {
+    "arm": "minimax_m2_5__self__retail",
+    "model": "minimax-m2.5",
+    "domain": "retail",
+    "teacher": "self",
+    "split": "train",
+    "portal": "hosted",
+    "agent_model_id": "openai/MiniMaxAI/MiniMax-M2.5",
+    "user_model": "claude-sonnet-5",
+    "max_steps": 200,
+    "sim_timeout": 3600.0,
+    "train_tasks": 74,
+    "p0_train": {
+      "solved": 64,
+      "n": 74,
+      "void": 0,
+      "truncated": {}
+    },
+    "residual_cases": 9,
+    "residual_key": "an answer committed to the user before the task's required change was made",
+    "arms_emitted": 66,
+    "arms_measured": 8,
+    "arms_voided": 0,
+    "outcome_class": "BUDGET_EXHAUSTED",
+    "teacher_invoked": true,
+    "teacher_accepted": [
+      [
+        "postpone_reply_until_action_executed",
+        "If you have proposed a tool call that changes the system state, do not send a reply until you have executed that call and observed its result."
+      ],
+      [
+        "verify_state_change_before_reply",
+        "Before responding, confirm that any proposed mutation of the state has been performed and its outcome is known."
+      ],
+      [
+        "delay_response_until_tool_completes",
+        "Wait for the tool call you have proposed to complete and return its result before you commit to a reply."
+      ]
+    ],
+    "measured_arms": [
+      {
+        "label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+        "solved": 61,
+        "n": 74,
+        "gains": 4,
+        "losses": 7,
+        "net": -3,
+        "executed": 10,
+        "cases_fired": 10,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+        "solved": 61,
+        "n": 73,
+        "gains": 6,
+        "losses": 8,
+        "net": -2,
+        "executed": 10,
+        "cases_fired": 10,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_postpone_reply_until_action_executed",
+        "solved": 63,
+        "n": 74,
+        "gains": 5,
+        "losses": 6,
+        "net": -1,
+        "executed": 11,
+        "cases_fired": 11,
+        "gains_where_fired": 1
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_verify_state_change_before_reply",
+        "solved": 60,
+        "n": 74,
+        "gains": 5,
+        "losses": 9,
+        "net": -4,
+        "executed": 10,
+        "cases_fired": 10,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_delay_response_until_tool_completes",
+        "solved": 60,
+        "n": 74,
+        "gains": 5,
+        "losses": 9,
+        "net": -4,
+        "executed": 10,
+        "cases_fired": 10,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+        "solved": 35,
+        "n": 74,
+        "gains": 2,
+        "losses": 31,
+        "net": -29,
+        "executed": 410,
+        "cases_fired": 74,
+        "gains_where_fired": 2
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+        "solved": 52,
+        "n": 73,
+        "gains": 5,
+        "losses": 16,
+        "net": -11,
+        "executed": 554,
+        "cases_fired": 74,
+        "gains_where_fired": 5
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_postpone_reply_until_action_executed",
+        "solved": 57,
+        "n": 74,
+        "gains": 4,
+        "losses": 11,
+        "net": -7,
+        "executed": 549,
+        "cases_fired": 74,
+        "gains_where_fired": 4
+      }
+    ],
+    "p1_train": null,
+    "test": {
+      "n": 40,
+      "k": 4,
+      "portal": "hosted",
+      "p0_totals": [
+        31,
+        33,
+        34,
+        33
+      ],
+      "p0_pooled": [
+        131,
+        160
+      ],
+      "p0_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p0_pass_hat_k": {
+        "1": 0.81875,
+        "2": 0.7666666666666667,
+        "3": 0.73125,
+        "4": 0.7
+      },
+      "why_no_p1": "no train winner (outcome BUDGET_EXHAUSTED)",
+      "refilled": []
+    }
+  },
+  {
+    "arm": "minimax_m2_5__self__telecom",
+    "model": "minimax-m2.5",
+    "domain": "telecom",
+    "teacher": "self",
+    "split": "train",
+    "portal": "hosted",
+    "agent_model_id": "openai/MiniMaxAI/MiniMax-M2.5",
+    "user_model": "claude-sonnet-5",
+    "max_steps": 200,
+    "sim_timeout": 3600.0,
+    "train_tasks": 73,
+    "p0_train": {
+      "solved": 73,
+      "n": 73,
+      "void": 1,
+      "truncated": {}
+    },
+    "residual_cases": 0,
+    "residual_key": null,
+    "arms_emitted": 0,
+    "arms_measured": 0,
+    "arms_voided": 0,
+    "outcome_class": "DONE_no_arms",
+    "teacher_invoked": null,
+    "teacher_accepted": [],
+    "measured_arms": [],
+    "p1_train": null,
+    "test": {
+      "n": 40,
+      "k": 4,
+      "portal": "hosted",
+      "p0_totals": [
+        39,
+        40,
+        39,
+        39
+      ],
+      "p0_pooled": [
+        157,
+        160
+      ],
+      "p0_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p0_pass_hat_k": {
+        "1": 0.98125,
+        "2": 0.975,
+        "3": 0.975,
+        "4": 0.975
+      },
+      "why_no_p1": "no train winner (outcome none)",
+      "refilled": []
+    }
+  },
+  {
+    "arm": "granite_4_1_30b__self__airline",
+    "model": "granite-4.1-30b",
+    "domain": "airline",
+    "teacher": "self",
+    "split": "train",
+    "portal": "vllm",
+    "agent_model_id": "openai/granite-4.1-30b",
+    "user_model": "claude-sonnet-5",
+    "max_steps": 200,
+    "sim_timeout": 3600.0,
+    "train_tasks": 30,
+    "p0_train": {
+      "solved": 12,
+      "n": 30,
+      "void": 0,
+      "truncated": {}
+    },
+    "residual_cases": 14,
+    "residual_key": "an answer committed to the user before the task's required change was made",
+    "arms_emitted": 54,
+    "arms_measured": 8,
+    "arms_voided": 0,
+    "outcome_class": "TRAIN_IMPROVED_PENDING_VALIDATION",
+    "teacher_invoked": true,
+    "teacher_accepted": [
+      [
+        "verify_before_reply",
+        "Ensure the required change has been fully executed and confirmed before sending any reply to the user."
+      ],
+      [
+        "double_check_status",
+        "Pause to double-check that all task modifications are complete and accurate prior to committing your response."
+      ],
+      [
+        "complete_actions_first",
+        "Finish performing all necessary actions and validate their success before providing an answer to the user."
+      ]
+    ],
+    "measured_arms": [
+      {
+        "label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+        "solved": 7,
+        "n": 30,
+        "gains": 0,
+        "losses": 5,
+        "net": -5,
+        "executed": 8,
+        "cases_fired": 8,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+        "solved": 11,
+        "n": 30,
+        "gains": 4,
+        "losses": 5,
+        "net": -1,
+        "executed": 8,
+        "cases_fired": 8,
+        "gains_where_fired": 1
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_verify_before_reply",
+        "solved": 13,
+        "n": 30,
+        "gains": 5,
+        "losses": 4,
+        "net": 1,
+        "executed": 6,
+        "cases_fired": 6,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_double_check_status",
+        "solved": 9,
+        "n": 30,
+        "gains": 2,
+        "losses": 5,
+        "net": -3,
+        "executed": 6,
+        "cases_fired": 6,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_complete_actions_first",
+        "solved": 11,
+        "n": 30,
+        "gains": 3,
+        "losses": 4,
+        "net": -1,
+        "executed": 9,
+        "cases_fired": 9,
+        "gains_where_fired": 2
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+        "solved": 16,
+        "n": 30,
+        "gains": 6,
+        "losses": 2,
+        "net": 4,
+        "executed": 181,
+        "cases_fired": 30,
+        "gains_where_fired": 6
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+        "solved": 15,
+        "n": 30,
+        "gains": 6,
+        "losses": 3,
+        "net": 3,
+        "executed": 244,
+        "cases_fired": 30,
+        "gains_where_fired": 6
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_verify_before_reply",
+        "solved": 9,
+        "n": 30,
+        "gains": 4,
+        "losses": 7,
+        "net": -3,
+        "executed": 209,
+        "cases_fired": 30,
+        "gains_where_fired": 4
+      }
+    ],
+    "p1_train": {
+      "label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "solved": 16,
+      "n": 30,
+      "gains": 6,
+      "losses": 2,
+      "net": 4,
+      "executed": 181,
+      "cases_fired": 30,
+      "gains_where_fired": 6,
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "instruction_source": "shipped"
+    },
+    "train_replicates": {
+      "p0_totals": [
+        12,
+        11,
+        10,
+        10,
+        11
+      ],
+      "p0_mean": 10.8,
+      "p0_sd": 0.8366600265340756,
+      "flip_cases": 10,
+      "n_cases": 30,
+      "promoted_total": 16,
+      "promoted_n": 30,
+      "promoted_expected_net": 5.2,
+      "promoted_z": 6.22,
+      "promoted_above_best_p0": true
+    },
+    "test": {
+      "n": 20,
+      "k": 4,
+      "portal": "vllm",
+      "p0_totals": [
+        3,
+        5,
+        3,
+        4
+      ],
+      "p0_pooled": [
+        15,
+        80
+      ],
+      "p0_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p0_pass_hat_k": {
+        "1": 0.1875,
+        "2": 0.08333333333333334,
+        "3": 0.0375,
+        "4": 0.0
+      },
+      "p1_totals": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "p1_pooled": [
+        28,
+        80
+      ],
+      "p1_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p1_executed": [
+        135,
+        136,
+        125,
+        133
+      ],
+      "p1_pass_hat_k": {
+        "1": 0.35,
+        "2": 0.35,
+        "3": 0.35,
+        "4": 0.35
+      },
+      "mean_diff": 3.25,
+      "se": 0.47871355387816905,
+      "z": 6.789028582272215,
+      "criterion_2_pass": true,
+      "cases_fired_any_run": 20,
+      "improved_where_fired": 7,
+      "improved_where_not_fired": 0,
+      "worsened_where_fired": 5,
+      "refilled": []
+    }
+  },
+  {
+    "arm": "granite_4_1_30b__self__retail",
+    "model": "granite-4.1-30b",
+    "domain": "retail",
+    "teacher": "self",
+    "split": "train",
+    "portal": "vllm",
+    "agent_model_id": "openai/granite-4.1-30b",
+    "user_model": "claude-sonnet-5",
+    "max_steps": 200,
+    "sim_timeout": 3600.0,
+    "train_tasks": 74,
+    "p0_train": {
+      "solved": 46,
+      "n": 74,
+      "void": 0,
+      "truncated": {}
+    },
+    "residual_cases": 17,
+    "residual_key": "an answer committed to the user before the task's required change was made",
+    "arms_emitted": 66,
+    "arms_measured": 8,
+    "arms_voided": 0,
+    "outcome_class": "TRAIN_IMPROVED_PENDING_VALIDATION",
+    "teacher_invoked": true,
+    "teacher_accepted": [
+      [
+        "verify_before_reply",
+        "Ensure the required change has been fully executed and confirmed before sending any reply to the user."
+      ],
+      [
+        "double_check_status",
+        "Pause to double-check that all task modifications are complete and accurate prior to committing your response."
+      ],
+      [
+        "confirm_completion_first",
+        "Make it a habit to verify task completion status is achieved before replying to the user."
+      ]
+    ],
+    "measured_arms": [
+      {
+        "label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+        "solved": 50,
+        "n": 74,
+        "gains": 16,
+        "losses": 12,
+        "net": 4,
+        "executed": 43,
+        "cases_fired": 43,
+        "gains_where_fired": 10
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+        "solved": 46,
+        "n": 74,
+        "gains": 9,
+        "losses": 9,
+        "net": 0,
+        "executed": 32,
+        "cases_fired": 32,
+        "gains_where_fired": 2
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_verify_before_reply",
+        "solved": 47,
+        "n": 74,
+        "gains": 11,
+        "losses": 10,
+        "net": 1,
+        "executed": 31,
+        "cases_fired": 31,
+        "gains_where_fired": 3
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_double_check_status",
+        "solved": 49,
+        "n": 73,
+        "gains": 10,
+        "losses": 7,
+        "net": 3,
+        "executed": 37,
+        "cases_fired": 37,
+        "gains_where_fired": 6
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_confirm_completion_first",
+        "solved": 41,
+        "n": 74,
+        "gains": 6,
+        "losses": 11,
+        "net": -5,
+        "executed": 41,
+        "cases_fired": 41,
+        "gains_where_fired": 2
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+        "solved": 4,
+        "n": 74,
+        "gains": 0,
+        "losses": 42,
+        "net": -42,
+        "executed": 497,
+        "cases_fired": 74,
+        "gains_where_fired": 0
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+        "solved": 38,
+        "n": 74,
+        "gains": 7,
+        "losses": 15,
+        "net": -8,
+        "executed": 719,
+        "cases_fired": 74,
+        "gains_where_fired": 7
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_verify_before_reply",
+        "solved": 41,
+        "n": 73,
+        "gains": 8,
+        "losses": 12,
+        "net": -4,
+        "executed": 627,
+        "cases_fired": 74,
+        "gains_where_fired": 8
+      }
+    ],
+    "p1_train": {
+      "label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+      "solved": 50,
+      "n": 74,
+      "gains": 16,
+      "losses": 12,
+      "net": 4,
+      "executed": 43,
+      "cases_fired": 43,
+      "gains_where_fired": 10,
+      "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "instruction_source": "shipped"
+    },
+    "test": {
+      "n": 40,
+      "k": 4,
+      "portal": "vllm",
+      "p0_totals": [
+        27,
+        29,
+        28,
+        27
+      ],
+      "p0_pooled": [
+        111,
+        160
+      ],
+      "p0_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p0_pass_hat_k": {
+        "1": 0.69375,
+        "2": 0.5916666666666667,
+        "3": 0.5375,
+        "4": 0.5
+      },
+      "p1_totals": [
+        30,
+        26,
+        30,
+        31
+      ],
+      "p1_pooled": [
+        117,
+        160
+      ],
+      "p1_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p1_executed": [
+        19,
+        21,
+        21,
+        20
+      ],
+      "p1_pass_hat_k": {
+        "1": 0.73125,
+        "2": 0.65,
+        "3": 0.6,
+        "4": 0.575
+      },
+      "mean_diff": 1.5,
+      "se": 1.20761472884912,
+      "z": 1.2421180068162376,
+      "criterion_2_pass": true,
+      "cases_fired_any_run": 29,
+      "improved_where_fired": 6,
+      "improved_where_not_fired": 4,
+      "worsened_where_fired": 3,
+      "refilled": [
+        {
+          "file": "heldout_p0_test_rep4.json",
+          "case": "45",
+          "original": "harness_error: JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+          "refill_termination": "TerminationReason.USER_STOP",
+          "solved": false,
+          "portal": "vllm"
+        }
+      ]
+    }
+  },
+  {
+    "arm": "granite_4_1_30b__self__telecom",
+    "model": "granite-4.1-30b",
+    "domain": "telecom",
+    "teacher": "self",
+    "split": "train",
+    "portal": "vllm",
+    "agent_model_id": "openai/granite-4.1-30b",
+    "user_model": "claude-sonnet-5",
+    "max_steps": 200,
+    "sim_timeout": 3600.0,
+    "train_tasks": 74,
+    "p0_train": {
+      "solved": 25,
+      "n": 74,
+      "void": 0,
+      "truncated": {}
+    },
+    "residual_cases": 44,
+    "residual_key": "a call proposed to a tool the toolset does not contain",
+    "arms_emitted": 54,
+    "arms_measured": 8,
+    "arms_voided": 0,
+    "outcome_class": "TRAIN_IMPROVED_PENDING_VALIDATION",
+    "teacher_invoked": true,
+    "teacher_accepted": [
+      [
+        "verify_tool_availability",
+        "Before proposing any tool, confirm that the tool exists in the current toolset."
+      ],
+      [
+        "fallback_to_alternative",
+        "If the desired tool is unavailable, suggest an alternative action or manual workaround instead."
+      ],
+      [
+        "double_check_proposal",
+        "Review the proposed tool call to ensure it matches a known, accessible tool before finalizing the suggestion."
+      ]
+    ],
+    "measured_arms": [
+      {
+        "label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+        "solved": 29,
+        "n": 74,
+        "gains": 11,
+        "losses": 7,
+        "net": 4,
+        "executed": 73,
+        "cases_fired": 73,
+        "gains_where_fired": 11
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+        "solved": 25,
+        "n": 74,
+        "gains": 10,
+        "losses": 10,
+        "net": 0,
+        "executed": 73,
+        "cases_fired": 73,
+        "gains_where_fired": 10
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_verify_tool_availability",
+        "solved": 28,
+        "n": 74,
+        "gains": 8,
+        "losses": 5,
+        "net": 3,
+        "executed": 74,
+        "cases_fired": 74,
+        "gains_where_fired": 8
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_fallback_to_alternative",
+        "solved": 31,
+        "n": 74,
+        "gains": 11,
+        "losses": 5,
+        "net": 6,
+        "executed": 74,
+        "cases_fired": 74,
+        "gains_where_fired": 11
+      },
+      {
+        "label": "post_execution/tool_call_failed/reprompt:teacher_double_check_proposal",
+        "solved": 23,
+        "n": 74,
+        "gains": 6,
+        "losses": 8,
+        "net": -2,
+        "executed": 73,
+        "cases_fired": 73,
+        "gains_where_fired": 6
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+        "solved": 3,
+        "n": 74,
+        "gains": 1,
+        "losses": 23,
+        "net": -22,
+        "executed": 630,
+        "cases_fired": 74,
+        "gains_where_fired": 1
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+        "solved": 10,
+        "n": 74,
+        "gains": 4,
+        "losses": 19,
+        "net": -15,
+        "executed": 601,
+        "cases_fired": 74,
+        "gains_where_fired": 4
+      },
+      {
+        "label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_verify_tool_availability",
+        "solved": 13,
+        "n": 74,
+        "gains": 7,
+        "losses": 19,
+        "net": -12,
+        "executed": 790,
+        "cases_fired": 74,
+        "gains_where_fired": 7
+      }
+    ],
+    "p1_train": {
+      "label": "post_execution/tool_call_failed/reprompt:teacher_fallback_to_alternative",
+      "solved": 31,
+      "n": 74,
+      "gains": 11,
+      "losses": 5,
+      "net": 6,
+      "executed": 74,
+      "cases_fired": 74,
+      "gains_where_fired": 11,
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_fallback_to_alternative",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_fallback_to_alternative",
+      "eta": {
+        "instruction": "If the desired tool is unavailable, suggest an alternative action or manual workaround instead.",
+        "retry_budget": 1
+      },
+      "instruction_source": "teacher"
+    },
+    "test": {
+      "n": 40,
+      "k": 4,
+      "portal": "vllm",
+      "p0_totals": [
+        24,
+        19,
+        22,
+        17
+      ],
+      "p0_pooled": [
+        82,
+        160
+      ],
+      "p0_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p0_pass_hat_k": {
+        "1": 0.5125,
+        "2": 0.4,
+        "3": 0.3375,
+        "4": 0.3
+      },
+      "p1_totals": [
+        24,
+        20,
+        24,
+        19
+      ],
+      "p1_pooled": [
+        87,
+        160
+      ],
+      "p1_void": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "p1_executed": [
+        40,
+        38,
+        40,
+        40
+      ],
+      "p1_pass_hat_k": {
+        "1": 0.54375,
+        "2": 0.4375,
+        "3": 0.3875,
+        "4": 0.35
+      },
+      "mean_diff": 1.25,
+      "se": 2.0361319538117697,
+      "z": 0.6139091318025435,
+      "criterion_2_pass": true,
+      "cases_fired_any_run": 40,
+      "improved_where_fired": 11,
+      "improved_where_not_fired": 0,
+      "worsened_where_fired": 6,
+      "refilled": []
+    }
+  }
+]

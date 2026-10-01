@@ -1,0 +1,33 @@
+{
+  "_comment": "N0-A1 FINAL (prompt-free line). Mined locus rank 1 = capacity/container/no_remaining_capacity, 543 events, 81/215 failing queries linked. Instantiated with the policy VALIDATED PER BACKEND, at the POST-EXECUTION incision point for both: kv/vector deterministic reroute core->archival (mechanical arg copy); rec_sum deterministic reduce-and-replace under the 10K aggregate constraint (352/352 constructed, median 1% compression, 99.9% query-token preservation on 352 live captures). NO global preamble and NO prompt-style rec_sum nudge: on_memory_preamble is EMPTY and on_blob_pressure is OFF -- that gate is PRE-GENERATION, a different incision point from the mined post-execution locus, and prose-based. Frozen locus artifact ledgers/n0_locus.json fp=62295bdc0ce0c2ec. Native baseline 88/303 = 29.04%.",
+  "gate_default": false,
+  "templates": {
+    "on_memory_preamble": "",
+    "on_hallucinate": "",
+    "on_loop": "",
+    "on_wrong_args": "",
+    "on_domain_error": "",
+    "on_new_function_available": "",
+    "on_turn_start_action": "",
+    "on_ambiguous_target": "",
+    "on_turn_boundary_orient": "",
+    "on_domain_error_core_full": "",
+    "on_domain_error_key_not_found": "",
+    "on_domain_error_too_long": "",
+    "on_retrieval_success_pre_answer": "",
+    "on_idk_fallback": "",
+    "on_core_clear_blocked": "",
+    "on_premature_idk": ""
+  },
+  "gate_enabled": {
+    "on_domain_error_core_full": true,
+    "on_core_full_rerouted": true,
+    "on_blob_pressure": false,
+    "on_core_clear_blocked": false,
+    "on_key_not_found_rerouted": false,
+    "on_domain_error_key_not_found": false,
+    "on_domain_error_too_long": false
+  },
+  "enable_reroute": true,
+  "enable_capacity_repair": true
+}

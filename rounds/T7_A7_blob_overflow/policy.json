@@ -1,0 +1,40 @@
+{
+  "_comment": "FROZEN A1-A5 + A7 (2026-08-24). Accepted under docs/ACCEPTANCE_RULE_FROZEN.md v2: positive NET train effect, no aggregate dev regression, attribution concentrated where the anchor engages with the mechanism causally validated, and no new catastrophic failure mode. Train 45.87% (139/303), dev 40.48% (34/84), measured end-to-end across all three backends. FLAGS: enable_reroute=A1 core-full reroute; enable_capacity_repair=A2 failed-lookup reprompt; enable_redundant_write_suppress=A3; enable_zero_call_reprompt=A4; enable_archival_evict_duplicate=A5 archival-full duplicate eviction + verbatim retry (this anchor was RENAMED from E1 -- see global_local_policy.md 'A5 INSTALLED (formerly E1)'; its dev result is +8.33pp with a 30/30 causally-validated lossless mechanism). A7 rec_sum compaction has NO policy flag: it is gated at dispatch on memory_backend()=='rec_sum' and enabled by ANCHOROPT_A7C. NOT IN THIS STACK: (a) A6 entry-length reroute + raw-exact vector dedup -- rejected on dev -1.19pp and on attribution (its own target backend is -2.50pp); signal deferred in docs/A6_DEFERRED_SIGNAL.md. (b) the E-ANCHOR deterministic-outcome memoization -- its gate key on_memoized_deterministic_call is absent from every frozen policy with gate_default=false, and it fires 0 times in all runs scanned, so the 'A1-A5 + E-anchor' label used through SS154 was wrong about the E-ANCHOR, not about A5. (c) the REJECTED A5-lowsim candidate enable_low_similarity_reprompt (22/22 fired, 2/22 converted) -- a different anchor that merely shared the A5 name.",
+  "enable_archival_evict_duplicate": true,
+  "enable_capacity_repair": true,
+  "enable_redundant_write_suppress": true,
+  "enable_reroute": true,
+  "enable_turn_start_action": false,
+  "enable_zero_call_reprompt": true,
+  "gate_default": false,
+  "gate_enabled": {
+    "on_archival_full_evict_duplicate": true,
+    "on_blob_pressure": false,
+    "on_core_clear_blocked": false,
+    "on_core_full_rerouted": true,
+    "on_domain_error_core_full": true,
+    "on_domain_error_key_not_found": true,
+    "on_domain_error_too_long": false,
+    "on_key_not_found_rerouted": false,
+    "on_redundant_write_suppressed": true,
+    "on_turn_start_action": false
+  },
+  "templates": {
+    "on_ambiguous_target": "",
+    "on_core_clear_blocked": "",
+    "on_domain_error": "",
+    "on_domain_error_core_full": "",
+    "on_domain_error_key_not_found": "",
+    "on_domain_error_too_long": "",
+    "on_hallucinate": "",
+    "on_idk_fallback": "",
+    "on_loop": "",
+    "on_memory_preamble": "",
+    "on_new_function_available": "",
+    "on_premature_idk": "",
+    "on_retrieval_success_pre_answer": "",
+    "on_turn_boundary_orient": "",
+    "on_turn_start_action": "[Memory Gate] You answered without consulting stored memory. If this question depends on information from earlier, check memory before answering -- core memory and archival memory are both available. If it genuinely does not, repeat your answer as-is.",
+    "on_wrong_args": ""
+  }
+}

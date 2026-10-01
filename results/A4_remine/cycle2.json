@@ -1,0 +1,961 @@
+{
+  "incumbent": "results/A4_incumbent/run",
+  "cell": "vector",
+  "incumbent_correct": 23,
+  "incumbent_scored": 89,
+  "failed_in_cell": 66,
+  "sampling": {
+    "n_failed": 66,
+    "n_sampled": 24,
+    "strata": {
+      "customer/True": 20,
+      "notetaker/True": 16,
+      "healthcare/True": 18,
+      "finance/True": 12
+    }
+  },
+  "residual_keys_before": {
+    "whether to commit to a final answer after the first retrieval, or to first verify that the retrieved text actually contains the specific fact asked for and keep searching (other queries, other stores) when it does not.": 4,
+    "whether to commit to a final answer on the basis of a single retrieval whose returned content does not actually match the question, rather than re-querying / widening the search or explicitly reporting that the memory lacks the information.": 4,
+    "whether to commit to a final answer after a single retrieval whose returned passages do not actually contain the asked-about fact, instead of judging relevance and re-querying with different wording or broader coverage first.": 4,
+    "whether to answer from the first retrieval's results or to judge the retrieved evidence insufficient and keep searching (reformulated queries, other memory stores) before answering.": 4,
+    "whether to commit to a final answer when the retrieved passages are weakly matched and do not actually contain the requested fact, instead of continuing to search with materially different queries and untried memory stores": 4,
+    "whether to answer from retrieval results that do not actually contain the requested fact, instead of reformulating the query and searching again before answering": 4
+  },
+  "pooling": [
+    {
+      "rank": 1,
+      "support": 12,
+      "observables": [
+        "retrieval_similarity_below_threshold"
+      ],
+      "merged_from": [
+        "whether to answer from retrieval results that do not actually contain the requested fact, instead of reformulating the query and searching again before answering",
+        "whether to commit to a final answer after the first retrieval, or to first verify that the retrieved text actually contains the specific fact asked for and keep searching (other queries, other stores) when it does not.",
+        "whether to commit to a final answer when the retrieved passages are weakly matched and do not actually contain the requested fact, instead of continuing to search with materially different queries and untried memory stores"
+      ]
+    },
+    {
+      "rank": 2,
+      "support": 4,
+      "observables": [
+        "clear_proposed_at_capacity",
+        "no_tool_call_at_all",
+        "retrieval_similarity_below_threshold"
+      ],
+      "merged_from": [
+        "whether to answer from the first retrieval's results or to judge the retrieved evidence insufficient and keep searching (reformulated queries, other memory stores) before answering."
+      ]
+    },
+    {
+      "rank": 3,
+      "support": 4,
+      "observables": [
+        "clear_proposed_at_capacity",
+        "identifier_not_found",
+        "retrieval_similarity_below_threshold"
+      ],
+      "merged_from": [
+        "whether to commit to a final answer after a single retrieval whose returned passages do not actually contain the asked-about fact, instead of judging relevance and re-querying with different wording or broader coverage first."
+      ]
+    },
+    {
+      "rank": 4,
+      "support": 4,
+      "observables": [
+        "no_tool_call_at_all",
+        "retrieval_similarity_below_threshold"
+      ],
+      "merged_from": [
+        "whether to commit to a final answer on the basis of a single retrieval whose returned content does not actually match the question, rather than re-querying / widening the search or explicitly reporting that the memory lacks the information."
+      ]
+    }
+  ],
+  "phase_decision": {
+    "phase": "CONTINUE_POLICY",
+    "reasons": [
+      "retrieval_similarity_below_threshold           cov  79.2% S1-ok    sat   0% S2-ok    expressible",
+      "clear_proposed_at_capacity|retrieval_similarit cov   8.3% S1-STOP  sat   0% S2-ok    expressible",
+      "no_tool_call_at_all|retrieval_similarity_below cov   8.3% S1-STOP  sat   0% S2-ok    expressible",
+      "identifier_not_found|retrieval_similarity_belo cov   4.2% S1-STOP  sat   0% S2-ok    expressible"
+    ]
+  },
+  "problems": [
+    {
+      "rank": 1,
+      "support": 12,
+      "expressible": true,
+      "key": "whether to answer from retrieval results that do not actually contain the requested fact, instead of reformulating the query and searching again before answering"
+    },
+    {
+      "rank": 2,
+      "support": 4,
+      "expressible": true,
+      "key": "whether to answer from the first retrieval's results or to judge the retrieved evidence insufficient and keep searching (reformulated queries, other memory stores) before answering."
+    },
+    {
+      "rank": 3,
+      "support": 4,
+      "expressible": true,
+      "key": "whether to commit to a final answer after a single retrieval whose returned passages do not actually contain the asked-about fact, instead of judging relevance and re-querying with different wording or broader coverage first."
+    },
+    {
+      "rank": 4,
+      "support": 4,
+      "expressible": true,
+      "key": "whether to commit to a final answer on the basis of a single retrieval whose returned content does not actually match the question, rather than re-querying / widening the search or explicitly reporting that the memory lacks the information."
+    }
+  ],
+  "semantic_proposals": [
+    {
+      "boundary": "post_execution",
+      "signal": "retrieval_similarity_below_threshold",
+      "policy_class": "parameterized",
+      "rationale": "Every cited episode has the same shape: a single (or cosmetically re-worded) query returns a nearest-neighbour passage whose similarity is far below any plausible relevance level -- 0.16 (customer-15), 0.174 (finance-5), 0.19-0.29 (customer-13), 0.205 (notetaker-6), 0.21 (healthcare-9), 0.25 (finance-6), 0.264 (healthcare-8), 0.278/0.413 (notetaker-1), 0.368 (finance-0) -- and the agent treats 'so",
+      "action_preference": "force continued retrieval with reformulated wording (or, if the search budget is spent, force an explicit statement that the fact was not found) rather than allowing the weak hit to be used as grounding",
+      "declared": true
+    },
+    {
+      "boundary": "post_execution",
+      "signal": "no_informative_result",
+      "policy_class": "parameterized",
+      "rationale": "A subset of the residuals is not explained by a low score at all. In notetaker-7 the follow-up archival search returned an EMPTY result set and the agent answered anyway; in customer-1 and finance-6 the agent dumped the whole store and received a high-level summary record that was topically on-point (so not necessarily low-similarity) yet contained none of the asked-for attribute; in healthcare-1 ",
+      "action_preference": "treat the retrieval as unanswered: require another materially different retrieval, and if none succeeds, require an explicit 'not in memory' answer instead of a paraphrase of the nearest passage",
+      "declared": true
+    },
+    {
+      "boundary": "post_generation_pre_exec",
+      "signal": "no_tool_call_at_all",
+      "policy_class": "deterministic",
+      "rationale": "The shared consequential decision named in every residual is a COMMITMENT: the model emits a final answer instead of another retrieval. That commitment is observable exactly once, at the moment a generation contains no tool call while the evidence gathered so far is thin -- the canonical commitment gate. Localizing here rather than at post_execution captures the failures where the give-up happens ",
+      "action_preference": "block the premature commitment -- require at least one further, differently-worded retrieval (or an untouched store) before the final answer is allowed to stand",
+      "declared": true
+    },
+    {
+      "boundary": "post_execution",
+      "signal": "duplicate_identifier",
+      "policy_class": "deterministic",
+      "rationale": "customer-13 fails through a specific sub-mechanism the similarity and informativeness signals do not capture: the agent's only recovery was a cosmetic reword ('cost' -> 'price') that returned the IDENTICAL passage (id 2), and it read the repetition as proof that memory had been exhausted rather than as proof its framing was wrong. notetaker-7 has the same shape, re-issuing the identical query stri",
+      "action_preference": "treat a repeat of an already-seen passage as zero new evidence -- do not let it count as 'memory exhausted'; require a genuinely different query (different entity/synonym/store) or an explicit absence report",
+      "declared": true
+    }
+  ],
+  "unrealizable_repairs": [
+    {
+      "repair": "The repair the evidence actually calls for is a containment/entailment check between the user's asked-for attribute and the retrieved text -- 'does any returned passage literally state the diagnosis YEAR, the pickup TIME, the canister PRICE, the payment DUE DATE?' -- used as the gate on answering, plus a check that a follow-up query is materially different from the one that just failed rather than a synonym swap. Similarity score, emptiness, and identifier repetition are all proxies: healthcare-1 and customer-1 show a passage can be topically close and non-empty while containing no instance of the requested attribute, so a score-based or emptiness-based cut can pass exactly the cases that fail.",
+      "blocked_by": "no declared signal observes this condition",
+      "rationale": ""
+    }
+  ],
+  "search": {
+    "boundaries": [
+      "post_execution",
+      "post_generation_pre_exec"
+    ],
+    "visited": [
+      "post_generation_pre_exec",
+      "post_execution"
+    ],
+    "moves_earlier": 0,
+    "state": "REALIZABLE_UNMEASURED",
+    "attempts": [
+      {
+        "boundary": "post_generation_pre_exec",
+        "state": "REALIZABLE_UNMEASURED",
+        "coordinate_changed": "WHAT",
+        "label": "commitment gate",
+        "signals_expanded": [],
+        "candidates_built": 3,
+        "candidates_realizable": 3,
+        "candidates_evaluated": 0,
+        "certificates": [
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_generation_pre_exec",
+            "signal": "no_tool_call_at_all",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "inject_trailing_message_and_regenerate: executor_parameter_conflict: the executor at post_generation_pre_exec/reprompt fixes retry_budget=1 but this eta declares retry_budget=0; coercing it would run different semantics than the ones proposed  (also tried -- write_instruction_to_step_record: executor_disabled_by_host: post_generation_pre_exec/reprompt is declared but not measurable -- the instruction is written to step_record and never injected into the conversation -- two arms differing only in `instruction` were byte-identical (13/13 episodes), so measuring this cell would measure the control arm under a reprompt label)",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_generation_pre_exec",
+            "signal": "no_tool_call_at_all",
+            "action": "suppress",
+            "missing": [],
+            "detail": "post_generation_pre_exec/suppress: executor_signal_unsupported: the executor at post_generation_pre_exec/suppress evaluates ['duplicate_identifier', 'clear_proposed_at_capacity'], not 'no_tool_call_at_all'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_generation_pre_exec",
+            "signal": "duplicate_identifier",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "inject_trailing_message_and_regenerate: executor_signal_unsupported: the executor at post_generation_pre_exec/reprompt evaluates ['no_tool_call_at_all'], not 'duplicate_identifier'  (also tried -- write_instruction_to_step_record: executor_disabled_by_host: post_generation_pre_exec/reprompt is declared but not measurable -- the instruction is written to step_record and never injected into the conversation -- two arms differing only in `instruction` were byte-identical (13/13 episodes), so measuring this cell would measure the control arm under a reprompt label)",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_generation_pre_exec",
+            "signal": "duplicate_identifier",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "inject_trailing_message_and_regenerate: executor_signal_unsupported: the executor at post_generation_pre_exec/reprompt evaluates ['no_tool_call_at_all'], not 'duplicate_identifier'  (also tried -- write_instruction_to_step_record: executor_disabled_by_host: post_generation_pre_exec/reprompt is declared but not measurable -- the instruction is written to step_record and never injected into the conversation -- two arms differing only in `instruction` were byte-identical (13/13 episodes), so measuring this cell would measure the control arm under a reprompt label)",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_generation_pre_exec",
+            "signal": "duplicate_identifier",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "inject_trailing_message_and_regenerate: executor_signal_unsupported: the executor at post_generation_pre_exec/reprompt evaluates ['no_tool_call_at_all'], not 'duplicate_identifier'  (also tried -- write_instruction_to_step_record: executor_disabled_by_host: post_generation_pre_exec/reprompt is declared but not measurable -- the instruction is written to step_record and never injected into the conversation -- two arms differing only in `instruction` were byte-identical (13/13 episodes), so measuring this cell would measure the control arm under a reprompt label)",
+            "classified": true
+          }
+        ],
+        "objective": null,
+        "promoted": null,
+        "detail": "controller built and grounded; NO evaluator supplied, so this representation has not been shown insufficient -- neither Phi expansion nor backward movement is warranted"
+      },
+      {
+        "boundary": "post_execution",
+        "state": "REALIZABLE_UNMEASURED",
+        "coordinate_changed": "WHAT",
+        "label": "post-outcome",
+        "signals_expanded": [],
+        "candidates_built": 2,
+        "candidates_realizable": 2,
+        "candidates_evaluated": 0,
+        "certificates": [
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "retrieval_similarity_below_threshold",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "post_execution/reprompt: executor_parameter_conflict: the executor at post_execution/reprompt fixes retry_budget=1 but this eta declares retry_budget=0; coercing it would run different semantics than the ones proposed",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "retrieval_similarity_below_threshold",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "retrieval_similarity_below_threshold",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "retrieval_similarity_below_threshold",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "retrieval_similarity_below_threshold",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "retrieval_similarity_below_threshold",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "retrieval_similarity_below_threshold",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "retrieval_similarity_below_threshold",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "no_informative_result",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'no_informative_result'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "no_informative_result",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'no_informative_result'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "no_informative_result",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'no_informative_result'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "no_informative_result",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "no_informative_result",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "no_informative_result",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "no_informative_result",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "no_informative_result",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "no_informative_result",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "no_informative_result",
+            "action": "reroute",
+            "missing": [],
+            "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "duplicate_identifier",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'duplicate_identifier'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "duplicate_identifier",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'duplicate_identifier'",
+            "classified": true
+          },
+          {
+            "state": "PRIMITIVE_MISSING",
+            "reason_code": "not_materializable_by_host_executor",
+            "boundary": "post_execution",
+            "signal": "duplicate_identifier",
+            "action": "reprompt",
+            "missing": [],
+            "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'duplicate_identifier'",
+            "classified": true
+          },
+          {
+            "state": "ETA_UNSUPPORTED",
+            "reason_code": "REROUTE_INFEASIBLE",
+            "boundary": "post_execution",
+            "signal": "duplicate_identifier",
+            "action": "reroute",
+            "missing": [
+              "destination",
+              "argument_mapping",
+              "retry_semantics"
+            ],
+            "detail": "the runtime grounded no substitute option for signal 'duplicate_identifier' at post_execution; requirements are ['destination', 'argument_mapping', 'retry_semantics']",
+            "classified": true
+          },
+          {
+            "state": "ETA_UNSUPPORTED",
+            "reason_code": "TRANSFORM_INFEASIBLE",
+            "boundary": "post_execution",
+            "signal": "duplicate_identifier",
+            "action": "reroute",
+            "missing": [
+              "target_surface",
+              "operator",
+              "preservation"
+            ],
+            "detail": "the runtime grounded no transform option for signal 'duplicate_identifier' at post_execution; requirements are ['target_surface', 'operator', 'preservation']",
+            "classified": true
+          }
+        ],
+        "objective": null,
+        "promoted": null,
+        "detail": "controller built and grounded at a boundary the seeded Phi is also observable at; NO evaluator supplied"
+      }
+    ],
+    "candidates": 5,
+    "certificates": [
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_generation_pre_exec",
+        "signal": "no_tool_call_at_all",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "inject_trailing_message_and_regenerate: executor_parameter_conflict: the executor at post_generation_pre_exec/reprompt fixes retry_budget=1 but this eta declares retry_budget=0; coercing it would run different semantics than the ones proposed  (also tried -- write_instruction_to_step_record: executor_disabled_by_host: post_generation_pre_exec/reprompt is declared but not measurable -- the instruction is written to step_record and never injected into the conversation -- two arms differing only in `instruction` were byte-identical (13/13 episodes), so measuring this cell would measure the control arm under a reprompt label)",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_generation_pre_exec",
+        "signal": "no_tool_call_at_all",
+        "action": "suppress",
+        "missing": [],
+        "detail": "post_generation_pre_exec/suppress: executor_signal_unsupported: the executor at post_generation_pre_exec/suppress evaluates ['duplicate_identifier', 'clear_proposed_at_capacity'], not 'no_tool_call_at_all'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_generation_pre_exec",
+        "signal": "duplicate_identifier",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "inject_trailing_message_and_regenerate: executor_signal_unsupported: the executor at post_generation_pre_exec/reprompt evaluates ['no_tool_call_at_all'], not 'duplicate_identifier'  (also tried -- write_instruction_to_step_record: executor_disabled_by_host: post_generation_pre_exec/reprompt is declared but not measurable -- the instruction is written to step_record and never injected into the conversation -- two arms differing only in `instruction` were byte-identical (13/13 episodes), so measuring this cell would measure the control arm under a reprompt label)",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_generation_pre_exec",
+        "signal": "duplicate_identifier",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "inject_trailing_message_and_regenerate: executor_signal_unsupported: the executor at post_generation_pre_exec/reprompt evaluates ['no_tool_call_at_all'], not 'duplicate_identifier'  (also tried -- write_instruction_to_step_record: executor_disabled_by_host: post_generation_pre_exec/reprompt is declared but not measurable -- the instruction is written to step_record and never injected into the conversation -- two arms differing only in `instruction` were byte-identical (13/13 episodes), so measuring this cell would measure the control arm under a reprompt label)",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_generation_pre_exec",
+        "signal": "duplicate_identifier",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "inject_trailing_message_and_regenerate: executor_signal_unsupported: the executor at post_generation_pre_exec/reprompt evaluates ['no_tool_call_at_all'], not 'duplicate_identifier'  (also tried -- write_instruction_to_step_record: executor_disabled_by_host: post_generation_pre_exec/reprompt is declared but not measurable -- the instruction is written to step_record and never injected into the conversation -- two arms differing only in `instruction` were byte-identical (13/13 episodes), so measuring this cell would measure the control arm under a reprompt label)",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "retrieval_similarity_below_threshold",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "post_execution/reprompt: executor_parameter_conflict: the executor at post_execution/reprompt fixes retry_budget=1 but this eta declares retry_budget=0; coercing it would run different semantics than the ones proposed",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "retrieval_similarity_below_threshold",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "retrieval_similarity_below_threshold",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "retrieval_similarity_below_threshold",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "retrieval_similarity_below_threshold",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "retrieval_similarity_below_threshold",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "retrieval_similarity_below_threshold",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "retrieval_similarity_below_threshold",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_cannot_consume_eta: the executor at post_execution/reroute will not act without eta 'primitive' (it accepts ['additional_read_and_merge']); this arm does not carry it, so the mechanism would report not-fired and run as the CONTROL",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "no_informative_result",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'no_informative_result'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "no_informative_result",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'no_informative_result'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "no_informative_result",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'no_informative_result'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "no_informative_result",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "no_informative_result",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "no_informative_result",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "no_informative_result",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "no_informative_result",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "no_informative_result",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "no_informative_result",
+        "action": "reroute",
+        "missing": [],
+        "detail": "post_execution/reroute: executor_signal_unsupported: the executor at post_execution/reroute evaluates ['container_at_capacity', 'container_slots_exhausted', 'append_would_exceed_cap', 'retrieval_similarity_below_threshold', 'identifier_not_found', 'duplicate_identifier'], not 'no_informative_result'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "duplicate_identifier",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'duplicate_identifier'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "duplicate_identifier",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'duplicate_identifier'",
+        "classified": true
+      },
+      {
+        "state": "PRIMITIVE_MISSING",
+        "reason_code": "not_materializable_by_host_executor",
+        "boundary": "post_execution",
+        "signal": "duplicate_identifier",
+        "action": "reprompt",
+        "missing": [],
+        "detail": "post_execution/reprompt: executor_signal_unsupported: the executor at post_execution/reprompt evaluates ['retrieval_similarity_below_threshold', 'identifier_not_found'], not 'duplicate_identifier'",
+        "classified": true
+      },
+      {
+        "state": "ETA_UNSUPPORTED",
+        "reason_code": "REROUTE_INFEASIBLE",
+        "boundary": "post_execution",
+        "signal": "duplicate_identifier",
+        "action": "reroute",
+        "missing": [
+          "destination",
+          "argument_mapping",
+          "retry_semantics"
+        ],
+        "detail": "the runtime grounded no substitute option for signal 'duplicate_identifier' at post_execution; requirements are ['destination', 'argument_mapping', 'retry_semantics']",
+        "classified": true
+      },
+      {
+        "state": "ETA_UNSUPPORTED",
+        "reason_code": "TRANSFORM_INFEASIBLE",
+        "boundary": "post_execution",
+        "signal": "duplicate_identifier",
+        "action": "reroute",
+        "missing": [
+          "target_surface",
+          "operator",
+          "preservation"
+        ],
+        "detail": "the runtime grounded no transform option for signal 'duplicate_identifier' at post_execution; requirements are ['target_surface', 'operator', 'preservation']",
+        "classified": true
+      }
+    ],
+    "signals_installed": [],
+    "phi_source": "residual_family",
+    "phi_seeded": [
+      "retrieval_similarity_below_threshold",
+      "no_informative_result",
+      "no_tool_call_at_all",
+      "duplicate_identifier"
+    ],
+    "phi_dropped": [],
+    "evaluations_completed": 0,
+    "budget": null,
+    "frontier_boundaries": [],
+    "expanded": false,
+    "rediscovered": true,
+    "validated": false,
+    "restarts": 0,
+    "promoted": null
+  },
+  "unfireable": {
+    "post_generation_pre_exec/duplicate_identifier": "phi fires on none of the residual's observed states"
+  },
+  "arm_manifest": {
+    "incumbent_id": "run",
+    "incumbent_token": "results/A4_incumbent/run",
+    "n_arms": 4,
+    "note": "Evaluate each arm against the SAME frozen incumbent and report results keyed by `arm_label`. An arm you did not evaluate must be OMITTED, not reported as zero: core treats a missing result as UNEVALUATED and a zero as a measurement.",
+    "arms": [
+      {
+        "arm_label": "post_generation_pre_exec/no_tool_call_at_all/reprompt:search_other_container",
+        "boundary": "post_generation_pre_exec",
+        "signal": "no_tool_call_at_all",
+        "action": "reprompt",
+        "operator": "reprompt",
+        "variant": "search_other_container",
+        "eta": {
+          "instruction": "The container you searched may not hold this fact. Search the other memory container before answering.",
+          "retry_budget": 1
+        },
+        "fires_on_states": 86,
+        "total_states": 174
+      },
+      {
+        "arm_label": "post_execution/retrieval_similarity_below_threshold/reprompt:search_other_container",
+        "boundary": "post_execution",
+        "signal": "retrieval_similarity_below_threshold",
+        "action": "reprompt",
+        "operator": "reprompt",
+        "variant": "search_other_container",
+        "eta": {
+          "instruction": "The container you searched may not hold this fact. Search the other memory container before answering.",
+          "retry_budget": 1
+        },
+        "fires_on_states": 68,
+        "total_states": 174
+      },
+      {
+        "arm_label": "post_generation_pre_exec/no_tool_call_at_all/reprompt:verify_before_answering",
+        "boundary": "post_generation_pre_exec",
+        "signal": "no_tool_call_at_all",
+        "action": "reprompt",
+        "operator": "reprompt",
+        "variant": "verify_before_answering",
+        "eta": {
+          "instruction": "Before answering, check whether the retrieved content actually states the fact being asked for. If it does not, search again with different terms.",
+          "retry_budget": 1
+        },
+        "fires_on_states": 86,
+        "total_states": 174
+      },
+      {
+        "arm_label": "post_execution/retrieval_similarity_below_threshold/reprompt:verify_before_answering",
+        "boundary": "post_execution",
+        "signal": "retrieval_similarity_below_threshold",
+        "action": "reprompt",
+        "operator": "reprompt",
+        "variant": "verify_before_answering",
+        "eta": {
+          "instruction": "Before answering, check whether the retrieved content actually states the fact being asked for. If it does not, search again with different terms.",
+          "retry_budget": 1
+        },
+        "fires_on_states": 68,
+        "total_states": 174
+      }
+    ]
+  },
+  "state": "UNEVALUATED",
+  "termination": {
+    "outcome": "UNEVALUATED",
+    "is_negative_result": false,
+    "detail": "4 arm(s) built and grounded; none measured. Evaluate them against the frozen incumbent and re-run with --results to select on measurement."
+  },
+  "controller_specs": [
+    {
+      "name": "no_tool_call_at_all",
+      "locus": "post_generation_pre_exec",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "search_other_container",
+      "eta": {
+        "instruction": "The container you searched may not hold this fact. Search the other memory container before answering.",
+        "retry_budget": 1
+      },
+      "predicate": {
+        "declared_signal": "no_tool_call_at_all",
+        "params": {}
+      },
+      "capability_id": "inject_trailing_message_and_regenerate",
+      "phase": "query",
+      "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=query"
+    },
+    {
+      "name": "retrieval_similarity_below_threshold",
+      "locus": "post_execution",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "search_other_container",
+      "eta": {
+        "instruction": "The container you searched may not hold this fact. Search the other memory container before answering.",
+        "retry_budget": 1
+      },
+      "predicate": {
+        "declared_signal": "retrieval_similarity_below_threshold",
+        "params": {
+          "below": 0.5
+        }
+      },
+      "capability_id": "post_execution/reprompt",
+      "phase": "query",
+      "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=query"
+    },
+    {
+      "name": "no_tool_call_at_all",
+      "locus": "post_generation_pre_exec",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "verify_before_answering",
+      "eta": {
+        "instruction": "Before answering, check whether the retrieved content actually states the fact being asked for. If it does not, search again with different terms.",
+        "retry_budget": 1
+      },
+      "predicate": {
+        "declared_signal": "no_tool_call_at_all",
+        "params": {}
+      },
+      "capability_id": "inject_trailing_message_and_regenerate",
+      "phase": "query",
+      "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=query"
+    },
+    {
+      "name": "retrieval_similarity_below_threshold",
+      "locus": "post_execution",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "verify_before_answering",
+      "eta": {
+        "instruction": "Before answering, check whether the retrieved content actually states the fact being asked for. If it does not, search again with different terms.",
+        "retry_budget": 1
+      },
+      "predicate": {
+        "declared_signal": "retrieval_similarity_below_threshold",
+        "params": {
+          "below": 0.5
+        }
+      },
+      "capability_id": "post_execution/reprompt",
+      "phase": "query",
+      "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=query"
+    }
+  ],
+  "controller_spec": {
+    "name": "no_tool_call_at_all",
+    "locus": "post_generation_pre_exec",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "search_other_container",
+    "eta": {
+      "instruction": "The container you searched may not hold this fact. Search the other memory container before answering.",
+      "retry_budget": 1
+    },
+    "predicate": {
+      "declared_signal": "no_tool_call_at_all",
+      "params": {}
+    },
+    "capability_id": "inject_trailing_message_and_regenerate",
+    "phase": "query",
+    "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=query"
+  },
+  "arms_emitted": 4,
+  "expanded_signals_used": []
+}

@@ -1,0 +1,42 @@
+{
+  "_comment": "T9 = the accepted stack A1-A5 + A7 + A8 + A9. Exactly ONE key differs from rounds/T8_A8_dedup_clear/policy.json: on_low_similarity_cross_container. A9 is ALSO env-gated (ANCHOROPT_XCM=1); both the policy flag and the env var must be set, which is why an arm shard that forgets the export runs as a control and scores identically to it -- that exact signature is how the v1/v2 delivery defect was eventually caught.",
+  "enable_archival_evict_duplicate": true,
+  "enable_capacity_repair": true,
+  "enable_redundant_write_suppress": true,
+  "enable_reroute": true,
+  "enable_turn_start_action": false,
+  "enable_zero_call_reprompt": true,
+  "gate_default": false,
+  "gate_enabled": {
+    "on_archival_full_evict_duplicate": true,
+    "on_blob_pressure": false,
+    "on_core_clear_blocked": false,
+    "on_core_full_rerouted": true,
+    "on_dedup_clear_recovery": true,
+    "on_domain_error_core_full": true,
+    "on_domain_error_key_not_found": true,
+    "on_domain_error_too_long": false,
+    "on_key_not_found_rerouted": false,
+    "on_low_similarity_cross_container": true,
+    "on_redundant_write_suppressed": true,
+    "on_turn_start_action": false
+  },
+  "templates": {
+    "on_ambiguous_target": "",
+    "on_core_clear_blocked": "",
+    "on_domain_error": "",
+    "on_domain_error_core_full": "",
+    "on_domain_error_key_not_found": "",
+    "on_domain_error_too_long": "",
+    "on_hallucinate": "",
+    "on_idk_fallback": "",
+    "on_loop": "",
+    "on_memory_preamble": "",
+    "on_new_function_available": "",
+    "on_premature_idk": "",
+    "on_retrieval_success_pre_answer": "",
+    "on_turn_boundary_orient": "",
+    "on_turn_start_action": "[Memory Gate] You answered without consulting stored memory. If this question depends on information from earlier, check memory before answering -- core memory and archival memory are both available. If it genuinely does not, repeat your answer as-is.",
+    "on_wrong_args": ""
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "controllers": [
+    {
+      "format": "anchoropt.controller.v1",
+      "controller_id": "cctu_q5_01a_reprompt_call_tool_first",
+      "boundary": "post_generation_pre_exec",
+      "action": "reprompt",
+      "signal": "",
+      "predicate": {
+        "name": "response_length_over_cap_and_uncommitted",
+        "all": [
+          {
+            "field": "response_length_over_cap",
+            "op": "is_true"
+          },
+          {
+            "field": "call_times",
+            "op": "lt",
+            "value": 1
+          }
+        ]
+      },
+      "signal_params": {},
+      "theta": {
+        "text": "Your draft is already longer than this task allows, and you have not called any tool yet. Stop writing the answer directly. Decide which tool you need and call it now; write the final answer only once you have its result."
+      },
+      "provenance": "cycle3_propose, human-authored from round 2's measured loss (episode 112) and 8 further sampled turn-0 firings, screened at rounds/CCTU_QWEN3/PROPOSAL.md: this condition covers 92% of the incumbent's target mass | ROUND 5: same controllers, run with one_shot=True so each fires ONCE per episode. q4 ran this per-turn and was rejected on repeated_identical_calls (+409 against a 200 bar); q3 ran it once-per-episode and passed every substantive term but was void on one_shot and on an engagement criterion now known to be unsatisfiable for a split gate."
+    },
+    {
+      "format": "anchoropt.controller.v1",
+      "controller_id": "cctu_q5_01b_reprompt_state_remaining_budget",
+      "boundary": "post_generation_pre_exec",
+      "action": "reprompt",
+      "signal": "",
+      "predicate": {
+        "name": "response_length_over_cap_and_committed",
+        "all": [
+          {
+            "field": "response_length_over_cap",
+            "op": "is_true"
+          },
+          {
+            "field": "call_times",
+            "op": "gte",
+            "value": 1
+          }
+        ]
+      },
+      "signal_params": {},
+      "theta": {
+        "text": "You have limited remaining interaction rounds and tool calls. Before acting again, decide which calls are still necessary and make them together rather than one at a time."
+      },
+      "provenance": "cycle3_propose, reuses round 1's accepted theta (state_remaining_budget, arm 258) unchanged, restricted here to the 18% slice of the incumbent's condition where a tool call has already been made | ROUND 5: same controllers, run with one_shot=True so each fires ONCE per episode. q4 ran this per-turn and was rejected on repeated_identical_calls (+409 against a 200 bar); q3 ran it once-per-episode and passed every substantive term but was void on one_shot and on an engagement criterion now known to be unsatisfiable for a split gate."
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+ "case_id": "memory_kv_141-notetaker-11",
+ "phase": "query",
+ "run_id": "1834414",
+ "backend": "kv",
+ "n_steps": 3,
+ "steps": [
+  {
+   "turn": 0,
+   "step": 0,
+   "status": "executed",
+   "decoded": [
+    "archival_memory_key_search(query='vendors follow-up Friday',k=5)"
+   ],
+   "tool_results": [
+    "{\"ranked_results\": [[0.0, \"team_meeting_overrun\"], [0.0, \"presentation_tweak_needed\"], [0.0, \"pending_reports_approval\"], [0.0, \"quarterly_budget_finalization\"], [0.0, \"dentist_appointment_scheduling\"]]}"
+   ],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_0",
+   "is_retrieval_success": true,
+   "latency": 0.3067796230316162,
+   "input_token": 2573,
+   "output_token": 32,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  },
+  {
+   "turn": 0,
+   "step": 1,
+   "status": "executed",
+   "decoded": [
+    "archival_memory_list_keys()"
+   ],
+   "tool_results": [
+    "{\"keys\": [\"team_meeting_overrun\", \"presentation_tweak_needed\", \"pending_reports_approval\", \"quarterly_budget_finalization\", \"dentist_appointment_scheduling\", \"trash_take_out_wednesday_morning\", \"organize_closet_donate_old_clothes\", \"daycare_drop_off_time\", \"doctor_pediatrician_visit\", \"shopping_diapers\", \"workout_gym_frequency\", \"diet_sugar_reduction\", \"mental_health_sleep\"]}"
+   ],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_1",
+   "is_retrieval_success": true,
+   "latency": 0.22080016136169434,
+   "input_token": 2682,
+   "output_token": 19,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  },
+  {
+   "turn": 0,
+   "step": 2,
+   "status": "answer_end_turn",
+   "decoded": [],
+   "error_signal": null,
+   "error_streak": 0,
+   "injection_key": null,
+   "injection": null,
+   "loop_signal": false,
+   "idk_fallback_signal": false,
+   "failed_search_streak": 0,
+   "cell_key": "0_2+",
+   "latency": 0.6814818382263184,
+   "input_token": 2810,
+   "output_token": 82,
+   "cap_formatted_prompt": null,
+   "cap_stop": null
+  }
+ ],
+ "outcome": {
+  "valid": false,
+  "error_type": "agentic:answer_not_found",
+  "error_message": "None of the expected answers were found in the model response.",
+  "force_quit": false
+ }
+}

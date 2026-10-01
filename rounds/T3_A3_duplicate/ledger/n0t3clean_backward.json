@@ -1,0 +1,2968 @@
+{
+  "n_findings": 194,
+  "classes": {
+    "rejected_by_tool_contract": 81,
+    "never_stored": 55,
+    "stored_then_cleared": 31,
+    "stored_but_not_retrieved": 23,
+    "stored_then_lost": 4
+  },
+  "survival_by_chain": {
+    "memory_kv-finance": {
+      "keys_written": 11,
+      "keys_visible_at_query": 1,
+      "keys_lost": 10,
+      "clear_calls": 1,
+      "writes_rejected": 52,
+      "archival_listings": 7,
+      "archival_empty": 0,
+      "lost_sample": [
+        "daily_schedule_details",
+        "finance_technology_passion",
+        "future_strategic_goals",
+        "legend_investments_crisis_management_leadership",
+        "legend_investments_leadership_philosophy",
+        "legend_investments_talent_retention_strategy",
+        "long_term_personal_goals",
+        "personal_portfolio_details",
+        "sarah_chen_relationship_details",
+        "user_motivation"
+      ],
+      "write_calls": 26,
+      "keyed": true,
+      "content_tokens_written": 186,
+      "content_tokens_seen_at_query": 21,
+      "content_survival": 0.113
+    },
+    "memory_kv-healthcare": {
+      "keys_written": 25,
+      "keys_visible_at_query": 2,
+      "keys_lost": 23,
+      "clear_calls": 2,
+      "writes_rejected": 107,
+      "archival_listings": 8,
+      "archival_empty": 0,
+      "lost_sample": [
+        "age",
+        "cognitive_activities_lifelong_learning",
+        "diet_focus_metabolism",
+        "diet_focus_type2_diabetes",
+        "exercise_consistency_osteoporosis",
+        "exercise_routine_consistency",
+        "health_mindset",
+        "hydration_kansas_summer",
+        "hypertension_family_history",
+        "hypothyroidism_diagnosis_age"
+      ],
+      "write_calls": 52,
+      "keyed": true,
+      "content_tokens_written": 211,
+      "content_tokens_seen_at_query": 81,
+      "content_survival": 0.384
+    },
+    "memory_kv-notetaker": {
+      "keys_written": 23,
+      "keys_visible_at_query": 1,
+      "keys_lost": 22,
+      "clear_calls": 2,
+      "writes_rejected": 57,
+      "archival_listings": 2,
+      "archival_empty": 0,
+      "lost_sample": [
+        "car_wash_vacuum_sunday",
+        "client_proposal_legal_approval",
+        "daycare_drop_off_time",
+        "dentist_appointment_call_reminder",
+        "dentist_appointment_scheduling",
+        "diet_goals_summary",
+        "dishes_wash_tonight_unique",
+        "doctor_pediatrician_visit",
+        "elementary_school_admission_paperwork",
+        "family_time_park_visit"
+      ],
+      "write_calls": 50,
+      "keyed": true,
+      "content_tokens_written": 115,
+      "content_tokens_seen_at_query": 27,
+      "content_survival": 0.235
+    },
+    "memory_kv-student": {
+      "keys_written": 48,
+      "keys_visible_at_query": 6,
+      "keys_lost": 42,
+      "clear_calls": 43,
+      "writes_rejected": 227,
+      "archival_listings": 13,
+      "archival_empty": 0,
+      "lost_sample": [
+        "afternoon_workout_routine",
+        "breakfast_routine_details",
+        "campus_culture_collaborative_hackathon",
+        "campus_lawn_and_events",
+        "campus_life_experience",
+        "campus_rivalry_game",
+        "career_aspirations",
+        "current_research_focus_detail",
+        "e_sports_team_recognition",
+        "early_regret_clubs"
+      ],
+      "write_calls": 110,
+      "keyed": true,
+      "content_tokens_written": 503,
+      "content_tokens_seen_at_query": 181,
+      "content_survival": 0.36
+    },
+    "memory_rec_sum-customer": {
+      "keys_written": 0,
+      "keys_visible_at_query": 0,
+      "keys_lost": 0,
+      "clear_calls": 0,
+      "writes_rejected": 108,
+      "archival_listings": 0,
+      "archival_empty": 0,
+      "lost_sample": [],
+      "write_calls": 67,
+      "keyed": false,
+      "content_tokens_written": 408,
+      "content_tokens_seen_at_query": 249,
+      "content_survival": 0.61
+    },
+    "memory_rec_sum-healthcare": {
+      "keys_written": 0,
+      "keys_visible_at_query": 0,
+      "keys_lost": 0,
+      "clear_calls": 0,
+      "writes_rejected": 50,
+      "archival_listings": 0,
+      "archival_empty": 0,
+      "lost_sample": [],
+      "write_calls": 32,
+      "keyed": false,
+      "content_tokens_written": 228,
+      "content_tokens_seen_at_query": 212,
+      "content_survival": 0.93
+    },
+    "memory_rec_sum-notetaker": {
+      "keys_written": 0,
+      "keys_visible_at_query": 0,
+      "keys_lost": 0,
+      "clear_calls": 0,
+      "writes_rejected": 0,
+      "archival_listings": 0,
+      "archival_empty": 0,
+      "lost_sample": [],
+      "write_calls": 24,
+      "keyed": false,
+      "content_tokens_written": 241,
+      "content_tokens_seen_at_query": 230,
+      "content_survival": 0.954
+    },
+    "memory_rec_sum-student": {
+      "keys_written": 0,
+      "keys_visible_at_query": 0,
+      "keys_lost": 0,
+      "clear_calls": 0,
+      "writes_rejected": 116,
+      "archival_listings": 0,
+      "archival_empty": 0,
+      "lost_sample": [],
+      "write_calls": 25,
+      "keyed": false,
+      "content_tokens_written": 203,
+      "content_tokens_seen_at_query": 193,
+      "content_survival": 0.951
+    },
+    "memory_vector-customer": {
+      "keys_written": 54,
+      "keys_visible_at_query": 0,
+      "keys_lost": 54,
+      "clear_calls": 30,
+      "writes_rejected": 173,
+      "archival_listings": 0,
+      "archival_empty": 0,
+      "lost_sample": [
+        "ret:0",
+        "ret:1",
+        "ret:10",
+        "ret:11",
+        "ret:12",
+        "ret:13",
+        "ret:14",
+        "ret:15",
+        "ret:16",
+        "ret:17"
+      ],
+      "write_calls": 81,
+      "keyed": true,
+      "content_tokens_written": 458,
+      "content_tokens_seen_at_query": 307,
+      "content_survival": 0.67
+    },
+    "memory_vector-finance": {
+      "keys_written": 31,
+      "keys_visible_at_query": 0,
+      "keys_lost": 31,
+      "clear_calls": 0,
+      "writes_rejected": 44,
+      "archival_listings": 0,
+      "archival_empty": 0,
+      "lost_sample": [
+        "ret:1",
+        "ret:11",
+        "ret:13",
+        "ret:15",
+        "ret:17",
+        "ret:18",
+        "ret:19",
+        "ret:2",
+        "ret:20",
+        "ret:21"
+      ],
+      "write_calls": 35,
+      "keyed": true,
+      "content_tokens_written": 342,
+      "content_tokens_seen_at_query": 135,
+      "content_survival": 0.395
+    },
+    "memory_vector-healthcare": {
+      "keys_written": 33,
+      "keys_visible_at_query": 0,
+      "keys_lost": 33,
+      "clear_calls": 10,
+      "writes_rejected": 44,
+      "archival_listings": 0,
+      "archival_empty": 0,
+      "lost_sample": [
+        "ret:1",
+        "ret:10",
+        "ret:11",
+        "ret:12",
+        "ret:13",
+        "ret:14",
+        "ret:15",
+        "ret:16",
+        "ret:17",
+        "ret:19"
+      ],
+      "write_calls": 41,
+      "keyed": true,
+      "content_tokens_written": 311,
+      "content_tokens_seen_at_query": 179,
+      "content_survival": 0.576
+    },
+    "memory_vector-notetaker": {
+      "keys_written": 21,
+      "keys_visible_at_query": 0,
+      "keys_lost": 21,
+      "clear_calls": 0,
+      "writes_rejected": 17,
+      "archival_listings": 0,
+      "archival_empty": 0,
+      "lost_sample": [
+        "ret:0",
+        "ret:1",
+        "ret:11",
+        "ret:13",
+        "ret:15",
+        "ret:17",
+        "ret:19",
+        "ret:2",
+        "ret:21",
+        "ret:23"
+      ],
+      "write_calls": 24,
+      "keyed": true,
+      "content_tokens_written": 250,
+      "content_tokens_seen_at_query": 110,
+      "content_survival": 0.44
+    }
+  },
+  "findings": [
+    {
+      "query": "memory_kv_58-finance-3",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_59-finance-4",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "ai_market_analysis_platform"
+      ]
+    },
+    {
+      "query": "memory_kv_60-finance-5",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_15-finance-0",
+        "step": 10,
+        "call": "core_memory_add",
+        "key": "career_path",
+        "value": "Started as analyst at Goldman Sachs (2001) during dot-com crash; moved to Morgan Stanley (2004) focusing on tech deals; ",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "start_of_career_2001"
+      ]
+    },
+    {
+      "query": "memory_kv_61-finance-6",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "mba_institution"
+      ]
+    },
+    {
+      "query": "memory_kv_63-finance-8",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "golf_handicap"
+      ]
+    },
+    {
+      "query": "memory_kv_64-finance-9",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "morning_start_time"
+      ]
+    },
+    {
+      "query": "memory_kv_65-finance-10",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_17-finance-2",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "personal_portfolio_strategy",
+        "value": "Long-term approach balancing high-risk opportunities with stable, income-generating investments. Core holdings: equities",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "personal_development_goals"
+      ]
+    },
+    {
+      "query": "memory_kv_68-finance-13",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "dinner_series_name"
+      ]
+    },
+    {
+      "query": "memory_kv_69-finance-14",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "core_values",
+        "motivation"
+      ]
+    },
+    {
+      "query": "memory_kv_70-finance-15",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "kids_interests"
+      ]
+    },
+    {
+      "query": "memory_kv_71-finance-16",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_72-finance-17",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "platform"
+      ]
+    },
+    {
+      "query": "memory_kv_73-finance-18",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "machine_learning_platform"
+      ]
+    },
+    {
+      "query": "memory_kv_75-finance-20",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_76-finance-21",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_77-finance-22",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_15-finance-0",
+        "step": 10,
+        "call": "core_memory_add",
+        "key": "career_path",
+        "value": "Started as analyst at Goldman Sachs (2001) during dot-com crash; moved to Morgan Stanley (2004) focusing on tech deals; ",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_78-finance-23",
+      "chain": "memory_kv-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_16-finance-1",
+        "step": 7,
+        "call": "core_memory_add",
+        "key": "crisis_management_leadership",
+        "value": "2020 market crash response: Saturday morning team gathering, methodical position analysis, opportunity identification, d",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "motivation"
+      ]
+    },
+    {
+      "query": "memory_kv_31-healthcare-1",
+      "chain": "memory_kv-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_10-healthcare-0",
+        "step": 2,
+        "call": "core_memory_add",
+        "key": "diabetes_type",
+        "value": "Type 2",
+        "errored": true,
+        "result": "['{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"error\": \"Core memory is full. Please c"
+      },
+      "wanted_keys": [
+        "diabetes_diagnosis_year"
+      ]
+    },
+    {
+      "query": "memory_kv_32-healthcare-2",
+      "chain": "memory_kv-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": [
+        "doctor_recommendations"
+      ]
+    },
+    {
+      "query": "memory_kv_33-healthcare-3",
+      "chain": "memory_kv-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_12-healthcare-2",
+        "step": 28,
+        "call": "core_memory_add",
+        "key": "pain_management",
+        "value": "osteoarthritis flare-ups in cold months, warm baths with Epsom salts, heating pads, tai chi/gentle stretching; focuses o",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "emergency_room_visit_cause",
+        "pain_management"
+      ]
+    },
+    {
+      "query": "memory_kv_34-healthcare-4",
+      "chain": "memory_kv-healthcare",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_10-healthcare-0",
+        "step": 12,
+        "call": "archival_memory_add",
+        "key": "surgery_type",
+        "value": "gallbladder removal (cholecystectomy)",
+        "errored": false,
+        "result": "['{\"status\": \"Key added.\"}', '{\"status\": \"Key added.\"}', '{\"status\": \"Key added.\"}', '{\"status\": \"Key added.\"}', '{\"stat"
+      },
+      "wanted_keys": [
+        "surgery_history"
+      ]
+    },
+    {
+      "query": "memory_kv_35-healthcare-5",
+      "chain": "memory_kv-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_36-healthcare-6",
+      "chain": "memory_kv-healthcare",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_10-healthcare-0",
+        "step": 10,
+        "call": "archival_memory_add",
+        "key": "hypothyroidism_diagnosis_age",
+        "value": "early 40s",
+        "errored": false,
+        "result": "['{\"status\": \"Key added.\"}', '{\"status\": \"Key added.\"}', '{\"status\": \"Key added.\"}', '{\"status\": \"Key added.\"}', '{\"stat"
+      },
+      "wanted_keys": [
+        "diagnosis_age_40",
+        "seasonal_health_impact"
+      ]
+    },
+    {
+      "query": "memory_kv_37-healthcare-7",
+      "chain": "memory_kv-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_11-healthcare-1",
+        "step": 11,
+        "call": "archival_memory_add",
+        "key": "sleep_hygiene_elderly",
+        "value": "Recognized importance of sleep for blood pressure, joint health, and energy. Developed bedtime routine: avoid caffeine a",
+        "errored": true,
+        "result": "['{\"error\": \"Long term memory is full. Please clear some entries.\"}']"
+      },
+      "wanted_keys": [
+        "doctor_recommendations",
+        "medication_history",
+        "seasonal_considerations",
+        "sleep_hygiene_elderly"
+      ]
+    },
+    {
+      "query": "memory_kv_38-healthcare-8",
+      "chain": "memory_kv-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_39-healthcare-9",
+      "chain": "memory_kv-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": [
+        "breakfast_eggs_accompaniment"
+      ]
+    },
+    {
+      "query": "memory_kv_40-healthcare-10",
+      "chain": "memory_kv-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_11-healthcare-1",
+        "step": 10,
+        "call": "core_memory_add",
+        "key": "sleep_hygiene",
+        "value": "Recognized importance of sleep for blood pressure, joint health, and energy. Developed bedtime routine: avoid caffeine a",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_41-healthcare-11",
+      "chain": "memory_kv-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_12-healthcare-2",
+        "step": 4,
+        "call": "core_memory_add",
+        "key": "diet_focus",
+        "value": "protein, healthy fats, fiber; avoid processed foods; favorite meal: grilled salmon with roasted vegetables",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "favorite_go_to_meal"
+      ]
+    },
+    {
+      "query": "memory_kv_44-healthcare-14",
+      "chain": "memory_kv-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": [
+        "doctor_recommendations",
+        "memory_sharpening_activity"
+      ]
+    },
+    {
+      "query": "memory_kv_46-healthcare-16",
+      "chain": "memory_kv-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_13-healthcare-3",
+        "step": 0,
+        "call": "archival_memory_add",
+        "key": "latest_bloodwork_summary",
+        "value": "Recent bloodwork showed fluctuations but remained within acceptable ranges for diabetes and hypertension management.",
+        "errored": true,
+        "result": "['{\"status\": \"Key added.\"}', '{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "a1c_value",
+        "latest_bloodwork_summary"
+      ]
+    },
+    {
+      "query": "memory_kv_48-healthcare-18",
+      "chain": "memory_kv-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_13-healthcare-3",
+        "step": 0,
+        "call": "archival_memory_add",
+        "key": "latest_bloodwork_summary",
+        "value": "Recent bloodwork showed fluctuations but remained within acceptable ranges for diabetes and hypertension management.",
+        "errored": true,
+        "result": "['{\"status\": \"Key added.\"}', '{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "latest_bloodwork_summary"
+      ]
+    },
+    {
+      "query": "memory_kv_49-healthcare-19",
+      "chain": "memory_kv-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_13-healthcare-3",
+        "step": 0,
+        "call": "archival_memory_add",
+        "key": "latest_bloodwork_summary",
+        "value": "Recent bloodwork showed fluctuations but remained within acceptable ranges for diabetes and hypertension management.",
+        "errored": true,
+        "result": "['{\"status\": \"Key added.\"}', '{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "latest_bloodwork_summary"
+      ]
+    },
+    {
+      "query": "memory_kv_50-healthcare-20",
+      "chain": "memory_kv-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_13-healthcare-3",
+        "step": 0,
+        "call": "archival_memory_add",
+        "key": "latest_bloodwork_summary",
+        "value": "Recent bloodwork showed fluctuations but remained within acceptable ranges for diabetes and hypertension management.",
+        "errored": true,
+        "result": "['{\"status\": \"Key added.\"}', '{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "latest_bloodwork_summary"
+      ]
+    },
+    {
+      "query": "memory_kv_51-healthcare-21",
+      "chain": "memory_kv-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_13-healthcare-3",
+        "step": 0,
+        "call": "archival_memory_add",
+        "key": "latest_bloodwork_summary",
+        "value": "Recent bloodwork showed fluctuations but remained within acceptable ranges for diabetes and hypertension management.",
+        "errored": true,
+        "result": "['{\"status\": \"Key added.\"}', '{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "latest_bloodwork_summary"
+      ]
+    },
+    {
+      "query": "memory_kv_52-healthcare-22",
+      "chain": "memory_kv-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": [
+        "esr"
+      ]
+    },
+    {
+      "query": "memory_kv_53-healthcare-23",
+      "chain": "memory_kv-healthcare",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_kv_prereq_14-healthcare-4",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "medication_history",
+        "value": "Patient manages diabetes, hypertension, osteoarthritis, and hypothyroidism with regular medication adjustments. Medicati",
+        "errored": false,
+        "result": "['{\"status\": \"Key-value pair added.\"}']"
+      },
+      "wanted_keys": [
+        "medication_history"
+      ]
+    },
+    {
+      "query": "memory_kv_54-healthcare-24",
+      "chain": "memory_kv-healthcare",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_kv_prereq_14-healthcare-4",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "medication_history",
+        "value": "Patient manages diabetes, hypertension, osteoarthritis, and hypothyroidism with regular medication adjustments. Medicati",
+        "errored": false,
+        "result": "['{\"status\": \"Key-value pair added.\"}']"
+      },
+      "wanted_keys": [
+        "medication_history"
+      ]
+    },
+    {
+      "query": "memory_kv_131-notetaker-1",
+      "chain": "memory_kv-notetaker",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_35-notetaker-3",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "daycare_drop_off",
+        "value": "8 AM",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"error\": \"Core memory is full. Please clear some entr"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_132-notetaker-2",
+      "chain": "memory_kv-notetaker",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": [
+        "benefits_package_review"
+      ]
+    },
+    {
+      "query": "memory_kv_137-notetaker-7",
+      "chain": "memory_kv-notetaker",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_141-notetaker-11",
+      "chain": "memory_kv-notetaker",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_142-notetaker-12",
+      "chain": "memory_kv-notetaker",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_33-notetaker-1",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "tax_documents_submission_deadline",
+        "value": "Submit tax documents before Friday.",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"error\": \"Core memory is full. Please clear some entr"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_143-notetaker-13",
+      "chain": "memory_kv-notetaker",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_144-notetaker-14",
+      "chain": "memory_kv-notetaker",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_36-notetaker-4",
+        "step": 4,
+        "call": "core_memory_add",
+        "key": "gym_workout_goals",
+        "value": "Gym at least 3 times this week, focusing on strength training for legs and back. Aim for 10,000 steps daily. Stretch ham",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_145-notetaker-15",
+      "chain": "memory_kv-notetaker",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_146-notetaker-16",
+      "chain": "memory_kv-notetaker",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_147-notetaker-17",
+      "chain": "memory_kv-notetaker",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_149-notetaker-19",
+      "chain": "memory_kv-notetaker",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_151-notetaker-21",
+      "chain": "memory_kv-notetaker",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_80-student-0",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": [
+        "favorite_course"
+      ]
+    },
+    {
+      "query": "memory_kv_81-student-1",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": [
+        "capstone_project_duration"
+      ]
+    },
+    {
+      "query": "memory_kv_82-student-2",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_84-student-4",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": [
+        "capstone_project_hours"
+      ]
+    },
+    {
+      "query": "memory_kv_86-student-6",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_88-student-8",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_89-student-9",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_90-student-10",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_31-student-9",
+        "step": 44,
+        "call": "archival_memory_remove",
+        "key": "grad_school_considerations",
+        "value": "",
+        "errored": false,
+        "result": "['{\"status\": \"Key removed.\"}']"
+      },
+      "wanted_keys": [
+        "high_school_papers_coauthored"
+      ]
+    },
+    {
+      "query": "memory_kv_91-student-11",
+      "chain": "memory_kv-student",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_kv_prereq_31-student-9",
+        "step": 28,
+        "call": "core_memory_add",
+        "key": "class_time_and_communication_details",
+        "value": "Class runs until 2:00-3:00 PM with midday break. Lunch: turkey and avocado wrap from campus bistro. During lunch, checks",
+        "errored": false,
+        "result": "['{\"status\": \"Key-value pair added.\"}']"
+      },
+      "wanted_keys": [
+        "class_time_and_communication_details"
+      ]
+    },
+    {
+      "query": "memory_kv_92-student-12",
+      "chain": "memory_kv-student",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_kv_prereq_31-student-9",
+        "step": 28,
+        "call": "core_memory_add",
+        "key": "class_time_and_communication_details",
+        "value": "Class runs until 2:00-3:00 PM with midday break. Lunch: turkey and avocado wrap from campus bistro. During lunch, checks",
+        "errored": false,
+        "result": "['{\"status\": \"Key-value pair added.\"}']"
+      },
+      "wanted_keys": [
+        "class_time_and_communication_details",
+        "research_group"
+      ]
+    },
+    {
+      "query": "memory_kv_93-student-13",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": [
+        "target_conference"
+      ]
+    },
+    {
+      "query": "memory_kv_94-student-14",
+      "chain": "memory_kv-student",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_31-student-9",
+        "step": 38,
+        "call": "core_memory_add",
+        "key": "late_afternoon_coding_and_project_details",
+        "value": "Late afternoon coding in lab/library or collaboration rooms for group project on distributed system handling real-time s",
+        "errored": true,
+        "result": "['{\"error\": \"Entry is too long. Please shorten the entry to less than 300 characters.\"}', '{\"status\": \"Key-value pair ad"
+      },
+      "wanted_keys": [
+        "late_afternoon_coding_and_project_details",
+        "server_crash_lessons"
+      ]
+    },
+    {
+      "query": "memory_kv_95-student-15",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_25-student-3",
+        "step": 4,
+        "call": "core_memory_add",
+        "key": "vr_ar_club_experience",
+        "value": "Attending VR/AR Club since sophomore year due to immersive analytics research interest. Club features hands-on VR lab wi",
+        "errored": false,
+        "result": "['{\"status\": \"Key-value pair added.\"}']"
+      },
+      "wanted_keys": [
+        "vr_ar_club_join_date"
+      ]
+    },
+    {
+      "query": "memory_kv_96-student-16",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_97-student-17",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": [
+        "dorm_name_first_two_years"
+      ]
+    },
+    {
+      "query": "memory_kv_98-student-18",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": [
+        "one_day_event_name"
+      ]
+    },
+    {
+      "query": "memory_kv_99-student-19",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_26-student-4",
+        "step": 2,
+        "call": "core_memory_remove",
+        "key": "campus_life_experience",
+        "value": "",
+        "errored": false,
+        "result": "['{\"status\": \"Key removed.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_101-student-21",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_102-student-22",
+      "chain": "memory_kv-student",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_26-student-4",
+        "step": 28,
+        "call": "core_memory_add",
+        "key": "recruiter_contacts_and_startup_interest",
+        "value": "Received initial recruiter outreach on LinkedIn, feeling optimistic yet cautious about the hiring process. Exploring sma",
+        "errored": true,
+        "result": "['{\"error\": \"Core memory is full. Please clear some entries.\"}', '{\"status\": \"Key added.\"}']"
+      },
+      "wanted_keys": [
+        "internship_startup_employee_count"
+      ]
+    },
+    {
+      "query": "memory_kv_103-student-23",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": [
+        "job_role_search"
+      ]
+    },
+    {
+      "query": "memory_kv_104-student-24",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_110-student-30",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_111-student-31",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": [
+        "first_connection_setting"
+      ]
+    },
+    {
+      "query": "memory_kv_112-student-32",
+      "chain": "memory_kv-student",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_kv_prereq_31-student-9",
+        "step": 47,
+        "call": "core_memory_add",
+        "key": "evening_club_and_departure_details",
+        "value": "Leaves campus around 6:00-7:00 PM, depending on work immersion or Robotics Club meeting. Robotics Club meets weekly for ",
+        "errored": false,
+        "result": "['{\"status\": \"Key-value pair added.\"}']"
+      },
+      "wanted_keys": [
+        "evening_club_and_departure_details"
+      ]
+    },
+    {
+      "query": "memory_kv_115-student-35",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_118-student-38",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_119-student-39",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": [
+        "relative_vase_teasing"
+      ]
+    },
+    {
+      "query": "memory_kv_123-student-43",
+      "chain": "memory_kv-student",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_kv_prereq_31-student-9",
+        "step": 57,
+        "call": "core_memory_add",
+        "key": "weekend_time_management",
+        "value": "Weekends: Saturdays balance longer assignments/project milestones with fun (sailing trips or friend gatherings). Sundays",
+        "errored": true,
+        "result": "['{\"error\": \"Entry is too long. Please shorten the entry to less than 300 characters.\"}', '{\"status\": \"Key-value pair ad"
+      },
+      "wanted_keys": [
+        "weekend_time_management"
+      ]
+    },
+    {
+      "query": "memory_kv_124-student-44",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_125-student-45",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": [
+        "morning_wake_up_time"
+      ]
+    },
+    {
+      "query": "memory_kv_126-student-46",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_127-student-47",
+      "chain": "memory_kv-student",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_kv_prereq_24-student-2",
+        "step": 24,
+        "call": "core_memory_clear",
+        "key": "poster_presentations_experience",
+        "value": "Experienced presenting research at campus symposiums, initially nervous but found it to be a friendly dialogue with genu",
+        "errored": false,
+        "result": "['{\"status\": \"Short term memory cleared.\"}', '{\"status\": \"Key-value pair added.\"}', '{\"status\": \"Key-value pair added.\"}"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_kv_128-student-48",
+      "chain": "memory_kv-student",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_kv_prereq_31-student-9",
+        "step": 47,
+        "call": "core_memory_add",
+        "key": "evening_club_and_departure_details",
+        "value": "Leaves campus around 6:00-7:00 PM, depending on work immersion or Robotics Club meeting. Robotics Club meets weekly for ",
+        "errored": false,
+        "result": "['{\"status\": \"Key-value pair added.\"}']"
+      },
+      "wanted_keys": [
+        "evening_club_and_departure_details"
+      ]
+    },
+    {
+      "query": "memory_rec_sum_3-customer-3",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_4-customer-4",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_5-customer-5",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_7-customer-7",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_8-customer-8",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_9-customer-9",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_10-customer-10",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_12-customer-12",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_13-customer-13",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_22-customer-22",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_24-customer-24",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_25-customer-25",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_27-customer-27",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_28-customer-28",
+      "chain": "memory_rec_sum-customer",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_1-customer-1",
+        "step": 2,
+        "call": "memory_append",
+        "key": null,
+        "value": "User Michael selects espresso machine model with steam wand for frothing milk to make strawberry matcha lattes and cappu",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_34-healthcare-4",
+      "chain": "memory_rec_sum-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_38-healthcare-8",
+      "chain": "memory_rec_sum-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_41-healthcare-11",
+      "chain": "memory_rec_sum-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_49-healthcare-19",
+      "chain": "memory_rec_sum-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_50-healthcare-20",
+      "chain": "memory_rec_sum-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_51-healthcare-21",
+      "chain": "memory_rec_sum-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_52-healthcare-22",
+      "chain": "memory_rec_sum-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_143-notetaker-13",
+      "chain": "memory_rec_sum-notetaker",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_33-notetaker-1",
+        "step": 0,
+        "call": "memory_append",
+        "key": null,
+        "value": "Urgent tasks: 1) Submit tax documents before Friday. 2) Review credit card statement for errors. 3) Call auto repair sho",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_145-notetaker-15",
+      "chain": "memory_rec_sum-notetaker",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_36-notetaker-4",
+        "step": 8,
+        "call": "memory_append",
+        "key": null,
+        "value": "Supplements & Meds: Vitamin D3\u20141000 IU daily. Omega-3s\u2014good for joints. Iron levels were low last check-up\u2014remember to t",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_146-notetaker-16",
+      "chain": "memory_rec_sum-notetaker",
+      "class": "stored_but_not_retrieved",
+      "divergence": {
+        "episode": "memory_rec_sum_prereq_36-notetaker-4",
+        "step": 8,
+        "call": "memory_append",
+        "key": null,
+        "value": "Supplements & Meds: Vitamin D3\u20141000 IU daily. Omega-3s\u2014good for joints. Iron levels were low last check-up\u2014remember to t",
+        "errored": false,
+        "result": "['{\"status\": \"Memory appended.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_90-student-10",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_93-student-13",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_94-student-14",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_95-student-15",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_96-student-16",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_97-student-17",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_98-student-18",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_99-student-19",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_102-student-22",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_104-student-24",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_106-student-26",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_108-student-28",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_110-student-30",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_111-student-31",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_112-student-32",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_115-student-35",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_117-student-37",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_118-student-38",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_119-student-39",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_120-student-40",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_124-student-44",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_125-student-45",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_126-student-46",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_127-student-47",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_128-student-48",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_rec_sum_129-student-49",
+      "chain": "memory_rec_sum-student",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_0-customer-0",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_7-customer-7",
+        "step": 46,
+        "call": "core_memory_add",
+        "key": null,
+        "value": "User Michael insists on legitimate charges only; recent purchases were coffee canisters, digital scale, and coffee grind",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_1-customer-1",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_7-customer-7",
+        "step": 46,
+        "call": "core_memory_add",
+        "key": null,
+        "value": "User Michael insists on legitimate charges only; recent purchases were coffee canisters, digital scale, and coffee grind",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_2-customer-2",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_7-customer-7",
+        "step": 46,
+        "call": "core_memory_add",
+        "key": null,
+        "value": "User Michael insists on legitimate charges only; recent purchases were coffee canisters, digital scale, and coffee grind",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_3-customer-3",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_1-customer-1",
+        "step": 15,
+        "call": "core_memory_add",
+        "key": "ret:11",
+        "value": "User Michael inquires about expedited shipping fees and free shipping thresholds for orders over a certain price point, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 11}']"
+      },
+      "wanted_keys": [
+        "ret:11"
+      ]
+    },
+    {
+      "query": "memory_vector_4-customer-4",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_7-customer-7",
+        "step": 46,
+        "call": "core_memory_add",
+        "key": null,
+        "value": "User Michael insists on legitimate charges only; recent purchases were coffee canisters, digital scale, and coffee grind",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_5-customer-5",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_7-customer-7",
+        "step": 46,
+        "call": "core_memory_add",
+        "key": null,
+        "value": "User Michael insists on legitimate charges only; recent purchases were coffee canisters, digital scale, and coffee grind",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_7-customer-7",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_1-customer-1",
+        "step": 12,
+        "call": "core_memory_add",
+        "key": "ret:9",
+        "value": "User Michael requests estimated arrival date for espresso machine based on current inventory, considering shipping times",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 9}']"
+      },
+      "wanted_keys": [
+        "ret:6",
+        "ret:9"
+      ]
+    },
+    {
+      "query": "memory_vector_8-customer-8",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_1-customer-1",
+        "step": 15,
+        "call": "core_memory_add",
+        "key": "ret:11",
+        "value": "User Michael inquires about expedited shipping fees and free shipping thresholds for orders over a certain price point, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 11}']"
+      },
+      "wanted_keys": [
+        "ret:11"
+      ]
+    },
+    {
+      "query": "memory_vector_9-customer-9",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_1-customer-1",
+        "step": 15,
+        "call": "core_memory_add",
+        "key": "ret:11",
+        "value": "User Michael inquires about expedited shipping fees and free shipping thresholds for orders over a certain price point, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 11}']"
+      },
+      "wanted_keys": [
+        "ret:11"
+      ]
+    },
+    {
+      "query": "memory_vector_10-customer-10",
+      "chain": "memory_vector-customer",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_vector_prereq_1-customer-1",
+        "step": 13,
+        "call": "archival_memory_add",
+        "key": "ret:10",
+        "value": "User Michael requests estimated arrival date for espresso machine based on current inventory, considering shipping times",
+        "errored": false,
+        "result": "['{\"id\": 10}']"
+      },
+      "wanted_keys": [
+        "ret:10"
+      ]
+    },
+    {
+      "query": "memory_vector_11-customer-11",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_1-customer-1",
+        "step": 15,
+        "call": "core_memory_add",
+        "key": "ret:11",
+        "value": "User Michael inquires about expedited shipping fees and free shipping thresholds for orders over a certain price point, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 11}']"
+      },
+      "wanted_keys": [
+        "ret:11"
+      ]
+    },
+    {
+      "query": "memory_vector_12-customer-12",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_9-customer-9",
+        "step": 35,
+        "call": "archival_memory_retrieve_all",
+        "key": "ret:6",
+        "value": "",
+        "errored": true,
+        "result": "['{\"result\": [{\"id\": 6, \"text\": \"User Michael inquires about loyalty or referral programs for returning customers, seeki"
+      },
+      "wanted_keys": [
+        "ret:6"
+      ]
+    },
+    {
+      "query": "memory_vector_13-customer-13",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_1-customer-1",
+        "step": 15,
+        "call": "core_memory_add",
+        "key": "ret:11",
+        "value": "User Michael inquires about expedited shipping fees and free shipping thresholds for orders over a certain price point, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 11}']"
+      },
+      "wanted_keys": [
+        "ret:11",
+        "ret:41"
+      ]
+    },
+    {
+      "query": "memory_vector_16-customer-16",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_7-customer-7",
+        "step": 46,
+        "call": "core_memory_add",
+        "key": null,
+        "value": "User Michael insists on legitimate charges only; recent purchases were coffee canisters, digital scale, and coffee grind",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_19-customer-19",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_9-customer-9",
+        "step": 55,
+        "call": "archival_memory_retrieve_all",
+        "key": "ret:8",
+        "value": "",
+        "errored": true,
+        "result": "['{\"result\": [{\"id\": 8, \"text\": \"User Michael requests shipping details for new coffee grinder and accessories, includin"
+      },
+      "wanted_keys": [
+        "ret:8"
+      ]
+    },
+    {
+      "query": "memory_vector_20-customer-20",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_1-customer-1",
+        "step": 15,
+        "call": "core_memory_add",
+        "key": "ret:11",
+        "value": "User Michael inquires about expedited shipping fees and free shipping thresholds for orders over a certain price point, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 11}']"
+      },
+      "wanted_keys": [
+        "ret:11"
+      ]
+    },
+    {
+      "query": "memory_vector_22-customer-22",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_9-customer-9",
+        "step": 35,
+        "call": "archival_memory_retrieve_all",
+        "key": "ret:6",
+        "value": "",
+        "errored": true,
+        "result": "['{\"result\": [{\"id\": 6, \"text\": \"User Michael inquires about loyalty or referral programs for returning customers, seeki"
+      },
+      "wanted_keys": [
+        "ret:6",
+        "ret:8"
+      ]
+    },
+    {
+      "query": "memory_vector_23-customer-23",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_2-customer-2",
+        "step": 8,
+        "call": "core_memory_add",
+        "key": "ret:24",
+        "value": "User Michael expresses urgency for espresso machine delivery before family gathering, planned latte art showdown with fr",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 24}']"
+      },
+      "wanted_keys": [
+        "ret:24",
+        "ret:6"
+      ]
+    },
+    {
+      "query": "memory_vector_24-customer-24",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_9-customer-9",
+        "step": 35,
+        "call": "archival_memory_retrieve_all",
+        "key": "ret:6",
+        "value": "",
+        "errored": true,
+        "result": "['{\"result\": [{\"id\": 6, \"text\": \"User Michael inquires about loyalty or referral programs for returning customers, seeki"
+      },
+      "wanted_keys": [
+        "ret:6"
+      ]
+    },
+    {
+      "query": "memory_vector_25-customer-25",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_7-customer-7",
+        "step": 46,
+        "call": "core_memory_add",
+        "key": null,
+        "value": "User Michael insists on legitimate charges only; recent purchases were coffee canisters, digital scale, and coffee grind",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_27-customer-27",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_9-customer-9",
+        "step": 55,
+        "call": "archival_memory_retrieve_all",
+        "key": "ret:8",
+        "value": "",
+        "errored": true,
+        "result": "['{\"result\": [{\"id\": 8, \"text\": \"User Michael requests shipping details for new coffee grinder and accessories, includin"
+      },
+      "wanted_keys": [
+        "ret:8"
+      ]
+    },
+    {
+      "query": "memory_vector_28-customer-28",
+      "chain": "memory_vector-customer",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_1-customer-1",
+        "step": 15,
+        "call": "core_memory_add",
+        "key": "ret:11",
+        "value": "User Michael inquires about expedited shipping fees and free shipping thresholds for orders over a certain price point, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 11}']"
+      },
+      "wanted_keys": [
+        "ret:11"
+      ]
+    },
+    {
+      "query": "memory_vector_58-finance-3",
+      "chain": "memory_vector-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_15-finance-0",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "ret:0",
+        "value": "User is the Managing Director of Legend Investments, overseeing multi-billion-dollar portfolios in equities, bonds, and ",
+        "errored": true,
+        "result": "['{\"error\": \"Entry length exceeds maximum length of 300 characters.\"}', '{\"id\": 0}']"
+      },
+      "wanted_keys": [
+        "ret:0"
+      ]
+    },
+    {
+      "query": "memory_vector_63-finance-8",
+      "chain": "memory_vector-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_15-finance-0",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "ret:0",
+        "value": "User is the Managing Director of Legend Investments, overseeing multi-billion-dollar portfolios in equities, bonds, and ",
+        "errored": true,
+        "result": "['{\"error\": \"Entry length exceeds maximum length of 300 characters.\"}', '{\"id\": 0}']"
+      },
+      "wanted_keys": [
+        "ret:0"
+      ]
+    },
+    {
+      "query": "memory_vector_64-finance-9",
+      "chain": "memory_vector-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_17-finance-2",
+        "step": 1,
+        "call": "core_memory_add",
+        "key": "ret:6",
+        "value": "Personal wealth strategy: long-term, balanced high-risk/stable investments. Core: equities, private equity. Mix: bonds, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 6}']"
+      },
+      "wanted_keys": [
+        "ret:6"
+      ]
+    },
+    {
+      "query": "memory_vector_68-finance-13",
+      "chain": "memory_vector-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_15-finance-0",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "ret:0",
+        "value": "User is the Managing Director of Legend Investments, overseeing multi-billion-dollar portfolios in equities, bonds, and ",
+        "errored": true,
+        "result": "['{\"error\": \"Entry length exceeds maximum length of 300 characters.\"}', '{\"id\": 0}']"
+      },
+      "wanted_keys": [
+        "ret:0",
+        "ret:6"
+      ]
+    },
+    {
+      "query": "memory_vector_69-finance-14",
+      "chain": "memory_vector-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_17-finance-2",
+        "step": 1,
+        "call": "core_memory_add",
+        "key": "ret:6",
+        "value": "Personal wealth strategy: long-term, balanced high-risk/stable investments. Core: equities, private equity. Mix: bonds, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 6}']"
+      },
+      "wanted_keys": [
+        "ret:45",
+        "ret:46",
+        "ret:6"
+      ]
+    },
+    {
+      "query": "memory_vector_70-finance-15",
+      "chain": "memory_vector-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_15-finance-0",
+        "step": 12,
+        "call": "core_memory_add",
+        "key": "ret:5",
+        "value": "Education: B.A. Economics (University of Pennsylvania), MBA (Harvard Business School, Baker Scholar). Active alumni enga",
+        "errored": true,
+        "result": "['{\"error\": \"Entry length exceeds maximum length of 300 characters.\"}', '{\"id\": 5}']"
+      },
+      "wanted_keys": [
+        "ret:5"
+      ]
+    },
+    {
+      "query": "memory_vector_71-finance-16",
+      "chain": "memory_vector-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_17-finance-2",
+        "step": 1,
+        "call": "core_memory_add",
+        "key": "ret:6",
+        "value": "Personal wealth strategy: long-term, balanced high-risk/stable investments. Core: equities, private equity. Mix: bonds, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 6}']"
+      },
+      "wanted_keys": [
+        "ret:45",
+        "ret:46",
+        "ret:6"
+      ]
+    },
+    {
+      "query": "memory_vector_72-finance-17",
+      "chain": "memory_vector-finance",
+      "class": "stored_then_lost",
+      "divergence": {
+        "episode": "memory_vector_prereq_15-finance-0",
+        "step": 10,
+        "call": "core_memory_add",
+        "key": "ret:4",
+        "value": "Career: Analyst (2001) at Goldman Sachs (M&A, dot-com), Associate (2004) at Morgan Stanley (tech), VP (2005) leading tra",
+        "errored": false,
+        "result": "['{\"id\": 4}']"
+      },
+      "wanted_keys": [
+        "ret:4"
+      ]
+    },
+    {
+      "query": "memory_vector_73-finance-18",
+      "chain": "memory_vector-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_15-finance-0",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "ret:0",
+        "value": "User is the Managing Director of Legend Investments, overseeing multi-billion-dollar portfolios in equities, bonds, and ",
+        "errored": true,
+        "result": "['{\"error\": \"Entry length exceeds maximum length of 300 characters.\"}', '{\"id\": 0}']"
+      },
+      "wanted_keys": [
+        "ret:0",
+        "ret:4"
+      ]
+    },
+    {
+      "query": "memory_vector_76-finance-21",
+      "chain": "memory_vector-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_17-finance-2",
+        "step": 1,
+        "call": "core_memory_add",
+        "key": "ret:6",
+        "value": "Personal wealth strategy: long-term, balanced high-risk/stable investments. Core: equities, private equity. Mix: bonds, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 6}']"
+      },
+      "wanted_keys": [
+        "ret:6"
+      ]
+    },
+    {
+      "query": "memory_vector_77-finance-22",
+      "chain": "memory_vector-finance",
+      "class": "stored_then_lost",
+      "divergence": {
+        "episode": "memory_vector_prereq_15-finance-0",
+        "step": 5,
+        "call": "core_memory_add",
+        "key": "ret:2",
+        "value": "Notable deals: 2019 Surreal Incorporated defense (poison pill case study), $8.6B Nexa-Taihua semiconductor merger (globa",
+        "errored": false,
+        "result": "['{\"id\": 2}']"
+      },
+      "wanted_keys": [
+        "ret:2"
+      ]
+    },
+    {
+      "query": "memory_vector_78-finance-23",
+      "chain": "memory_vector-finance",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_17-finance-2",
+        "step": 1,
+        "call": "core_memory_add",
+        "key": "ret:6",
+        "value": "Personal wealth strategy: long-term, balanced high-risk/stable investments. Core: equities, private equity. Mix: bonds, ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 6}']"
+      },
+      "wanted_keys": [
+        "ret:6"
+      ]
+    },
+    {
+      "query": "memory_vector_30-healthcare-0",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 6,
+        "call": "core_memory_add",
+        "key": "ret:10",
+        "value": "User emphasizes low-impact exercise for osteoarthritis and blood sugar management: walks daily, light yoga a few times w",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 10}']"
+      },
+      "wanted_keys": [
+        "ret:10",
+        "ret:14"
+      ]
+    },
+    {
+      "query": "memory_vector_31-healthcare-1",
+      "chain": "memory_vector-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_32-healthcare-2",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 15,
+        "call": "core_memory_add",
+        "key": "ret:16",
+        "value": "User emphasizes hydration for energy, digestion, and skin health. Keeps a big water bottle throughout the day, drinks he",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 16}']"
+      },
+      "wanted_keys": [
+        "ret:16"
+      ]
+    },
+    {
+      "query": "memory_vector_33-healthcare-3",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 15,
+        "call": "core_memory_add",
+        "key": "ret:16",
+        "value": "User emphasizes hydration for energy, digestion, and skin health. Keeps a big water bottle throughout the day, drinks he",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 16}']"
+      },
+      "wanted_keys": [
+        "ret:16",
+        "ret:3"
+      ]
+    },
+    {
+      "query": "memory_vector_34-healthcare-4",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 9,
+        "call": "core_memory_add",
+        "key": "ret:12",
+        "value": "User emphasizes importance of sleep for blood pressure, joint health, and energy. New bedtime routine includes avoiding ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 12}']"
+      },
+      "wanted_keys": [
+        "ret:12",
+        "ret:19"
+      ]
+    },
+    {
+      "query": "memory_vector_35-healthcare-5",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 15,
+        "call": "core_memory_add",
+        "key": "ret:16",
+        "value": "User emphasizes hydration for energy, digestion, and skin health. Keeps a big water bottle throughout the day, drinks he",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 16}']"
+      },
+      "wanted_keys": [
+        "ret:16"
+      ]
+    },
+    {
+      "query": "memory_vector_36-healthcare-6",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 9,
+        "call": "core_memory_add",
+        "key": "ret:12",
+        "value": "User emphasizes importance of sleep for blood pressure, joint health, and energy. New bedtime routine includes avoiding ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 12}']"
+      },
+      "wanted_keys": [
+        "ret:12"
+      ]
+    },
+    {
+      "query": "memory_vector_37-healthcare-7",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 12,
+        "call": "core_memory_add",
+        "key": "ret:14",
+        "value": "User practices mindfulness (5 minutes of deep breathing/meditation) and gratitude journaling to manage stress, which is ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 14}']"
+      },
+      "wanted_keys": [
+        "ret:11",
+        "ret:14",
+        "ret:16"
+      ]
+    },
+    {
+      "query": "memory_vector_38-healthcare-8",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 12,
+        "call": "core_memory_add",
+        "key": "ret:14",
+        "value": "User practices mindfulness (5 minutes of deep breathing/meditation) and gratitude journaling to manage stress, which is ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 14}']"
+      },
+      "wanted_keys": [
+        "ret:14"
+      ]
+    },
+    {
+      "query": "memory_vector_39-healthcare-9",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 12,
+        "call": "core_memory_add",
+        "key": "ret:14",
+        "value": "User practices mindfulness (5 minutes of deep breathing/meditation) and gratitude journaling to manage stress, which is ",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 14}']"
+      },
+      "wanted_keys": [
+        "ret:14"
+      ]
+    },
+    {
+      "query": "memory_vector_40-healthcare-10",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 6,
+        "call": "core_memory_add",
+        "key": "ret:10",
+        "value": "User emphasizes low-impact exercise for osteoarthritis and blood sugar management: walks daily, light yoga a few times w",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 10}']"
+      },
+      "wanted_keys": [
+        "ret:10"
+      ]
+    },
+    {
+      "query": "memory_vector_41-healthcare-11",
+      "chain": "memory_vector-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_43-healthcare-13",
+      "chain": "memory_vector-healthcare",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 6,
+        "call": "core_memory_add",
+        "key": "ret:10",
+        "value": "User emphasizes low-impact exercise for osteoarthritis and blood sugar management: walks daily, light yoga a few times w",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 10}']"
+      },
+      "wanted_keys": [
+        "ret:10",
+        "ret:16"
+      ]
+    },
+    {
+      "query": "memory_vector_45-healthcare-15",
+      "chain": "memory_vector-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_46-healthcare-16",
+      "chain": "memory_vector-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_49-healthcare-19",
+      "chain": "memory_vector-healthcare",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 10,
+        "call": "archival_memory_add",
+        "key": "ret:13",
+        "value": "User emphasizes importance of sleep for blood pressure, joint health, and energy. New bedtime routine includes avoiding ",
+        "errored": false,
+        "result": "['{\"id\": 13}']"
+      },
+      "wanted_keys": [
+        "ret:13"
+      ]
+    },
+    {
+      "query": "memory_vector_51-healthcare-21",
+      "chain": "memory_vector-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_52-healthcare-22",
+      "chain": "memory_vector-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_53-healthcare-23",
+      "chain": "memory_vector-healthcare",
+      "class": "never_stored",
+      "divergence": null,
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_54-healthcare-24",
+      "chain": "memory_vector-healthcare",
+      "class": "stored_then_cleared",
+      "divergence": {
+        "episode": "memory_vector_prereq_11-healthcare-1",
+        "step": 10,
+        "call": "archival_memory_add",
+        "key": "ret:13",
+        "value": "User emphasizes importance of sleep for blood pressure, joint health, and energy. New bedtime routine includes avoiding ",
+        "errored": false,
+        "result": "['{\"id\": 13}']"
+      },
+      "wanted_keys": [
+        "ret:13",
+        "ret:15"
+      ]
+    },
+    {
+      "query": "memory_vector_131-notetaker-1",
+      "chain": "memory_vector-notetaker",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_34-notetaker-2",
+        "step": 3,
+        "call": "core_memory_add",
+        "key": "ret:6",
+        "value": "Trash\u2014take out Wednesday morning. Vacuum living room. Mop the kitchen floor\u2014sticky from last night\u2019s spill.",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 6}']"
+      },
+      "wanted_keys": [
+        "ret:6"
+      ]
+    },
+    {
+      "query": "memory_vector_137-notetaker-7",
+      "chain": "memory_vector-notetaker",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_36-notetaker-4",
+        "step": 12,
+        "call": "core_memory_add",
+        "key": "ret:32",
+        "value": "Supplements & Meds: Vitamin D3\u20131000 IU daily. Omega-3s\u2013good for joints. Iron levels were low last check-up\u2014remember to t",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 32}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_143-notetaker-13",
+      "chain": "memory_vector-notetaker",
+      "class": "stored_then_lost",
+      "divergence": {
+        "episode": "memory_vector_prereq_33-notetaker-1",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "ret:5",
+        "value": "Urgent: Submit tax documents before Friday. Review credit card statement for errors. Call auto repair shop about weird n",
+        "errored": false,
+        "result": "['{\"id\": 5}']"
+      },
+      "wanted_keys": [
+        "ret:5",
+        "vec:5"
+      ]
+    },
+    {
+      "query": "memory_vector_145-notetaker-15",
+      "chain": "memory_vector-notetaker",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_33-notetaker-1",
+        "step": 4,
+        "call": "core_memory_add",
+        "key": "ret:0",
+        "value": "Tech: Back up laptop files. Update phone software. Cancel unused subscriptions.",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 0}']"
+      },
+      "wanted_keys": [
+        "ret:0"
+      ]
+    },
+    {
+      "query": "memory_vector_146-notetaker-16",
+      "chain": "memory_vector-notetaker",
+      "class": "stored_then_lost",
+      "divergence": {
+        "episode": "memory_vector_prereq_33-notetaker-1",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "ret:5",
+        "value": "Urgent: Submit tax documents before Friday. Review credit card statement for errors. Call auto repair shop about weird n",
+        "errored": false,
+        "result": "['{\"id\": 5}']"
+      },
+      "wanted_keys": [
+        "ret:5"
+      ]
+    },
+    {
+      "query": "memory_vector_150-notetaker-20",
+      "chain": "memory_vector-notetaker",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_36-notetaker-4",
+        "step": 12,
+        "call": "core_memory_add",
+        "key": "ret:32",
+        "value": "Supplements & Meds: Vitamin D3\u20131000 IU daily. Omega-3s\u2013good for joints. Iron levels were low last check-up\u2014remember to t",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 32}']"
+      },
+      "wanted_keys": []
+    },
+    {
+      "query": "memory_vector_151-notetaker-21",
+      "chain": "memory_vector-notetaker",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_34-notetaker-2",
+        "step": 0,
+        "call": "core_memory_add",
+        "key": "ret:4",
+        "value": "Dishes\u2014wash tonight before it piles up. Laundry\u2014separate colors, don\u2019t mix whites. Fix leaky sink in the kitchen\u2014YouTube",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 4}']"
+      },
+      "wanted_keys": [
+        "ret:4"
+      ]
+    },
+    {
+      "query": "memory_vector_154-notetaker-24",
+      "chain": "memory_vector-notetaker",
+      "class": "rejected_by_tool_contract",
+      "divergence": {
+        "episode": "memory_vector_prereq_36-notetaker-4",
+        "step": 12,
+        "call": "core_memory_add",
+        "key": "ret:32",
+        "value": "Supplements & Meds: Vitamin D3\u20131000 IU daily. Omega-3s\u2013good for joints. Iron levels were low last check-up\u2014remember to t",
+        "errored": true,
+        "result": "['{\"error\": \"Memory size exceeds maximum size of 7 entries.\"}', '{\"id\": 32}']"
+      },
+      "wanted_keys": []
+    }
+  ]
+}

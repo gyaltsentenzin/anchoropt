@@ -1,0 +1,99 @@
+{
+  "split": "test",
+  "n": 20,
+  "k": 4,
+  "agent_provider": "hosted",
+  "p0_totals": [
+    12,
+    15,
+    14,
+    14
+  ],
+  "p0_mean": 13.75,
+  "p0_sd": 1.2583057392117916,
+  "p0_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+  "tested_p1": true,
+  "why_not_p1": "",
+  "accepted": false,
+  "train_p0": "22/30",
+  "train_net": 4,
+  "p1_totals": [
+    18,
+    17,
+    14,
+    13
+  ],
+  "p1_mean": 15.5,
+  "p1_sd": 2.3804761428476167,
+  "p1_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "p1_executed": [
+    172,
+    171,
+    171,
+    156
+  ],
+  "mean_diff": 1.75,
+  "se": 1.346291201783626,
+  "z": 1.299867367239363,
+  "criterion_2_no_aggregate_regression": true,
+  "cases_fired_any_run": [
+    "13",
+    "16",
+    "18",
+    "19",
+    "2",
+    "22",
+    "24",
+    "25",
+    "26",
+    "29",
+    "30",
+    "31",
+    "32",
+    "35",
+    "37",
+    "44",
+    "45",
+    "48",
+    "6",
+    "8"
+  ],
+  "criterion_3_gains_attributable": [
+    "13",
+    "2",
+    "29",
+    "31",
+    "32",
+    "35"
+  ],
+  "criterion_3_gains_not_attributable": [],
+  "criterion_3_collateral_losses": [
+    "16",
+    "18",
+    "22",
+    "37"
+  ],
+  "p0_pass_hat_k": {
+    "1": 0.6875,
+    "2": 0.6083333333333333,
+    "3": 0.6,
+    "4": 0.6
+  },
+  "p1_pass_hat_k": {
+    "1": 0.775,
+    "2": 0.6416666666666667,
+    "3": 0.5375,
+    "4": 0.45
+  }
+}

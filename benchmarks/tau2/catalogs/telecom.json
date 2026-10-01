@@ -1,0 +1,140 @@
+{
+  "disable_roaming": {
+    "mutates_state": true,
+    "params": [
+      "customer_id",
+      "line_id"
+    ],
+    "required": [
+      "customer_id",
+      "line_id"
+    ]
+  },
+  "enable_roaming": {
+    "mutates_state": true,
+    "params": [
+      "customer_id",
+      "line_id"
+    ],
+    "required": [
+      "customer_id",
+      "line_id"
+    ]
+  },
+  "get_bills_for_customer": {
+    "mutates_state": false,
+    "params": [
+      "customer_id",
+      "limit"
+    ],
+    "required": [
+      "customer_id"
+    ]
+  },
+  "get_customer_by_id": {
+    "mutates_state": false,
+    "params": [
+      "customer_id"
+    ],
+    "required": [
+      "customer_id"
+    ]
+  },
+  "get_customer_by_name": {
+    "mutates_state": false,
+    "params": [
+      "dob",
+      "full_name"
+    ],
+    "required": [
+      "dob",
+      "full_name"
+    ]
+  },
+  "get_customer_by_phone": {
+    "mutates_state": false,
+    "params": [
+      "phone_number"
+    ],
+    "required": [
+      "phone_number"
+    ]
+  },
+  "get_data_usage": {
+    "mutates_state": false,
+    "params": [
+      "customer_id",
+      "line_id"
+    ],
+    "required": [
+      "customer_id",
+      "line_id"
+    ]
+  },
+  "get_details_by_id": {
+    "mutates_state": false,
+    "params": [
+      "id"
+    ],
+    "required": [
+      "id"
+    ]
+  },
+  "refuel_data": {
+    "mutates_state": true,
+    "params": [
+      "customer_id",
+      "gb_amount",
+      "line_id"
+    ],
+    "required": [
+      "customer_id",
+      "gb_amount",
+      "line_id"
+    ]
+  },
+  "resume_line": {
+    "mutates_state": true,
+    "params": [
+      "customer_id",
+      "line_id"
+    ],
+    "required": [
+      "customer_id",
+      "line_id"
+    ]
+  },
+  "send_payment_request": {
+    "mutates_state": true,
+    "params": [
+      "bill_id",
+      "customer_id"
+    ],
+    "required": [
+      "bill_id",
+      "customer_id"
+    ]
+  },
+  "suspend_line": {
+    "mutates_state": true,
+    "params": [
+      "customer_id",
+      "line_id",
+      "reason"
+    ],
+    "required": [
+      "customer_id",
+      "line_id",
+      "reason"
+    ]
+  },
+  "transfer_to_human_agents": {
+    "mutates_state": false,
+    "params": [
+      "summary"
+    ],
+    "required": [
+      "summary"
+    ]
+  }
+}

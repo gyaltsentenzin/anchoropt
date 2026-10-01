@@ -1,0 +1,159 @@
+[
+  {
+    "anchor": "A1",
+    "prior_incumbent": "native (all gates off)",
+    "known_locus": "post_execution",
+    "known_signal_locus_string": "capacity/container/no_remaining_capacity",
+    "known_action": "reroute",
+    "attribution": "a write was blocked by a full container",
+    "known_effect": "Semantic miner rank 1: 81 of 215 residual failures linked. Reroutes the blocked write to archival memory. Ranked by linked downstream loss, not event volume.",
+    "backend": "kv+vector",
+    "switches": [
+      "enable_capacity_repair",
+      "enable_reroute",
+      "gate:on_domain_error_core_full",
+      "gate:on_core_full_rerouted"
+    ],
+    "signal_declared_today": [],
+    "executor": null,
+    "materializable": false,
+    "trigger_source": "native (write blocked by a full container -- occurs without help)",
+    "equivalence_criterion": "reroute a capacity-blocked write to the other container, preserving the value"
+  },
+  {
+    "anchor": "A2",
+    "prior_incumbent": "T1_A1_capacity",
+    "known_locus": "post_execution",
+    "known_signal_locus_string": "existence/identifier/not_found",
+    "known_action": "reprompt",
+    "attribution": "stored-but-unreachable: the value was archived, the read never consulted archive",
+    "known_effect": "Attribution split ONE error string into two causes: 39 read-side (this anchor) and 5 write-side (A2.W, deferred below the support floor). All 39 are self-inflicted -- the value sits where A1 put it. D",
+    "backend": "kv",
+    "switches": [
+      "gate:on_domain_error_key_not_found"
+    ],
+    "signal_declared_today": [
+      "identifier_not_found"
+    ],
+    "executor": "enable_low_similarity_reprompt",
+    "materializable": true,
+    "trigger_source": "native (a read misses a key that exists elsewhere)",
+    "equivalence_criterion": "after a failed lookup, retry the read against the container that holds it"
+  },
+  {
+    "anchor": "A3",
+    "prior_incumbent": "T2_A2_not_found",
+    "known_locus": "post_generation_pre_exec",
+    "known_signal_locus_string": "permission/identifier/duplicate",
+    "known_action": "suppress",
+    "attribution": "the model re-writes a value A1 already archived, colliding with A1's own key",
+    "known_effect": "All 59 collisions are against keys A1 itself injected; 54/59 carry a token-identical value. Predicate is deliberately exact, never semantic: it fires on 55/59 and declines 4 (three paraphrases, one ge",
+    "backend": "kv",
+    "switches": [
+      "enable_redundant_write_suppress",
+      "gate:on_redundant_write_suppressed"
+    ],
+    "signal_declared_today": [
+      "duplicate_identifier"
+    ],
+    "executor": null,
+    "materializable": false,
+    "trigger_source": "DEPENDENT on A1: all 59 observed collisions are against keys A1 archived; 0 events natively",
+    "equivalence_criterion": "cancel a duplicate write before dispatch, preserving one copy"
+  },
+  {
+    "anchor": "A4",
+    "prior_incumbent": "T3_A3_duplicate",
+    "known_locus": "post_generation_pre_exec",
+    "known_signal_locus_string": "no_tool_call_at_all",
+    "known_action": "reprompt",
+    "attribution": "read-side decision failure: the fact was retrievable and the model did not look",
+    "known_effect": "The first anchor from the EXPANDED vocabulary, after the error-keyed miner was exhausted. Precision 0.80 against passing queries; the alternatives were rejected on the same test (short_episode 0.57, a",
+    "backend": "vector+kv+rec_sum",
+    "switches": [
+      "enable_zero_call_reprompt"
+    ],
+    "signal_declared_today": [
+      "no_tool_call_at_all"
+    ],
+    "executor": "enable_zero_call_reprompt",
+    "materializable": true,
+    "trigger_source": "native (26/89 = 29% on the native incumbent -- the highest native rate of any anchor)",
+    "equivalence_criterion": "intercept a zero-tool-call commitment and induce >=1 retrieval before answering"
+  },
+  {
+    "anchor": "A5",
+    "prior_incumbent": "T5_A4_no_tool_call",
+    "known_locus": "post_execution",
+    "known_signal_locus_string": "capacity/container/no_remaining_slots",
+    "known_action": "reroute",
+    "attribution": "the container A1 reroutes INTO has reached its slot cap, so A1's own repair now has nowhere to put the payload",
+    "known_effect": "The residual A1's success creates, one level deeper than A2 and A3: not a bad read or a duplicate write, but the relocation target itself saturating. Eviction is admitted ONLY where it is provably los",
+    "backend": "vector",
+    "switches": [
+      "enable_archival_evict_duplicate",
+      "gate:on_archival_full_evict_duplicate"
+    ],
+    "signal_declared_today": [],
+    "executor": null,
+    "materializable": false,
+    "trigger_source": "DEPENDENT on A1/A3 having filled archival: triggers on an archival-full duplicate write",
+    "equivalence_criterion": "on an archival-full duplicate, evict one redundant copy and retry the write verbatim"
+  },
+  {
+    "anchor": "A7",
+    "prior_incumbent": "T6_A5_archival_full",
+    "known_locus": "post_execution",
+    "known_signal_locus_string": "size/blob/append_would_exceed_cap",
+    "known_action": "reroute",
+    "attribution": "the store is a single string at its cap and there is no second container, so the refused append is simply lost unless the blob itself is made shorter",
+    "known_effect": "The only accepted anchor that calls a model at inference time -- every other one computes its repair. Accepted because the alternative is losing the write outright, and because the SIMPLEST rule won: ",
+    "backend": "rec_sum",
+    "switches": [],
+    "signal_declared_today": [
+      "append_would_exceed_cap"
+    ],
+    "executor": null,
+    "materializable": false,
+    "trigger_source": "native within rec_sum (a blob append exceeds the cap)",
+    "equivalence_criterion": "compact/route a blob append that would exceed the cap, without losing content"
+  },
+  {
+    "anchor": "A8",
+    "prior_incumbent": "T7_A7_blob_overflow",
+    "known_locus": "post_generation_pre_exec",
+    "known_signal_locus_string": "capacity/container/clear_proposed_at_capacity",
+    "known_action": "suppress",
+    "attribution": "the container is full and the model proposes a DESTRUCTIVE CLEAR to make room, while the container still holds an exact duplicate that could be removed instead",
+    "known_effect": "The kv instantiation of the capacity principle, and the first anchor to intercept a destructive action rather than repair a failed one. A5 evicts AFTER a write is refused; A8 acts BEFORE a clear execu",
+    "backend": "kv",
+    "switches": [
+      "gate:on_dedup_clear_recovery"
+    ],
+    "signal_declared_today": [
+      "clear_proposed_at_capacity"
+    ],
+    "executor": null,
+    "materializable": false,
+    "trigger_source": "DEPENDENT on A1: a clear proposed against a container A1 filled",
+    "equivalence_criterion": "suppress a destructive clear, evict one duplicate instead, retry the blocked write"
+  },
+  {
+    "anchor": "A9",
+    "prior_incumbent": "T8_A8_dedup_clear",
+    "known_locus": "post_execution",
+    "known_signal_locus_string": "retrieval/similarity/core_max_below_threshold",
+    "known_action": "reroute",
+    "attribution": "a core retrieve returns nothing well-matched, and the model concludes the store does not hold the answer -- while the answer sits in the ARCHIVAL container, which it never searched",
+    "known_effect": "NOT the first read-side anchor -- A2 is, and the two are worth comparing because they share a diagnosis and differ on everything that matters. A2 fires when the read ERRORS (`not_found`) and REPROMPTS",
+    "backend": "vector",
+    "switches": [
+      "gate:on_low_similarity_cross_container"
+    ],
+    "signal_declared_today": [],
+    "executor": null,
+    "materializable": false,
+    "trigger_source": "native (retrieval similarity below threshold), but its CONTROL is the A1-A8 stack",
+    "equivalence_criterion": "on a weak core retrieval, consult the other container and merge the evidence"
+  }
+]

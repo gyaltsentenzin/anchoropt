@@ -1,0 +1,35 @@
+{
+  "config": "baseline",
+  "controllers": {
+    "installed": [],
+    "one_shot": null,
+    "path": null,
+    "redecide_budget": null,
+    "sha256": null
+  },
+  "corpus": {
+    "input_dir": "benchmarks/cctu/data",
+    "input_file": "input_data_train.jsonl",
+    "sha256": "sha256:6af950d0d7f0af144298a218102e6918d2035ed2bb739c696cb7434f17214440"
+  },
+  "decode": {
+    "deterministic": true,
+    "max_tokens": 1024,
+    "seed": 42,
+    "sent_as": {
+      "seed": 42,
+      "top_p": 1.0
+    },
+    "temperature": 0.0,
+    "thinking": false,
+    "top_p": 1.0
+  },
+  "episodes": 177,
+  "max_workers": 1,
+  "model": "qwen-3-6-35b",
+  "model_dir": "qwen",
+  "provider": "vllm",
+  "repeat": 2,
+  "replay_from": null,
+  "split": "train"
+}

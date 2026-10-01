@@ -1,0 +1,86 @@
+{
+  "label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+  "n": 20,
+  "n_solved": 17,
+  "mean_reward": 0.85,
+  "reward": {
+    "13": 1.0,
+    "19": 1.0,
+    "22": 0.0,
+    "6": 1.0,
+    "18": 1.0,
+    "16": 0.0,
+    "8": 1.0,
+    "26": 1.0,
+    "2": 1.0,
+    "30": 1.0,
+    "24": 1.0,
+    "31": 0.0,
+    "29": 1.0,
+    "32": 1.0,
+    "25": 1.0,
+    "48": 1.0,
+    "45": 1.0,
+    "35": 1.0,
+    "44": 1.0,
+    "37": 1.0
+  },
+  "solved": {
+    "13": true,
+    "19": true,
+    "22": false,
+    "6": true,
+    "18": true,
+    "16": false,
+    "8": true,
+    "26": true,
+    "2": true,
+    "30": true,
+    "24": true,
+    "31": false,
+    "29": true,
+    "32": true,
+    "25": true,
+    "48": true,
+    "45": true,
+    "35": true,
+    "44": true,
+    "37": true
+  },
+  "termination": {
+    "13": "TerminationReason.USER_STOP",
+    "19": "TerminationReason.USER_STOP",
+    "22": "TerminationReason.USER_STOP",
+    "6": "TerminationReason.USER_STOP",
+    "18": "TerminationReason.USER_STOP",
+    "16": "TerminationReason.USER_STOP",
+    "8": "TerminationReason.USER_STOP",
+    "26": "TerminationReason.USER_STOP",
+    "2": "TerminationReason.USER_STOP",
+    "30": "TerminationReason.USER_STOP",
+    "24": "TerminationReason.USER_STOP",
+    "31": "TerminationReason.USER_STOP",
+    "29": "TerminationReason.USER_STOP",
+    "32": "TerminationReason.USER_STOP",
+    "25": "TerminationReason.USER_STOP",
+    "48": "TerminationReason.USER_STOP",
+    "45": "TerminationReason.USER_STOP",
+    "35": "TerminationReason.USER_STOP",
+    "44": "TerminationReason.USER_STOP",
+    "37": "TerminationReason.USER_STOP"
+  },
+  "firings": {
+    "interventions_executed": 1,
+    "predicate_matches": 1,
+    "cases_fired": [
+      "8"
+    ],
+    "by_case": {
+      "8": 1
+    },
+    "by_site": {
+      "post_execution/reprompt": 1
+    }
+  },
+  "harness_errors": 0
+}

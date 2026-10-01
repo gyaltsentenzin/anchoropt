@@ -1,0 +1,21 @@
+diff --git a/src/tau2/config.py b/src/tau2/config.py
+index 4e5b0b9..4d6f5fc 100644
+--- a/src/tau2/config.py
++++ b/src/tau2/config.py
+@@ -1,3 +1,5 @@
++import os
++
+ # =============================================================================
+ # SIMULATION DEFAULTS (overridable via CLI)
+ # =============================================================================
+@@ -21,7 +23,9 @@ DEFAULT_LLM_TEMPERATURE_USER = 0.0
+ DEFAULT_LLM_ARGS_AGENT = {"temperature": DEFAULT_LLM_TEMPERATURE_AGENT}
+ DEFAULT_LLM_ARGS_USER = {"temperature": DEFAULT_LLM_TEMPERATURE_USER}
+ 
+-DEFAULT_LLM_NL_ASSERTIONS = "gpt-4.1-2025-04-14"
++DEFAULT_LLM_NL_ASSERTIONS = os.getenv(
++    "TAU2_LLM_NL_ASSERTIONS", "gpt-4.1-2025-04-14"
++)
+ DEFAULT_LLM_NL_ASSERTIONS_TEMPERATURE = 0.0
+ DEFAULT_LLM_NL_ASSERTIONS_ARGS = {"temperature": DEFAULT_LLM_NL_ASSERTIONS_TEMPERATURE}
+ 

@@ -1,0 +1,37 @@
+{
+  "_comment": "N0-A4 on the FROZEN A1+A2+A3 incumbent [38.61 percent]. Signal: the model terminates at turn 0 with NO tool call while attempt budget remains [median 1 step of a 10-step ceiling]. 48 failing / 12 passing = precision 0.80; in 25 of the 48 the ground-truth answer was provably in the store. Attribution: read stage, self-inflicted 0/25, and pre_generation is the ONLY admissible incision point [no call exists yet to reroute or suppress]. Policy: reprompt ONCE, non-directive -- consider whether memory should be consulted, naming core AND archival [answer is archival-only in 10/25]. Does NOT force retrieval or name a call. A1/A2/A3 unchanged. No global preamble.",
+  "gate_default": false,
+  "templates": {
+    "on_memory_preamble": "",
+    "on_hallucinate": "",
+    "on_loop": "",
+    "on_wrong_args": "",
+    "on_domain_error": "",
+    "on_new_function_available": "",
+    "on_turn_start_action": "[Memory Gate] Before answering, consider whether this question depends on information stored earlier. If it might, consult memory first -- core memory and archival memory are both available. If it does not, answer directly.",
+    "on_ambiguous_target": "",
+    "on_turn_boundary_orient": "",
+    "on_domain_error_core_full": "",
+    "on_domain_error_key_not_found": "",
+    "on_domain_error_too_long": "",
+    "on_retrieval_success_pre_answer": "",
+    "on_idk_fallback": "",
+    "on_core_clear_blocked": "",
+    "on_premature_idk": ""
+  },
+  "gate_enabled": {
+    "on_domain_error_core_full": true,
+    "on_core_full_rerouted": true,
+    "on_blob_pressure": false,
+    "on_core_clear_blocked": false,
+    "on_key_not_found_rerouted": false,
+    "on_domain_error_key_not_found": true,
+    "on_domain_error_too_long": false,
+    "on_redundant_write_suppressed": true,
+    "on_turn_start_action": true
+  },
+  "enable_reroute": true,
+  "enable_capacity_repair": true,
+  "enable_redundant_write_suppress": true,
+  "enable_turn_start_action": true
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "boundary": "post_execution",
+    "signal": "no_informative_result",
+    "policy_class": "parameterized",
+    "rationale": "All four residuals share one mechanism: a single retrieval returns an empty/uninformative result set and the agent treats that as settled evidence, then answers from priors. The condition that distinguishes the failing episodes from healthy ones is observable exactly at the moment the retrieval result exists and before the agent composes its answer -- i.e. the result is present but carries no usable content. Localizing here means the controller can only engage on the specific episodes where retrieval actually came back empty/uninformative, rather than firing on every retrieval. The 'kind' parameter matters because the observed failures include strictly zero-match reads as well as reads whose payload conveys nothing usable; measurement should decide which notion of 'uninformative' separates the residuals from the passing cases. My reason for a reformulate-and-retry preference is that the diagnoses consistently identify the root cause as a query-formulation mismatch ('my query did not match the stored representation'), not an absence of stored content -- so surfacing the empty result back as a re-query obligation is the intervention that addresses the named cause; but AnchorOpt should also measure simply refusing/abstaining, since an abstain would at least avoid the ungrounded wrong answer that is what actually gets scored incorrect.",
+    "action_preference": "re-issue the retrieval with a reformulated/re-scoped query before permitting a final answer",
+    "diagnosis_case_ids": [
+      "memory_vector_49-healthcare-19",
+      "memory_vector_5-customer-5",
+      "memory_vector_50-healthcare-20",
+      "memory_vector_51-healthcare-21"
+    ]
+  },
+  {
+    "boundary": "post_execution",
+    "signal": "retrieval_similarity_below_threshold",
+    "policy_class": "parameterized",
+    "rationale": "The diagnoses describe the accepted result as 'empty or unhelpful', and the consequential decision is phrased over both. An empty-set test catches only the degenerate end of that range; the same failure mechanism -- 'I searched' conflated with 'I have the facts' -- also occurs when the retrieval returns nominal matches that are too weakly related to ground an answer, which an emptiness test cannot see. Placing the condition on retrieval match quality at post_execution covers the graded version of the same locus and the same decision point. This is deliberately offered as an alternative observation of the SAME condition so that measurement can decide whether the residuals are separated by strict emptiness or by weak match quality; I am not asserting a cutoff, and the 'below' parameter must be fit to values the retrievals actually take -- the prior round's failure was a threshold above the data's entire range, so this signal should only be selected if fitting finds a cutoff that some episodes fall on either side of.",
+    "action_preference": "re-issue the retrieval with a reformulated/re-scoped query before permitting a final answer",
+    "diagnosis_case_ids": [
+      "memory_vector_49-healthcare-19",
+      "memory_vector_5-customer-5",
+      "memory_vector_50-healthcare-20",
+      "memory_vector_51-healthcare-21"
+    ]
+  },
+  {
+    "boundary": "post_generation_pre_exec",
+    "signal": "no_tool_call_at_all",
+    "policy_class": "deterministic",
+    "rationale": "Complementary localization as a commitment gate rather than a result reshape. In every cited episode the fatal step is step 2, where the agent emits a final answer containing no further retrieval after step 1 came back empty -- the decision to stop searching exists but nothing has run yet, so it can still be blocked before the ungrounded answer is committed. Catching it here rather than at post_execution has a distinct advantage: it targets the omission itself (no second retrieval was ever attempted) which is precisely what the failure mechanisms name, and it applies even in the case that ran without prior intervention (memory_vector_50). The risk is over-triggering, since a turn with no tool call is also the correct shape for a well-grounded final answer; measurement should determine whether this signal discriminates the residuals or fires unconditionally, and if it fires unconditionally the post_execution candidates above are the better locus.",
+    "action_preference": "withhold the final answer and require a retrieval attempt before the turn may conclude",
+    "diagnosis_case_ids": [
+      "memory_vector_49-healthcare-19",
+      "memory_vector_5-customer-5",
+      "memory_vector_50-healthcare-20",
+      "memory_vector_51-healthcare-21"
+    ]
+  }
+]

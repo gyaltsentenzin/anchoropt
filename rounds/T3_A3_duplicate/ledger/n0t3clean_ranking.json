@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "n_failing_queries": 194,
+    "artifact": "ledgers/n0t3clean_locus.json",
+    "fingerprint": "306657f82aaaf07b",
+    "model": "anthropic/aws/claude-haiku-4-5",
+    "iteration": "N0-T3-CLEAN"
+  },
+  "ranked": [
+    {
+      "locus": [
+        "capacity",
+        "container",
+        "no_remaining_capacity"
+      ],
+      "support": 68,
+      "raw_events": 718,
+      "settled_by_incumbent": 376,
+      "linked_loss": 42,
+      "max_retry_depth": 20,
+      "mean_retry_depth": 5.0,
+      "backends": {
+        "kv": 24,
+        "rec_sum": 253,
+        "vector": 65
+      }
+    },
+    {
+      "locus": [
+        "permission",
+        "identifier",
+        "duplicate"
+      ],
+      "support": 59,
+      "raw_events": 59,
+      "settled_by_incumbent": 0,
+      "linked_loss": 35,
+      "max_retry_depth": 1,
+      "mean_retry_depth": 1.0,
+      "backends": {
+        "kv": 59
+      }
+    },
+    {
+      "locus": [
+        "size",
+        "item",
+        "exceeds_per_item_limit"
+      ],
+      "support": 44,
+      "raw_events": 78,
+      "settled_by_incumbent": 9,
+      "linked_loss": 30,
+      "max_retry_depth": 21,
+      "mean_retry_depth": 1.6,
+      "backends": {
+        "kv": 1,
+        "vector": 68
+      }
+    },
+    {
+      "locus": [
+        "format",
+        "field",
+        "malformed_value"
+      ],
+      "support": 3,
+      "raw_events": 43,
+      "settled_by_incumbent": 0,
+      "linked_loss": 11,
+      "max_retry_depth": 21,
+      "mean_retry_depth": 14.3,
+      "backends": {
+        "kv": 43
+      }
+    },
+    {
+      "locus": [
+        "existence",
+        "identifier",
+        "not_found"
+      ],
+      "support": 4,
+      "raw_events": 59,
+      "settled_by_incumbent": 50,
+      "linked_loss": 0,
+      "max_retry_depth": 3,
+      "mean_retry_depth": 2.2,
+      "backends": {
+        "vector": 9
+      }
+    }
+  ]
+}

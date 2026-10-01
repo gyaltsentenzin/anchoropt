@@ -1,0 +1,27 @@
+{
+  "_comment": "Single source of truth for the eval-model identity on the vLLM path. run_vllm.py requires this file and it was never shipped, so `--evaluate` failed at validate_config() before reaching a model. Shaped after benchmarks/bfcl_v4/model_config_granite41.json so the two integrations describe a model the same way; the fields run_vllm.py actually reads are registry_name, dtype and max_model_len, which feed the printed `vllm serve` hint.",
+
+  "registry_name": "ibm-granite/granite-4.1-8b",
+  "served_model_name": "ibm-granite/granite-4.1-8b",
+  "model_path": null,
+  "port": 8080,
+  "dtype": "bfloat16",
+  "max_model_len": 32768,
+
+  "_serve_comment": "CCTU needs STRUCTURED tool calls. Without a tool-call parser vLLM returns them as text, this harness does not execute those, and `acc` is 0 for every episode for a harness reason rather than a model one -- which is why response_generator.py now refuses that case loudly. See ANCHOROPT.md, 'Known limits'.",
+  "serve_flags": [
+    "--enable-auto-tool-choice",
+    "--tool-call-parser", "granite",
+    "--max-model-len", "32768",
+    "--dtype", "bfloat16",
+    "--port", "8080"
+  ],
+
+  "_decode_comment": "Reproduces response_generator.py's pinned defaults. The harness SENDS each of these explicitly rather than relying on a server default, and run_manifest.json records what was sent -- so these values are documentation, not configuration the run reads.",
+  "decode": {
+    "temperature": 0.0,
+    "seed": 42,
+    "top_p": 1.0,
+    "max_tokens": 1024
+  }
+}

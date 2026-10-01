@@ -1,0 +1,852 @@
+{
+  "incumbent_id": "P0",
+  "incumbent_token": "<matrix-dir>/minimax_m2_5__self__airline/baseline.json",
+  "n_arms": 54,
+  "note": "Evaluate each arm against the SAME frozen incumbent and report results keyed by `arm_label`. An arm you did not evaluate must be OMITTED, not reported as zero: core treats a missing result as UNEVALUATED and a zero as a measurement.",
+  "arms": [
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_do_not_reply_before_executing_action",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_do_not_reply_before_executing_action",
+      "eta": {
+        "instruction": "Do not send a final answer to the user until you have executed the state\u2011changing action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_verify_change_before_replying",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_change_before_replying",
+      "eta": {
+        "instruction": "Before you reply, confirm that the required modification has been applied by the action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_wait_until_change_completed",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_wait_until_change_completed",
+      "eta": {
+        "instruction": "Wait to commit to a reply until the system change you intended to make has been completed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_do_not_reply_before_executing_action",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_do_not_reply_before_executing_action",
+      "eta": {
+        "instruction": "Do not send a final answer to the user until you have executed the state\u2011changing action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_verify_change_before_replying",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_change_before_replying",
+      "eta": {
+        "instruction": "Before you reply, confirm that the required modification has been applied by the action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_wait_until_change_completed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_wait_until_change_completed",
+      "eta": {
+        "instruction": "Wait to commit to a reply until the system change you intended to make has been completed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_calculate",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_calculate",
+      "eta": {
+        "destination": "calculate",
+        "argument_mapping": "expression -> expression",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_get_reservation_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_reservation_details",
+      "eta": {
+        "destination": "get_reservation_details",
+        "argument_mapping": "reservation_id -> reservation_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_get_user_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_user_details",
+      "eta": {
+        "destination": "get_user_details",
+        "argument_mapping": "user_id -> user_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_list_all_airports",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_list_all_airports",
+      "eta": {
+        "destination": "list_all_airports",
+        "argument_mapping": "(no arguments)",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 58,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:teacher_do_not_reply_before_executing_action",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_do_not_reply_before_executing_action",
+      "eta": {
+        "instruction": "Do not send a final answer to the user until you have executed the state\u2011changing action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:teacher_verify_change_before_replying",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_change_before_replying",
+      "eta": {
+        "instruction": "Before you reply, confirm that the required modification has been applied by the action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:teacher_wait_until_change_completed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_wait_until_change_completed",
+      "eta": {
+        "instruction": "Wait to commit to a reply until the system change you intended to make has been completed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_calculate",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_calculate",
+      "eta": {
+        "destination": "calculate",
+        "argument_mapping": "expression -> expression",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_get_reservation_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_reservation_details",
+      "eta": {
+        "destination": "get_reservation_details",
+        "argument_mapping": "reservation_id -> reservation_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_get_user_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_user_details",
+      "eta": {
+        "destination": "get_user_details",
+        "argument_mapping": "user_id -> user_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_list_all_airports",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_list_all_airports",
+      "eta": {
+        "destination": "list_all_airports",
+        "argument_mapping": "(no arguments)",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 13,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:teacher_do_not_reply_before_executing_action",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_do_not_reply_before_executing_action",
+      "eta": {
+        "instruction": "Do not send a final answer to the user until you have executed the state\u2011changing action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:teacher_verify_change_before_replying",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_change_before_replying",
+      "eta": {
+        "instruction": "Before you reply, confirm that the required modification has been applied by the action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:teacher_wait_until_change_completed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_wait_until_change_completed",
+      "eta": {
+        "instruction": "Wait to commit to a reply until the system change you intended to make has been completed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_calculate",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_calculate",
+      "eta": {
+        "destination": "calculate",
+        "argument_mapping": "expression -> expression",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_get_reservation_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_reservation_details",
+      "eta": {
+        "destination": "get_reservation_details",
+        "argument_mapping": "reservation_id -> reservation_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_get_user_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_user_details",
+      "eta": {
+        "destination": "get_user_details",
+        "argument_mapping": "user_id -> user_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_list_all_airports",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_list_all_airports",
+      "eta": {
+        "destination": "list_all_airports",
+        "argument_mapping": "(no arguments)",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:teacher_do_not_reply_before_executing_action",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_do_not_reply_before_executing_action",
+      "eta": {
+        "instruction": "Do not send a final answer to the user until you have executed the state\u2011changing action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:teacher_verify_change_before_replying",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_change_before_replying",
+      "eta": {
+        "instruction": "Before you reply, confirm that the required modification has been applied by the action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:teacher_wait_until_change_completed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_wait_until_change_completed",
+      "eta": {
+        "instruction": "Wait to commit to a reply until the system change you intended to make has been completed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_calculate",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_calculate",
+      "eta": {
+        "destination": "calculate",
+        "argument_mapping": "expression -> expression",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_get_reservation_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_reservation_details",
+      "eta": {
+        "destination": "get_reservation_details",
+        "argument_mapping": "reservation_id -> reservation_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_get_user_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_user_details",
+      "eta": {
+        "destination": "get_user_details",
+        "argument_mapping": "user_id -> user_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_list_all_airports",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_list_all_airports",
+      "eta": {
+        "destination": "list_all_airports",
+        "argument_mapping": "(no arguments)",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 44,
+      "total_states": 268
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:recheck_against_policy",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:require_verification_first",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:teacher_do_not_reply_before_executing_action",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_do_not_reply_before_executing_action",
+      "eta": {
+        "instruction": "Do not send a final answer to the user until you have executed the state\u2011changing action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:teacher_verify_change_before_replying",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_change_before_replying",
+      "eta": {
+        "instruction": "Before you reply, confirm that the required modification has been applied by the action you proposed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:teacher_wait_until_change_completed",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_wait_until_change_completed",
+      "eta": {
+        "instruction": "Wait to commit to a reply until the system change you intended to make has been completed.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 268
+    }
+  ],
+  "state": "REALIZABLE_UNMEASURED",
+  "residual_key": "an answer committed to the user before the task's required change was made",
+  "residual_case_ids": [
+    "14",
+    "17",
+    "23",
+    "38",
+    "39",
+    "7"
+  ],
+  "signals_installed": [],
+  "replayed_results": null,
+  "teacher": {
+    "invoked": true,
+    "reason": "3 of 3 proposals validated",
+    "model": "minimax-m2.5",
+    "provenance": "self_teach:minimax-m2.5",
+    "accepted": [
+      {
+        "variant": "do_not_reply_before_executing_action",
+        "instruction": "Do not send a final answer to the user until you have executed the state\u2011changing action you proposed."
+      },
+      {
+        "variant": "verify_change_before_replying",
+        "instruction": "Before you reply, confirm that the required modification has been applied by the action you proposed."
+      },
+      {
+        "variant": "wait_until_change_completed",
+        "instruction": "Wait to commit to a reply until the system change you intended to make has been completed."
+      }
+    ],
+    "rejected": [],
+    "groundings": [
+      {
+        "variant": "teacher_do_not_reply_before_executing_action",
+        "eta": {
+          "instruction": "Do not send a final answer to the user until you have executed the state\u2011changing action you proposed.",
+          "retry_budget": 1
+        },
+        "detail": "instruction proposed by self_teach:minimax-m2.5",
+        "provenance": "self_teach:minimax-m2.5",
+        "model": "minimax-m2.5"
+      },
+      {
+        "variant": "teacher_verify_change_before_replying",
+        "eta": {
+          "instruction": "Before you reply, confirm that the required modification has been applied by the action you proposed.",
+          "retry_budget": 1
+        },
+        "detail": "instruction proposed by self_teach:minimax-m2.5",
+        "provenance": "self_teach:minimax-m2.5",
+        "model": "minimax-m2.5"
+      },
+      {
+        "variant": "teacher_wait_until_change_completed",
+        "eta": {
+          "instruction": "Wait to commit to a reply until the system change you intended to make has been completed.",
+          "retry_budget": 1
+        },
+        "detail": "instruction proposed by self_teach:minimax-m2.5",
+        "provenance": "self_teach:minimax-m2.5",
+        "model": "minimax-m2.5"
+      }
+    ]
+  },
+  "agent_llm": "minimax-m2.5",
+  "domain": "airline",
+  "moves_earlier": 0
+}

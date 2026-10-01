@@ -1,0 +1,112 @@
+{
+  "incumbent_totals": [
+    16,
+    22,
+    22,
+    23,
+    21
+  ],
+  "incumbent_mean": 20.8,
+  "incumbent_sd": 2.7748873851023217,
+  "flip_cases": 17,
+  "n_cases": 30,
+  "arms": [
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+      "total": 22,
+      "n": 30,
+      "old_net": 6,
+      "expected_net": 0.9,
+      "z": 0.43,
+      "above_best_incumbent": false,
+      "executed": 3,
+      "cases_fired": 3,
+      "promoted": false
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "total": 23,
+      "n": 29,
+      "old_net": 8,
+      "expected_net": 2.9,
+      "z": 0.79,
+      "above_best_incumbent": false,
+      "executed": 3,
+      "cases_fired": 3,
+      "promoted": true
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_prioritize_action_over_text",
+      "total": 21,
+      "n": 29,
+      "old_net": 5,
+      "expected_net": 0.5,
+      "z": 0.07,
+      "above_best_incumbent": false,
+      "executed": 3,
+      "cases_fired": 3,
+      "promoted": false
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_verify_completion_before_reply",
+      "total": 20,
+      "n": 30,
+      "old_net": 4,
+      "expected_net": -1.1,
+      "z": -0.29,
+      "above_best_incumbent": false,
+      "executed": 1,
+      "cases_fired": 1,
+      "promoted": false
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_defer_response_until_action_done",
+      "total": 22,
+      "n": 29,
+      "old_net": 6,
+      "expected_net": 1.15,
+      "z": 0.43,
+      "above_best_incumbent": false,
+      "executed": 4,
+      "cases_fired": 4,
+      "promoted": false
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "total": 24,
+      "n": 29,
+      "old_net": 8,
+      "expected_net": 3.5,
+      "z": 1.15,
+      "above_best_incumbent": true,
+      "executed": 462,
+      "cases_fired": 30,
+      "promoted": false
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+      "total": 21,
+      "n": 30,
+      "old_net": 5,
+      "expected_net": -0.1,
+      "z": 0.07,
+      "above_best_incumbent": false,
+      "executed": 217,
+      "cases_fired": 30,
+      "promoted": false
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_prioritize_action_over_text",
+      "total": 19,
+      "n": 29,
+      "old_net": 3,
+      "expected_net": -1.85,
+      "z": -0.65,
+      "above_best_incumbent": false,
+      "executed": 211,
+      "cases_fired": 30,
+      "promoted": false
+    }
+  ],
+  "promoted": "post_execution/tool_call_failed/reprompt:require_verification_first"
+}

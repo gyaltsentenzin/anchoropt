@@ -1,0 +1,40 @@
+{
+  "_comment": "N0 INCUMBENT A1-A4 + A5 (formerly E1). A5 = archival-full duplicate eviction: on archival_memory_add rejected for slot_count, read the LIVE store, remove the deterministic last-written exact duplicate, verify a copy remains, retry the original write verbatim. 43/43 evictions with the invariant verified, 0 tool failures, slot errors 66->47, net +1.32pp. INSTALLED ON AN EXPLICIT OVERRIDE of frozen clause 2 (3 losses on vector-customer against a zero floor): the losses trace to INDUCED MODEL DRIFT (core_memory_remove 42->96 after A5 fired), not to the eviction, which is provably information-preserving. The 3 losses are baked into this incumbent and every later arm inherits them -- recorded, not hidden. Next: the induced-drift locus.",
+  "gate_default": false,
+  "templates": {
+    "on_memory_preamble": "",
+    "on_hallucinate": "",
+    "on_loop": "",
+    "on_wrong_args": "",
+    "on_domain_error": "",
+    "on_new_function_available": "",
+    "on_turn_start_action": "[Memory Gate] You answered without consulting stored memory. If this question depends on information from earlier, check memory before answering -- core memory and archival memory are both available. If it genuinely does not, repeat your answer as-is.",
+    "on_ambiguous_target": "",
+    "on_turn_boundary_orient": "",
+    "on_domain_error_core_full": "",
+    "on_domain_error_key_not_found": "",
+    "on_domain_error_too_long": "",
+    "on_retrieval_success_pre_answer": "",
+    "on_idk_fallback": "",
+    "on_core_clear_blocked": "",
+    "on_premature_idk": ""
+  },
+  "gate_enabled": {
+    "on_domain_error_core_full": true,
+    "on_core_full_rerouted": true,
+    "on_blob_pressure": false,
+    "on_core_clear_blocked": false,
+    "on_key_not_found_rerouted": false,
+    "on_domain_error_key_not_found": true,
+    "on_domain_error_too_long": false,
+    "on_redundant_write_suppressed": true,
+    "on_turn_start_action": false,
+    "on_archival_full_evict_duplicate": true
+  },
+  "enable_reroute": true,
+  "enable_capacity_repair": true,
+  "enable_redundant_write_suppress": true,
+  "enable_turn_start_action": false,
+  "enable_zero_call_reprompt": true,
+  "enable_archival_evict_duplicate": true
+}

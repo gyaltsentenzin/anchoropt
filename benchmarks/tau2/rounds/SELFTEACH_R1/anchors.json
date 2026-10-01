@@ -1,0 +1,177 @@
+[
+  {
+    "arm": "qwen3_6_35b_a3b__self__airline",
+    "model": "qwen3.6-35b-a3b",
+    "domain": "airline",
+    "teacher": "self",
+    "portal_train": "vllm",
+    "portal_test": "vllm",
+    "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+    "boundary": "post_execution",
+    "signal": "tool_call_failed",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "require_verification_first",
+    "eta": {
+      "instruction": "Verify the details you need with a read before taking any step that changes records.",
+      "retry_budget": 1
+    },
+    "instruction_source": "shipped",
+    "install": {
+      "module": "benchmarks/tau2/tau2_mechanism.py",
+      "rebuild": "run_anchoropt_round._controller_for(<arm dir>, baseline, manifest, arm_label)",
+      "adapter_boundary_key": "after_tool_result"
+    },
+    "accepted": false
+  },
+  {
+    "arm": "qwen3_6_35b_a3b__self__retail",
+    "model": "qwen3.6-35b-a3b",
+    "domain": "retail",
+    "teacher": "self",
+    "portal_train": "hosted",
+    "portal_test": "hosted",
+    "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+    "boundary": "post_execution",
+    "signal": "tool_call_failed",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "require_verification_first",
+    "eta": {
+      "instruction": "Verify the details you need with a read before taking any step that changes records.",
+      "retry_budget": 1
+    },
+    "instruction_source": "shipped",
+    "install": {
+      "module": "benchmarks/tau2/tau2_mechanism.py",
+      "rebuild": "run_anchoropt_round._controller_for(<arm dir>, baseline, manifest, arm_label)",
+      "adapter_boundary_key": "after_tool_result"
+    },
+    "accepted": false
+  },
+  {
+    "arm": "qwen3_6_35b_a3b__self__telecom",
+    "model": "qwen3.6-35b-a3b",
+    "domain": "telecom",
+    "teacher": "self",
+    "portal_train": "hosted",
+    "portal_test": "hosted",
+    "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+    "boundary": "post_execution",
+    "signal": "tool_call_failed",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "require_verification_first",
+    "eta": {
+      "instruction": "Verify the details you need with a read before taking any step that changes records.",
+      "retry_budget": 1
+    },
+    "instruction_source": "shipped",
+    "install": {
+      "module": "benchmarks/tau2/tau2_mechanism.py",
+      "rebuild": "run_anchoropt_round._controller_for(<arm dir>, baseline, manifest, arm_label)",
+      "adapter_boundary_key": "after_tool_result"
+    },
+    "accepted": false
+  },
+  {
+    "arm": "minimax_m2_5__self__airline",
+    "model": "minimax-m2.5",
+    "domain": "airline",
+    "teacher": "self",
+    "portal_train": "hosted",
+    "portal_test": "hosted",
+    "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+    "boundary": "post_generation_pre_exec",
+    "signal": "proposes_tool_call",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "recheck_against_policy",
+    "eta": {
+      "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+      "retry_budget": 1
+    },
+    "instruction_source": "shipped",
+    "install": {
+      "module": "benchmarks/tau2/tau2_mechanism.py",
+      "rebuild": "run_anchoropt_round._controller_for(<arm dir>, baseline, manifest, arm_label)",
+      "adapter_boundary_key": "before_tool_dispatch"
+    },
+    "accepted": false
+  },
+  {
+    "arm": "granite_4_1_30b__self__airline",
+    "model": "granite-4.1-30b",
+    "domain": "airline",
+    "teacher": "self",
+    "portal_train": "vllm",
+    "portal_test": "vllm",
+    "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+    "boundary": "post_generation_pre_exec",
+    "signal": "proposes_tool_call",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "recheck_against_policy",
+    "eta": {
+      "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+      "retry_budget": 1
+    },
+    "instruction_source": "shipped",
+    "install": {
+      "module": "benchmarks/tau2/tau2_mechanism.py",
+      "rebuild": "run_anchoropt_round._controller_for(<arm dir>, baseline, manifest, arm_label)",
+      "adapter_boundary_key": "before_tool_dispatch"
+    },
+    "accepted": false
+  },
+  {
+    "arm": "granite_4_1_30b__self__retail",
+    "model": "granite-4.1-30b",
+    "domain": "retail",
+    "teacher": "self",
+    "portal_train": "vllm",
+    "portal_test": "vllm",
+    "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+    "boundary": "post_execution",
+    "signal": "tool_call_failed",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "recheck_against_policy",
+    "eta": {
+      "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+      "retry_budget": 1
+    },
+    "instruction_source": "shipped",
+    "install": {
+      "module": "benchmarks/tau2/tau2_mechanism.py",
+      "rebuild": "run_anchoropt_round._controller_for(<arm dir>, baseline, manifest, arm_label)",
+      "adapter_boundary_key": "after_tool_result"
+    },
+    "accepted": false
+  },
+  {
+    "arm": "granite_4_1_30b__self__telecom",
+    "model": "granite-4.1-30b",
+    "domain": "telecom",
+    "teacher": "self",
+    "portal_train": "vllm",
+    "portal_test": "vllm",
+    "arm_label": "post_execution/tool_call_failed/reprompt:teacher_fallback_to_alternative",
+    "boundary": "post_execution",
+    "signal": "tool_call_failed",
+    "action": "reprompt",
+    "operator": "reprompt",
+    "variant": "teacher_fallback_to_alternative",
+    "eta": {
+      "instruction": "If the desired tool is unavailable, suggest an alternative action or manual workaround instead.",
+      "retry_budget": 1
+    },
+    "instruction_source": "teacher",
+    "install": {
+      "module": "benchmarks/tau2/tau2_mechanism.py",
+      "rebuild": "run_anchoropt_round._controller_for(<arm dir>, baseline, manifest, arm_label)",
+      "adapter_boundary_key": "after_tool_result"
+    },
+    "accepted": false
+  }
+]

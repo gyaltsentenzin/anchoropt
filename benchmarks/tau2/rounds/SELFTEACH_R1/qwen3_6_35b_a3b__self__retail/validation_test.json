@@ -1,0 +1,88 @@
+{
+  "split": "test",
+  "n": 40,
+  "k": 4,
+  "agent_provider": "hosted",
+  "p0_totals": [
+    32,
+    32,
+    35,
+    31
+  ],
+  "p0_mean": 32.5,
+  "p0_sd": 1.7320508075688772,
+  "p0_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+  "tested_p1": true,
+  "why_not_p1": "",
+  "accepted": false,
+  "train_p0": "62/74",
+  "train_net": 5,
+  "p1_totals": [
+    33,
+    32,
+    28,
+    31
+  ],
+  "p1_mean": 31,
+  "p1_sd": 2.160246899469287,
+  "p1_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "p1_executed": [
+    6,
+    8,
+    9,
+    9
+  ],
+  "mean_diff": -1.5,
+  "se": 1.3844373104863459,
+  "z": -1.0834726777719228,
+  "criterion_2_no_aggregate_regression": false,
+  "cases_fired_any_run": [
+    "100",
+    "108",
+    "12",
+    "27",
+    "36",
+    "38",
+    "39",
+    "40",
+    "5",
+    "55",
+    "68"
+  ],
+  "criterion_3_gains_attributable": [
+    "36",
+    "39"
+  ],
+  "criterion_3_gains_not_attributable": [
+    "71"
+  ],
+  "criterion_3_collateral_losses": [
+    "100",
+    "12",
+    "5",
+    "68"
+  ],
+  "p0_pass_hat_k": {
+    "1": 0.8125,
+    "2": 0.725,
+    "3": 0.68125,
+    "4": 0.65
+  },
+  "p1_pass_hat_k": {
+    "1": 0.775,
+    "2": 0.6458333333333333,
+    "3": 0.56875,
+    "4": 0.525
+  }
+}

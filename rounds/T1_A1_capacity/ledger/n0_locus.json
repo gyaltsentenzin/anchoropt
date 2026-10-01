@@ -1,0 +1,139 @@
+{
+  "disagreements": [],
+  "fingerprint": "62295bdc0ce0c2ec",
+  "frozen": true,
+  "groups": [
+    {
+      "agrees_with_det": true,
+      "constraint_type": "capacity",
+      "det_keys": [
+        [
+          "capacity",
+          "container",
+          "no_remaining_capacity"
+        ]
+      ],
+      "events": 543,
+      "member_ids": [
+        0,
+        1,
+        5
+      ],
+      "members": [
+        "entry will be too long after appending please shorten the entry to less than n characters",
+        "core memory is full please clear some entries",
+        "memory size exceeds maximum size of n entries"
+      ],
+      "provenance": {
+        "endpoint": "gateway",
+        "model": "anthropic/aws/claude-haiku-4-5",
+        "operator": "canonicalize_locus",
+        "source": "llm_operator"
+      },
+      "reason": "The aggregate storage is exhausted; individual items being added are small relative to the stated or implied container limit.",
+      "resource": "container",
+      "status": "accepted",
+      "violation_mode": "no_remaining_capacity"
+    },
+    {
+      "agrees_with_det": true,
+      "constraint_type": "size",
+      "det_keys": [
+        [
+          "size",
+          "item",
+          "exceeds_per_item_limit"
+        ]
+      ],
+      "events": 154,
+      "member_ids": [
+        2,
+        6
+      ],
+      "members": [
+        "entry length exceeds maximum length of n characters",
+        "entry is too long please shorten the entry to less than n characters"
+      ],
+      "provenance": {
+        "endpoint": "gateway",
+        "model": "anthropic/aws/claude-haiku-4-5",
+        "operator": "canonicalize_locus",
+        "source": "llm_operator"
+      },
+      "reason": "Individual entry text exceeds the per-entry character limit (336 chars at 112% of 300-char bound; 479 chars at 160% of 300-char bound).",
+      "resource": "item",
+      "status": "accepted",
+      "violation_mode": "exceeds_per_item_limit"
+    },
+    {
+      "agrees_with_det": null,
+      "constraint_type": "permission",
+      "det_keys": [],
+      "events": 62,
+      "member_ids": [
+        3
+      ],
+      "members": [
+        "key name must be unique"
+      ],
+      "provenance": {
+        "endpoint": "gateway",
+        "model": "anthropic/aws/claude-haiku-4-5",
+        "operator": "canonicalize_locus",
+        "source": "llm_operator"
+      },
+      "reason": "The key already exists in the store and keys must be unique.",
+      "resource": "identifier",
+      "status": "accepted",
+      "violation_mode": "duplicate"
+    },
+    {
+      "agrees_with_det": null,
+      "constraint_type": "format",
+      "det_keys": [],
+      "events": 60,
+      "member_ids": [
+        4
+      ],
+      "members": [
+        "key must be in snake case format and cannot contain spaces"
+      ],
+      "provenance": {
+        "endpoint": "gateway",
+        "model": "anthropic/aws/claude-haiku-4-5",
+        "operator": "canonicalize_locus",
+        "source": "llm_operator"
+      },
+      "reason": "The key does not conform to required snake_case format and contains disallowed characters.",
+      "resource": "field",
+      "status": "accepted",
+      "violation_mode": "malformed_value"
+    },
+    {
+      "agrees_with_det": null,
+      "constraint_type": "existence",
+      "det_keys": [],
+      "events": 31,
+      "member_ids": [
+        7
+      ],
+      "members": [
+        "key not found"
+      ],
+      "provenance": {
+        "endpoint": "gateway",
+        "model": "anthropic/aws/claude-haiku-4-5",
+        "operator": "canonicalize_locus",
+        "source": "llm_operator"
+      },
+      "reason": "The specified key does not exist in the store.",
+      "resource": "identifier",
+      "status": "accepted",
+      "violation_mode": "not_found"
+    }
+  ],
+  "iteration": "N0-T1",
+  "model": "anthropic/aws/claude-haiku-4-5",
+  "n_observations": 8,
+  "prompt_version": "v2"
+}

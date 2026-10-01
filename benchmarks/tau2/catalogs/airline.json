@@ -1,0 +1,170 @@
+{
+  "book_reservation": {
+    "mutates_state": true,
+    "params": [
+      "cabin",
+      "destination",
+      "flight_type",
+      "flights",
+      "insurance",
+      "nonfree_baggages",
+      "origin",
+      "passengers",
+      "payment_methods",
+      "total_baggages",
+      "user_id"
+    ],
+    "required": [
+      "cabin",
+      "destination",
+      "flight_type",
+      "flights",
+      "insurance",
+      "nonfree_baggages",
+      "origin",
+      "passengers",
+      "payment_methods",
+      "total_baggages",
+      "user_id"
+    ]
+  },
+  "calculate": {
+    "mutates_state": false,
+    "params": [
+      "expression"
+    ],
+    "required": [
+      "expression"
+    ]
+  },
+  "cancel_reservation": {
+    "mutates_state": true,
+    "params": [
+      "reservation_id"
+    ],
+    "required": [
+      "reservation_id"
+    ]
+  },
+  "get_flight_status": {
+    "mutates_state": false,
+    "params": [
+      "date",
+      "flight_number"
+    ],
+    "required": [
+      "date",
+      "flight_number"
+    ]
+  },
+  "get_reservation_details": {
+    "mutates_state": false,
+    "params": [
+      "reservation_id"
+    ],
+    "required": [
+      "reservation_id"
+    ]
+  },
+  "get_user_details": {
+    "mutates_state": false,
+    "params": [
+      "user_id"
+    ],
+    "required": [
+      "user_id"
+    ]
+  },
+  "list_all_airports": {
+    "mutates_state": false,
+    "params": [],
+    "required": []
+  },
+  "search_direct_flight": {
+    "mutates_state": false,
+    "params": [
+      "date",
+      "destination",
+      "origin"
+    ],
+    "required": [
+      "date",
+      "destination",
+      "origin"
+    ]
+  },
+  "search_onestop_flight": {
+    "mutates_state": false,
+    "params": [
+      "date",
+      "destination",
+      "origin"
+    ],
+    "required": [
+      "date",
+      "destination",
+      "origin"
+    ]
+  },
+  "send_certificate": {
+    "mutates_state": true,
+    "params": [
+      "amount",
+      "user_id"
+    ],
+    "required": [
+      "amount",
+      "user_id"
+    ]
+  },
+  "transfer_to_human_agents": {
+    "mutates_state": false,
+    "params": [
+      "summary"
+    ],
+    "required": [
+      "summary"
+    ]
+  },
+  "update_reservation_baggages": {
+    "mutates_state": true,
+    "params": [
+      "nonfree_baggages",
+      "payment_id",
+      "reservation_id",
+      "total_baggages"
+    ],
+    "required": [
+      "nonfree_baggages",
+      "payment_id",
+      "reservation_id",
+      "total_baggages"
+    ]
+  },
+  "update_reservation_flights": {
+    "mutates_state": true,
+    "params": [
+      "cabin",
+      "flights",
+      "payment_id",
+      "reservation_id"
+    ],
+    "required": [
+      "cabin",
+      "flights",
+      "payment_id",
+      "reservation_id"
+    ]
+  },
+  "update_reservation_passengers": {
+    "mutates_state": true,
+    "params": [
+      "passengers",
+      "reservation_id"
+    ],
+    "required": [
+      "passengers",
+      "reservation_id"
+    ]
+  }
+}

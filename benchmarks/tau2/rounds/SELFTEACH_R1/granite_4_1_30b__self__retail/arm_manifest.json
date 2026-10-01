@@ -1,0 +1,1043 @@
+{
+  "incumbent_id": "P0",
+  "incumbent_token": "<matrix-dir>/granite_4_1_30b__self__retail/baseline.json",
+  "n_arms": 66,
+  "note": "Evaluate each arm against the SAME frozen incumbent and report results keyed by `arm_label`. An arm you did not evaluate must be OMITTED, not reported as zero: core treats a missing result as UNEVALUATED and a zero as a measurement.",
+  "arms": [
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_verify_before_reply",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_before_reply",
+      "eta": {
+        "instruction": "Ensure the required change has been fully executed and confirmed before sending any reply to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_double_check_status",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_status",
+      "eta": {
+        "instruction": "Pause to double-check that all task modifications are complete and accurate prior to committing your response.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_confirm_completion_first",
+      "boundary": "post_execution",
+      "signal": "tool_call_failed",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_confirm_completion_first",
+      "eta": {
+        "instruction": "Make it a habit to verify task completion status is achieved before replying to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_verify_before_reply",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_before_reply",
+      "eta": {
+        "instruction": "Ensure the required change has been fully executed and confirmed before sending any reply to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_double_check_status",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_status",
+      "eta": {
+        "instruction": "Pause to double-check that all task modifications are complete and accurate prior to committing your response.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_confirm_completion_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_confirm_completion_first",
+      "eta": {
+        "instruction": "Make it a habit to verify task completion status is achieved before replying to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_calculate",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_calculate",
+      "eta": {
+        "destination": "calculate",
+        "argument_mapping": "expression -> expression",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_find_user_id_by_email",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_find_user_id_by_email",
+      "eta": {
+        "destination": "find_user_id_by_email",
+        "argument_mapping": "email -> email",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_get_item_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_item_details",
+      "eta": {
+        "destination": "get_item_details",
+        "argument_mapping": "item_id -> item_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_get_order_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_order_details",
+      "eta": {
+        "destination": "get_order_details",
+        "argument_mapping": "order_id -> order_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_get_product_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_product_details",
+      "eta": {
+        "destination": "get_product_details",
+        "argument_mapping": "product_id -> product_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_get_user_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_user_details",
+      "eta": {
+        "destination": "get_user_details",
+        "argument_mapping": "user_id -> user_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_list_all_product_types",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_list_all_product_types",
+      "eta": {
+        "destination": "list_all_product_types",
+        "argument_mapping": "(no arguments)",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_tool_call",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 162,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:teacher_verify_before_reply",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_before_reply",
+      "eta": {
+        "instruction": "Ensure the required change has been fully executed and confirmed before sending any reply to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:teacher_double_check_status",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_status",
+      "eta": {
+        "instruction": "Pause to double-check that all task modifications are complete and accurate prior to committing your response.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/reprompt:teacher_confirm_completion_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_confirm_completion_first",
+      "eta": {
+        "instruction": "Make it a habit to verify task completion status is achieved before replying to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_calculate",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_calculate",
+      "eta": {
+        "destination": "calculate",
+        "argument_mapping": "expression -> expression",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_find_user_id_by_email",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_find_user_id_by_email",
+      "eta": {
+        "destination": "find_user_id_by_email",
+        "argument_mapping": "email -> email",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_get_item_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_item_details",
+      "eta": {
+        "destination": "get_item_details",
+        "argument_mapping": "item_id -> item_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_get_order_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_order_details",
+      "eta": {
+        "destination": "get_order_details",
+        "argument_mapping": "order_id -> order_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_get_product_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_product_details",
+      "eta": {
+        "destination": "get_product_details",
+        "argument_mapping": "product_id -> product_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_get_user_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_user_details",
+      "eta": {
+        "destination": "get_user_details",
+        "argument_mapping": "user_id -> user_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_list_all_product_types",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_list_all_product_types",
+      "eta": {
+        "destination": "list_all_product_types",
+        "argument_mapping": "(no arguments)",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_state_change/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_state_change",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 32,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:teacher_verify_before_reply",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_before_reply",
+      "eta": {
+        "instruction": "Ensure the required change has been fully executed and confirmed before sending any reply to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:teacher_double_check_status",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_status",
+      "eta": {
+        "instruction": "Pause to double-check that all task modifications are complete and accurate prior to committing your response.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/reprompt:teacher_confirm_completion_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_confirm_completion_first",
+      "eta": {
+        "instruction": "Make it a habit to verify task completion status is achieved before replying to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_calculate",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_calculate",
+      "eta": {
+        "destination": "calculate",
+        "argument_mapping": "expression -> expression",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_find_user_id_by_email",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_find_user_id_by_email",
+      "eta": {
+        "destination": "find_user_id_by_email",
+        "argument_mapping": "email -> email",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_get_item_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_item_details",
+      "eta": {
+        "destination": "get_item_details",
+        "argument_mapping": "item_id -> item_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_get_order_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_order_details",
+      "eta": {
+        "destination": "get_order_details",
+        "argument_mapping": "order_id -> order_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_get_product_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_product_details",
+      "eta": {
+        "destination": "get_product_details",
+        "argument_mapping": "product_id -> product_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_get_user_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_user_details",
+      "eta": {
+        "destination": "get_user_details",
+        "argument_mapping": "user_id -> user_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_list_all_product_types",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_list_all_product_types",
+      "eta": {
+        "destination": "list_all_product_types",
+        "argument_mapping": "(no arguments)",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_unknown_tool/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "proposes_unknown_tool",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:recheck_against_policy",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:require_verification_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:teacher_verify_before_reply",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_before_reply",
+      "eta": {
+        "instruction": "Ensure the required change has been fully executed and confirmed before sending any reply to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:teacher_double_check_status",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_status",
+      "eta": {
+        "instruction": "Pause to double-check that all task modifications are complete and accurate prior to committing your response.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/reprompt:teacher_confirm_completion_first",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_confirm_completion_first",
+      "eta": {
+        "instruction": "Make it a habit to verify task completion status is achieved before replying to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_calculate",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_calculate",
+      "eta": {
+        "destination": "calculate",
+        "argument_mapping": "expression -> expression",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_find_user_id_by_email",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_find_user_id_by_email",
+      "eta": {
+        "destination": "find_user_id_by_email",
+        "argument_mapping": "email -> email",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_get_item_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_item_details",
+      "eta": {
+        "destination": "get_item_details",
+        "argument_mapping": "item_id -> item_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_get_order_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_order_details",
+      "eta": {
+        "destination": "get_order_details",
+        "argument_mapping": "order_id -> order_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_get_product_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_product_details",
+      "eta": {
+        "destination": "get_product_details",
+        "argument_mapping": "product_id -> product_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_get_user_details",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_get_user_details",
+      "eta": {
+        "destination": "get_user_details",
+        "argument_mapping": "user_id -> user_id",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_list_all_product_types",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_list_all_product_types",
+      "eta": {
+        "destination": "list_all_product_types",
+        "argument_mapping": "(no arguments)",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/substitute:substitute_transfer_to_human_agents",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "reroute",
+      "operator": "substitute",
+      "variant": "substitute_transfer_to_human_agents",
+      "eta": {
+        "destination": "transfer_to_human_agents",
+        "argument_mapping": "summary -> summary",
+        "retry_semantics": "replace"
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "post_generation_pre_exec/commits_to_reply/suppress:cancel_proposed",
+      "boundary": "post_generation_pre_exec",
+      "signal": "commits_to_reply",
+      "action": "suppress",
+      "operator": "suppress",
+      "variant": "cancel_proposed",
+      "eta": {
+        "suppressed_operation": "the proposed call this signal implicates",
+        "retry_budget": 1
+      },
+      "fires_on_states": 126,
+      "total_states": 738
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:recheck_against_policy",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "recheck_against_policy",
+      "eta": {
+        "instruction": "Before continuing, re-read the operative section of the policy and confirm this step is the one it prescribes.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:require_verification_first",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "require_verification_first",
+      "eta": {
+        "instruction": "Verify the details you need with a read before taking any step that changes records.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:teacher_verify_before_reply",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_verify_before_reply",
+      "eta": {
+        "instruction": "Ensure the required change has been fully executed and confirmed before sending any reply to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:teacher_double_check_status",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_double_check_status",
+      "eta": {
+        "instruction": "Pause to double-check that all task modifications are complete and accurate prior to committing your response.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    },
+    {
+      "arm_label": "pre_generation/following_tool_error/reprompt:teacher_confirm_completion_first",
+      "boundary": "pre_generation",
+      "signal": "following_tool_error",
+      "action": "reprompt",
+      "operator": "reprompt",
+      "variant": "teacher_confirm_completion_first",
+      "eta": {
+        "instruction": "Make it a habit to verify task completion status is achieved before replying to the user.",
+        "retry_budget": 1
+      },
+      "fires_on_states": 0,
+      "total_states": 738
+    }
+  ],
+  "state": "REALIZABLE_UNMEASURED",
+  "residual_key": "an answer committed to the user before the task's required change was made",
+  "residual_case_ids": [
+    "103",
+    "104",
+    "107",
+    "11",
+    "112",
+    "20",
+    "24",
+    "29",
+    "4",
+    "41",
+    "44",
+    "58",
+    "72",
+    "76",
+    "84",
+    "88",
+    "91"
+  ],
+  "signals_installed": [],
+  "replayed_results": null,
+  "teacher": {
+    "invoked": true,
+    "reason": "3 of 3 proposals validated",
+    "model": "granite-4.1-30b",
+    "provenance": "self_teach:granite-4.1-30b",
+    "accepted": [
+      {
+        "variant": "verify_before_reply",
+        "instruction": "Ensure the required change has been fully executed and confirmed before sending any reply to the user."
+      },
+      {
+        "variant": "double_check_status",
+        "instruction": "Pause to double-check that all task modifications are complete and accurate prior to committing your response."
+      },
+      {
+        "variant": "confirm_completion_first",
+        "instruction": "Make it a habit to verify task completion status is achieved before replying to the user."
+      }
+    ],
+    "rejected": [],
+    "groundings": [
+      {
+        "variant": "teacher_verify_before_reply",
+        "eta": {
+          "instruction": "Ensure the required change has been fully executed and confirmed before sending any reply to the user.",
+          "retry_budget": 1
+        },
+        "detail": "instruction proposed by self_teach:granite-4.1-30b",
+        "provenance": "self_teach:granite-4.1-30b",
+        "model": "granite-4.1-30b"
+      },
+      {
+        "variant": "teacher_double_check_status",
+        "eta": {
+          "instruction": "Pause to double-check that all task modifications are complete and accurate prior to committing your response.",
+          "retry_budget": 1
+        },
+        "detail": "instruction proposed by self_teach:granite-4.1-30b",
+        "provenance": "self_teach:granite-4.1-30b",
+        "model": "granite-4.1-30b"
+      },
+      {
+        "variant": "teacher_confirm_completion_first",
+        "eta": {
+          "instruction": "Make it a habit to verify task completion status is achieved before replying to the user.",
+          "retry_budget": 1
+        },
+        "detail": "instruction proposed by self_teach:granite-4.1-30b",
+        "provenance": "self_teach:granite-4.1-30b",
+        "model": "granite-4.1-30b"
+      }
+    ]
+  },
+  "agent_llm": "granite-4.1-30b",
+  "domain": "retail",
+  "moves_earlier": 0
+}

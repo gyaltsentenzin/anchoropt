@@ -1,0 +1,475 @@
+{
+  "meta": {
+    "n_failing_queries": 186,
+    "artifact": "ledgers/n0t4_locus.json",
+    "corrections_by_episode": {
+      "memory_kv_prereq_10-healthcare-0": {
+        "capacity/container/no_remaining_capacity": 5,
+        "permission/identifier/duplicate": 1
+      },
+      "memory_kv_prereq_11-healthcare-1": {
+        "capacity/container/no_remaining_capacity": 2
+      },
+      "memory_kv_prereq_12-healthcare-2": {
+        "capacity/container/no_remaining_capacity": 16,
+        "permission/identifier/duplicate": 6,
+        "existence/identifier/not_found": 4
+      },
+      "memory_kv_prereq_13-healthcare-3": {
+        "capacity/container/no_remaining_capacity": 9,
+        "permission/identifier/duplicate": 2
+      },
+      "memory_kv_prereq_14-healthcare-4": {
+        "capacity/container/no_remaining_capacity": 10,
+        "permission/identifier/duplicate": 4
+      },
+      "memory_kv_prereq_15-finance-0": {
+        "capacity/container/no_remaining_capacity": 7,
+        "permission/identifier/duplicate": 1
+      },
+      "memory_kv_prereq_16-finance-1": {
+        "capacity/container/no_remaining_capacity": 5,
+        "permission/identifier/duplicate": 1
+      },
+      "memory_kv_prereq_17-finance-2": {
+        "capacity/container/no_remaining_capacity": 5,
+        "permission/identifier/duplicate": 1
+      },
+      "memory_kv_prereq_18-finance-3": {
+        "capacity/container/no_remaining_capacity": 5,
+        "permission/identifier/duplicate": 2
+      },
+      "memory_kv_prereq_20-finance-5": {
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_kv_prereq_21-finance-6": {
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_kv_prereq_23-student-1": {
+        "capacity/container/no_remaining_capacity": 30
+      },
+      "memory_kv_prereq_24-student-2": {
+        "capacity/container/no_remaining_capacity": 54,
+        "permission/identifier/duplicate": 2
+      },
+      "memory_kv_prereq_25-student-3": {
+        "capacity/container/no_remaining_capacity": 15,
+        "permission/identifier/duplicate": 1
+      },
+      "memory_kv_prereq_26-student-4": {
+        "capacity/container/no_remaining_capacity": 11,
+        "permission/identifier/duplicate": 1
+      },
+      "memory_kv_prereq_27-student-5": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_kv_prereq_28-student-6": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_kv_prereq_29-student-7": {
+        "capacity/container/no_remaining_capacity": 15,
+        "permission/identifier/duplicate": 1,
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_prereq_30-student-8": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_kv_prereq_31-student-9": {
+        "capacity/container/no_remaining_capacity": 14,
+        "permission/identifier/duplicate": 5
+      },
+      "memory_kv_prereq_32-notetaker-0": {
+        "format/field/malformed_value": 1,
+        "capacity/container/no_remaining_capacity": 8
+      },
+      "memory_kv_prereq_33-notetaker-1": {
+        "capacity/container/no_remaining_capacity": 3
+      },
+      "memory_kv_prereq_34-notetaker-2": {
+        "capacity/container/no_remaining_capacity": 3
+      },
+      "memory_kv_prereq_35-notetaker-3": {
+        "capacity/container/no_remaining_capacity": 6
+      },
+      "memory_kv_prereq_36-notetaker-4": {
+        "capacity/container/no_remaining_capacity": 6
+      },
+      "memory_rec_sum_prereq_13-healthcare-3": {
+        "capacity/container/no_remaining_capacity": 3
+      },
+      "memory_rec_sum_prereq_14-healthcare-4": {
+        "capacity/container/no_remaining_capacity": 7
+      },
+      "memory_rec_sum_prereq_24-student-2": {
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_rec_sum_prereq_25-student-3": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_rec_sum_prereq_26-student-4": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_rec_sum_prereq_3-customer-3": {
+        "capacity/container/no_remaining_capacity": 2
+      },
+      "memory_rec_sum_prereq_30-student-8": {
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_rec_sum_prereq_31-student-9": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_rec_sum_prereq_4-customer-4": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_rec_sum_prereq_5-customer-5": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_rec_sum_prereq_7-customer-7": {
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_rec_sum_prereq_8-customer-8": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_rec_sum_prereq_9-customer-9": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_vector_prereq_0-customer-0": {
+        "capacity/container/no_remaining_capacity": 2
+      },
+      "memory_vector_prereq_1-customer-1": {
+        "capacity/container/no_remaining_capacity": 8,
+        "size/item/exceeds_per_item_limit": 2
+      },
+      "memory_vector_prereq_10-healthcare-0": {
+        "size/item/exceeds_per_item_limit": 1,
+        "capacity/container/no_remaining_capacity": 3
+      },
+      "memory_vector_prereq_11-healthcare-1": {
+        "capacity/container/no_remaining_capacity": 9
+      },
+      "memory_vector_prereq_12-healthcare-2": {
+        "size/item/exceeds_per_item_limit": 1,
+        "capacity/container/no_remaining_capacity": 9
+      },
+      "memory_vector_prereq_13-healthcare-3": {
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_vector_prereq_14-healthcare-4": {
+        "capacity/container/no_remaining_capacity": 8
+      },
+      "memory_vector_prereq_15-finance-0": {
+        "size/item/exceeds_per_item_limit": 5
+      },
+      "memory_vector_prereq_16-finance-1": {
+        "size/item/exceeds_per_item_limit": 8,
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_vector_prereq_17-finance-2": {
+        "size/item/exceeds_per_item_limit": 2,
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_vector_prereq_18-finance-3": {
+        "capacity/container/no_remaining_capacity": 1,
+        "size/item/exceeds_per_item_limit": 4
+      },
+      "memory_vector_prereq_19-finance-4": {
+        "size/item/exceeds_per_item_limit": 7,
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_vector_prereq_2-customer-2": {
+        "capacity/container/no_remaining_capacity": 9,
+        "size/item/exceeds_per_item_limit": 1
+      },
+      "memory_vector_prereq_20-finance-5": {
+        "capacity/container/no_remaining_capacity": 2,
+        "size/item/exceeds_per_item_limit": 3
+      },
+      "memory_vector_prereq_21-finance-6": {
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_vector_prereq_3-customer-3": {
+        "capacity/container/no_remaining_capacity": 12
+      },
+      "memory_vector_prereq_33-notetaker-1": {
+        "capacity/container/no_remaining_capacity": 2
+      },
+      "memory_vector_prereq_34-notetaker-2": {
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_vector_prereq_35-notetaker-3": {
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_vector_prereq_36-notetaker-4": {
+        "capacity/container/no_remaining_capacity": 5
+      },
+      "memory_vector_prereq_4-customer-4": {
+        "capacity/container/no_remaining_capacity": 10
+      },
+      "memory_vector_prereq_5-customer-5": {
+        "size/item/exceeds_per_item_limit": 3,
+        "capacity/container/no_remaining_capacity": 10
+      },
+      "memory_vector_prereq_6-customer-6": {
+        "capacity/container/no_remaining_capacity": 5,
+        "size/item/exceeds_per_item_limit": 5
+      },
+      "memory_vector_prereq_7-customer-7": {
+        "capacity/container/no_remaining_capacity": 8,
+        "size/item/exceeds_per_item_limit": 1
+      },
+      "memory_vector_prereq_8-customer-8": {
+        "capacity/container/no_remaining_capacity": 2
+      },
+      "memory_vector_prereq_9-customer-9": {
+        "capacity/container/no_remaining_capacity": 12,
+        "size/item/exceeds_per_item_limit": 3
+      },
+      "memory_kv_106-student-26": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_108-student-28": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_111-student-31": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_112-student-32": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_117-student-37": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_119-student-39": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_120-student-40": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_124-student-44": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_125-student-45": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_127-student-47": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_128-student-48": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_kv_129-student-49": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_154-notetaker-24": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_31-healthcare-1": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_40-healthcare-10": {
+        "existence/identifier/not_found": 1,
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_kv_43-healthcare-13": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_46-healthcare-16": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_47-healthcare-17": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_48-healthcare-18": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_49-healthcare-19": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_52-healthcare-22": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_53-healthcare-23": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_54-healthcare-24": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_55-finance-0": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_59-finance-4": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_60-finance-5": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_61-finance-6": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_63-finance-8": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_64-finance-9": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_65-finance-10": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_68-finance-13": {
+        "existence/identifier/not_found": 1,
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_kv_70-finance-15": {
+        "existence/identifier/not_found": 1,
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_kv_72-finance-17": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_73-finance-18": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_80-student-0": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_84-student-4": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_86-student-6": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_90-student-10": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_95-student-15": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_96-student-16": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_97-student-17": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_kv_98-student-18": {
+        "existence/identifier/not_found": 1
+      },
+      "memory_rec_sum_19-customer-19": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_rec_sum_37-healthcare-7": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_rec_sum_44-healthcare-14": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_vector_69-finance-14": {
+        "capacity/container/no_remaining_capacity": 1
+      },
+      "memory_vector_71-finance-16": {
+        "size/item/exceeds_per_item_limit": 1,
+        "capacity/container/no_remaining_capacity": 1
+      }
+    },
+    "episodes_with_corrections": 111,
+    "total_corrections": 551,
+    "fingerprint": "32d645b879808bc3",
+    "model": "anthropic/aws/claude-haiku-4-5",
+    "iteration": "N0-T4"
+  },
+  "ranked": [
+    {
+      "locus": [
+        "capacity",
+        "container",
+        "no_remaining_capacity"
+      ],
+      "support": 35,
+      "raw_events": 729,
+      "settled_by_incumbent": 429,
+      "linked_loss": 14,
+      "max_retry_depth": 20,
+      "repeat_runs": 23,
+      "wasted_attempts": 265,
+      "suppress_candidate": true,
+      "mean_retry_depth": 8.6,
+      "backends": {
+        "kv": 10,
+        "rec_sum": 240,
+        "vector": 50
+      }
+    },
+    {
+      "locus": [
+        "size",
+        "item",
+        "exceeds_per_item_limit"
+      ],
+      "support": 4,
+      "raw_events": 71,
+      "settled_by_incumbent": 47,
+      "linked_loss": 9,
+      "max_retry_depth": 21,
+      "repeat_runs": 1,
+      "wasted_attempts": 20,
+      "suppress_candidate": false,
+      "mean_retry_depth": 6.0,
+      "backends": {
+        "vector": 24
+      }
+    },
+    {
+      "locus": [
+        "existence",
+        "identifier",
+        "not_found"
+      ],
+      "support": 5,
+      "raw_events": 58,
+      "settled_by_incumbent": 46,
+      "linked_loss": 1,
+      "max_retry_depth": 3,
+      "repeat_runs": 4,
+      "wasted_attempts": 7,
+      "suppress_candidate": false,
+      "mean_retry_depth": 2.4,
+      "backends": {
+        "kv": 3,
+        "vector": 9
+      }
+    },
+    {
+      "locus": [
+        "format",
+        "field",
+        "malformed_value"
+      ],
+      "support": 0,
+      "raw_events": 1,
+      "settled_by_incumbent": 1,
+      "linked_loss": 0,
+      "max_retry_depth": 0,
+      "repeat_runs": 0,
+      "wasted_attempts": 0,
+      "suppress_candidate": false,
+      "mean_retry_depth": 0.0,
+      "backends": {}
+    },
+    {
+      "locus": [
+        "permission",
+        "identifier",
+        "duplicate"
+      ],
+      "support": 0,
+      "raw_events": 28,
+      "settled_by_incumbent": 28,
+      "linked_loss": 0,
+      "max_retry_depth": 0,
+      "repeat_runs": 0,
+      "wasted_attempts": 0,
+      "suppress_candidate": false,
+      "mean_retry_depth": 0.0,
+      "backends": {}
+    }
+  ]
+}

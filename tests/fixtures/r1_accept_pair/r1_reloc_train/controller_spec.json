@@ -1,0 +1,23 @@
+{
+ "name": "kv_core_capacity_relocation",
+ "locus": "post_execution",
+ "action": "reroute",
+ "operator": "transform",
+ "variant": "relocate_entry_for_kv",
+ "eta": {
+  "target_surface": "constrained_container_occupancy",
+  "operator": "relocate_entry_preserving_information",
+  "preservation": "the relocated entry is verified present in the destination BEFORE it is removed from the source; if the destination write does not land, nothing is removed",
+  "destination_operation": "archival_memory_add",
+  "budget_from": "archival_entry",
+  "retry_semantics": "retry_original_verbatim_after_capacity_freed"
+ },
+ "predicate": {
+  "declared_signal": "container_at_capacity",
+  "params": {}
+ },
+ "capability_id": "relocate_entry_preserving_information_then_retry",
+ "phase": "prereq",
+ "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=prereq",
+ "signal": "container_at_capacity"
+}

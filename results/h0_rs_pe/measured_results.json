@@ -1,0 +1,50 @@
+{
+  "incumbent_token": "results/h0_native/nativectl_rec_sum_train/run",
+  "results": [
+    {
+      "arm_label": "post_generation_pre_exec/proposed_payload_chars_gt_252p0__and__step_index_gt_1p0/suppress:cancel_proposed",
+      "gains": [],
+      "losses": [
+        "memory_rec_sum_93-student-13"
+      ],
+      "n": 109,
+      "cases_fired": 30,
+      "interventions_executed": 85,
+      "accuracy_delta_pp": -0.9174,
+      "denominator_ok": true,
+      "incumbent_token": "results/h0_native/nativectl_rec_sum_train/run"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposed_payload_chars_lt_88p0/suppress:cancel_proposed",
+      "gains": [
+        "memory_rec_sum_22-customer-22",
+        "memory_rec_sum_25-customer-25",
+        "memory_rec_sum_9-customer-9"
+      ],
+      "losses": [
+        "memory_rec_sum_1-customer-1",
+        "memory_rec_sum_15-customer-15",
+        "memory_rec_sum_16-customer-16",
+        "memory_rec_sum_17-customer-17",
+        "memory_rec_sum_23-customer-23"
+      ],
+      "n": 109,
+      "cases_fired": 26,
+      "interventions_executed": 20,
+      "accuracy_delta_pp": -1.8349,
+      "denominator_ok": true,
+      "incumbent_token": "results/h0_native/nativectl_rec_sum_train/run"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/step_index_gt_13p0/suppress:cancel_proposed",
+      "gains": [],
+      "losses": [],
+      "n": 109,
+      "cases_fired": 26,
+      "interventions_executed": 72,
+      "accuracy_delta_pp": 0.0,
+      "denominator_ok": true,
+      "incumbent_token": "results/h0_native/nativectl_rec_sum_train/run"
+    }
+  ]
+}

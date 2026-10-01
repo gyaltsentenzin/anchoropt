@@ -1,0 +1,38 @@
+{
+  "_comment": "N0-A4v2 on the FROZEN A1+A2+A3 incumbent [38.61 percent]. A4v1 REJECTED at -4.95pp: it fired at step_count==0, i.e. the start of EVERY query, injecting in 303/303 episodes instead of the ~48 targeted [rec_sum -24]. The mechanism worked -- no-call episodes went 60 to 0 -- so that was a SPECIFICATION error, not a failed hypothesis: 'about to answer without a tool call' is not observable before the model answers. v2 intercepts POST-GENERATION at answer_end_turn when the query executed ZERO tool calls and budget remains, reprompts ONCE [latched], and does NOT prescribe retrieval -- 23 of the 48 measured no-call failures had nothing in the store, where forcing a read invites fabrication. Hence the explicit 'repeat your answer as-is' escape. A1/A2/A3 unchanged; no global preamble.",
+  "gate_default": false,
+  "templates": {
+    "on_memory_preamble": "",
+    "on_hallucinate": "",
+    "on_loop": "",
+    "on_wrong_args": "",
+    "on_domain_error": "",
+    "on_new_function_available": "",
+    "on_turn_start_action": "[Memory Gate] You answered without consulting stored memory. If this question depends on information from earlier, check memory before answering -- core memory and archival memory are both available. If it genuinely does not, repeat your answer as-is.",
+    "on_ambiguous_target": "",
+    "on_turn_boundary_orient": "",
+    "on_domain_error_core_full": "",
+    "on_domain_error_key_not_found": "",
+    "on_domain_error_too_long": "",
+    "on_retrieval_success_pre_answer": "",
+    "on_idk_fallback": "",
+    "on_core_clear_blocked": "",
+    "on_premature_idk": ""
+  },
+  "gate_enabled": {
+    "on_domain_error_core_full": true,
+    "on_core_full_rerouted": true,
+    "on_blob_pressure": false,
+    "on_core_clear_blocked": false,
+    "on_key_not_found_rerouted": false,
+    "on_domain_error_key_not_found": true,
+    "on_domain_error_too_long": false,
+    "on_redundant_write_suppressed": true,
+    "on_turn_start_action": false
+  },
+  "enable_reroute": true,
+  "enable_capacity_repair": true,
+  "enable_redundant_write_suppress": true,
+  "enable_turn_start_action": false,
+  "enable_zero_call_reprompt": true
+}

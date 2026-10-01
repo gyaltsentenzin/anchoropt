@@ -1,0 +1,36 @@
+[
+  {
+    "name": "clear_proposed_at_capacity",
+    "locus": "post_generation_pre_exec",
+    "action": "suppress",
+    "operator": "suppress",
+    "variant": "cancel_proposed",
+    "eta": {
+      "suppressed_operation": "the proposed destructive clear"
+    },
+    "predicate": {
+      "declared_signal": "clear_proposed_at_capacity",
+      "params": {}
+    },
+    "capability_id": "post_generation_pre_exec/suppress",
+    "phase": "prereq",
+    "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=prereq"
+  },
+  {
+    "name": "redundant_proposed_write",
+    "locus": "post_generation_pre_exec",
+    "action": "suppress",
+    "operator": "suppress",
+    "variant": "cancel_proposed",
+    "eta": {
+      "suppressed_operation": "the proposed operation this signal implicates"
+    },
+    "predicate": {
+      "declared_signal": "redundant_proposed_write",
+      "params": {}
+    },
+    "capability_id": "post_generation_pre_exec/suppress",
+    "phase": "prereq",
+    "provenance": "declared signal, seeded from the residual family's grounded observables by anchoropt.learning.structured_search.optimize_residual; the host ships the predicate, so the runner evaluates it by name. phase=prereq"
+  }
+]

@@ -1,0 +1,112 @@
+{
+  "split": "test",
+  "n": 40,
+  "k": 4,
+  "agent_provider": "vllm",
+  "p0_totals": [
+    27,
+    29,
+    28,
+    27
+  ],
+  "p0_mean": 27.75,
+  "p0_sd": 0.9574271077563381,
+  "p0_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+  "tested_p1": true,
+  "why_not_p1": "",
+  "accepted": false,
+  "train_p0": "46/74",
+  "train_net": 4,
+  "p1_totals": [
+    30,
+    26,
+    30,
+    31
+  ],
+  "p1_mean": 29.25,
+  "p1_sd": 2.217355782608345,
+  "p1_void": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "p1_executed": [
+    19,
+    21,
+    21,
+    20
+  ],
+  "mean_diff": 1.5,
+  "se": 1.20761472884912,
+  "z": 1.2421180068162376,
+  "criterion_2_no_aggregate_regression": true,
+  "cases_fired_any_run": [
+    "100",
+    "111",
+    "12",
+    "17",
+    "18",
+    "26",
+    "27",
+    "32",
+    "33",
+    "36",
+    "38",
+    "39",
+    "40",
+    "45",
+    "49",
+    "5",
+    "55",
+    "56",
+    "62",
+    "64",
+    "65",
+    "68",
+    "71",
+    "74",
+    "79",
+    "86",
+    "9",
+    "94",
+    "97"
+  ],
+  "criterion_3_gains_attributable": [
+    "100",
+    "12",
+    "49",
+    "74",
+    "86",
+    "9"
+  ],
+  "criterion_3_gains_not_attributable": [
+    "101",
+    "108",
+    "61",
+    "70"
+  ],
+  "criterion_3_collateral_losses": [
+    "38",
+    "39",
+    "64"
+  ],
+  "p0_pass_hat_k": {
+    "1": 0.69375,
+    "2": 0.5916666666666667,
+    "3": 0.5375,
+    "4": 0.5
+  },
+  "p1_pass_hat_k": {
+    "1": 0.73125,
+    "2": 0.65,
+    "3": 0.6,
+    "4": 0.575
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "phase": "EXPAND_ATTRIBUTION",
+  "summary": {
+    "residual": 186,
+    "explained_direct": 6,
+    "explained_by_ranker_linkage": 23,
+    "unexplained": 180,
+    "corrections": 476,
+    "episodes_with_corrections": 73
+  },
+  "surviving": [],
+  "loci": [
+    {
+      "locus": [
+        "capacity",
+        "container",
+        "no_remaining_capacity"
+      ],
+      "linked": 14,
+      "settled": 429,
+      "raw_events": 729
+    },
+    {
+      "locus": [
+        "size",
+        "item",
+        "exceeds_per_item_limit"
+      ],
+      "linked": 9,
+      "settled": 47,
+      "raw_events": 71
+    }
+  ]
+}

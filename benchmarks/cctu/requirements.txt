@@ -1,0 +1,5 @@
+func_timeout==4.3.5
+numpy==2.4.3
+openai==1.27.0 # initially 1.26.4
+tqdm==4.67.1
+requests==2.32.3  # utils/vllm_client.py; --use-vllm fails at import without it

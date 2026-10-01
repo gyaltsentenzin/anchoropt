@@ -1,0 +1,53 @@
+{
+  "incumbent_id": "P0",
+  "incumbent_token": "rounds/TAU2_R1/baseline.json",
+  "n_arms_in_manifest": 16,
+  "n_evaluated": 3,
+  "results": [
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+      "gains": [],
+      "losses": [
+        "13"
+      ],
+      "firings": 2,
+      "cases_fired": 2,
+      "n": 20,
+      "interventions_executed": 2,
+      "accuracy_delta_pp": -5.0,
+      "denominator_identical": true,
+      "detail": "7/20 vs incumbent 8/20"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "gains": [],
+      "losses": [],
+      "firings": 2,
+      "cases_fired": 2,
+      "n": 20,
+      "interventions_executed": 2,
+      "accuracy_delta_pp": 0.0,
+      "denominator_identical": true,
+      "detail": "8/20 vs incumbent 8/20"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "gains": [
+        "1",
+        "26"
+      ],
+      "losses": [
+        "12",
+        "19",
+        "22"
+      ],
+      "firings": 96,
+      "cases_fired": 20,
+      "n": 20,
+      "interventions_executed": 96,
+      "accuracy_delta_pp": -5.0,
+      "denominator_identical": true,
+      "detail": "7/20 vs incumbent 8/20"
+    }
+  ]
+}

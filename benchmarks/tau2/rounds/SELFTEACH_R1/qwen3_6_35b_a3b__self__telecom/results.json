@@ -1,0 +1,156 @@
+{
+  "incumbent_id": "P0",
+  "incumbent_token": "<matrix-dir>/qwen3_6_35b_a3b__self__telecom/baseline.json",
+  "n_arms_in_manifest": 54,
+  "n_evaluated": 8,
+  "n_voided": 0,
+  "voided": [],
+  "aborted_on_outage": false,
+  "results": [
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:recheck_against_policy",
+      "gains": [
+        "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]"
+      ],
+      "losses": [],
+      "firings": 0,
+      "cases_fired": 0,
+      "n": 74,
+      "interventions_executed": 0,
+      "accuracy_delta_pp": 1.3513513513513513,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "74/74 vs incumbent 73/74"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:require_verification_first",
+      "gains": [
+        "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]"
+      ],
+      "losses": [],
+      "firings": 1,
+      "cases_fired": 1,
+      "n": 74,
+      "interventions_executed": 1,
+      "accuracy_delta_pp": 1.3513513513513513,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "74/74 vs incumbent 73/74"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_prioritize_action_over_reply",
+      "gains": [
+        "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]"
+      ],
+      "losses": [
+        "[mms_issue]bad_network_preference|bad_wifi_calling|break_app_both_permissions|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+        "[service_issue]airplane_mode_on|break_apn_settings|overdue_bill_suspension|unseat_sim_card[PERSONA:None]"
+      ],
+      "firings": 0,
+      "cases_fired": 0,
+      "n": 74,
+      "interventions_executed": 0,
+      "accuracy_delta_pp": -1.3513513513513513,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "72/74 vs incumbent 73/74"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_verify_completion_before_commit",
+      "gains": [
+        "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]"
+      ],
+      "losses": [
+        "[service_issue]airplane_mode_on|overdue_bill_suspension|unseat_sim_card[PERSONA:Easy]"
+      ],
+      "firings": 0,
+      "cases_fired": 0,
+      "n": 74,
+      "interventions_executed": 0,
+      "accuracy_delta_pp": 0.0,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "73/74 vs incumbent 73/74"
+    },
+    {
+      "arm_label": "post_execution/tool_call_failed/reprompt:teacher_delay_reply_until_action_done",
+      "gains": [
+        "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]"
+      ],
+      "losses": [
+        "[service_issue]airplane_mode_on|overdue_bill_suspension|unseat_sim_card[PERSONA:Easy]"
+      ],
+      "firings": 0,
+      "cases_fired": 0,
+      "n": 74,
+      "interventions_executed": 0,
+      "accuracy_delta_pp": 0.0,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "73/74 vs incumbent 73/74"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:recheck_against_policy",
+      "gains": [
+        "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]"
+      ],
+      "losses": [
+        "[mms_issue]airplane_mode_on|bad_network_preference|bad_wifi_calling|break_apn_mms_setting|break_app_storage_permission|data_mode_off|data_usage_exceeded|unseat_sim_card[PERSONA:Easy]",
+        "[mms_issue]airplane_mode_on|bad_network_preference|break_apn_mms_setting|data_mode_off|unseat_sim_card|user_abroad_roaming_disabled_off[PERSONA:Easy]",
+        "[mms_issue]bad_network_preference|user_abroad_roaming_disabled_on[PERSONA:None]",
+        "[mms_issue]bad_wifi_calling|break_apn_mms_setting|data_mode_off|data_usage_exceeded|unseat_sim_card[PERSONA:None]",
+        "[mms_issue]break_apn_mms_setting|data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_on[PERSONA:Hard]",
+        "[mms_issue]break_app_storage_permission|unseat_sim_card|user_abroad_roaming_disabled_on[PERSONA:Easy]",
+        "[mobile_data_issue]airplane_mode_on|bad_network_preference[PERSONA:Hard]",
+        "[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+        "[service_issue]airplane_mode_on|overdue_bill_suspension|unseat_sim_card[PERSONA:Easy]",
+        "[service_issue]airplane_mode_on|unseat_sim_card[PERSONA:None]"
+      ],
+      "firings": 414,
+      "cases_fired": 74,
+      "n": 74,
+      "interventions_executed": 414,
+      "accuracy_delta_pp": -12.162162162162161,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "64/74 vs incumbent 73/74"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:require_verification_first",
+      "gains": [
+        "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]"
+      ],
+      "losses": [
+        "[mobile_data_issue]bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+        "[service_issue]airplane_mode_on|break_apn_settings[PERSONA:Hard]",
+        "[service_issue]break_apn_settings|overdue_bill_suspension|unseat_sim_card[PERSONA:Hard]"
+      ],
+      "firings": 463,
+      "cases_fired": 74,
+      "n": 74,
+      "interventions_executed": 463,
+      "accuracy_delta_pp": -2.7027027027027026,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "71/74 vs incumbent 73/74"
+    },
+    {
+      "arm_label": "post_generation_pre_exec/proposes_tool_call/reprompt:teacher_prioritize_action_over_reply",
+      "gains": [
+        "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]"
+      ],
+      "losses": [
+        "[service_issue]airplane_mode_on|break_apn_settings|contract_end_suspension|unseat_sim_card[PERSONA:Easy]",
+        "[service_issue]airplane_mode_on|break_apn_settings|lock_sim_card_pin|overdue_bill_suspension|unseat_sim_card[PERSONA:None]"
+      ],
+      "firings": 648,
+      "cases_fired": 74,
+      "n": 74,
+      "interventions_executed": 648,
+      "accuracy_delta_pp": -1.3513513513513513,
+      "denominator_identical": true,
+      "complete": true,
+      "detail": "72/74 vs incumbent 73/74"
+    }
+  ]
+}
